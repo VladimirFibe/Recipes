@@ -17,13 +17,13 @@ class CreatorCell: UICollectionViewCell {
     private func setupAvatarImageView() {
         contentView.addSubview(avatarImageView)
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        avatarImageView.layer.cornerRadius = 40
+        avatarImageView.layer.cornerRadius = 55
         avatarImageView.layer.masksToBounds = true
         
         NSLayoutConstraint.activate([
             avatarImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 80),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 110),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor)
             
         ])
@@ -33,7 +33,7 @@ class CreatorCell: UICollectionViewCell {
         contentView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.textAlignment = .center
-        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 8),
