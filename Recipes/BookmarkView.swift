@@ -38,8 +38,3 @@ class BookmarkView: UIView {
         imageView.image = active ? .bookmarkActive24 : .bookmarkInactive24
     }
 }
-
-@available(iOS 17.0, *)
-#Preview {
-    ViewController()
-}

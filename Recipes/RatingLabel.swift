@@ -53,8 +53,3 @@ class RatingLabel: UIView {
         ])
     }
 }
-
-@available(iOS 17.0, *)
-#Preview {
-    ViewController()
-}

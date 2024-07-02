@@ -47,7 +47,3 @@ final class RecentCell: UITableViewCell {
         ])
     }
 }
-//@available(iOS 17.0, *)
-//#Preview {
-//    ViewController()
-//}

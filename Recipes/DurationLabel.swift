@@ -41,8 +41,3 @@ class DurationLabel: UIView {
         ])
     }
 }
-
-@available(iOS 17.0, *)
-#Preview {
-    ViewController()
-}
