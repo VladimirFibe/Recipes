@@ -32,7 +32,7 @@ class RatingLabel: UIView {
     
     private func setupImageView() {
         addSubview(imageView)
-        imageView.image = .star12
+        imageView.image = UIImage(named: "star12")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: 8),

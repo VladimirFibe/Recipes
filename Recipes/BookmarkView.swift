@@ -21,7 +21,7 @@ class BookmarkView: UIView {
     
     private func setupImageView() {
         addSubview(imageView)
-        imageView.image = .bookmarkInactive24
+        imageView.image = UIImage(named: "bookmarkInactive24")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -35,6 +35,6 @@ class BookmarkView: UIView {
     }
     
     func configure(with active: Bool) {
-        imageView.image = active ? .bookmarkActive24 : .bookmarkInactive24
+        imageView.image = active ? UIImage(named: "bookmarkActive24") : UIImage(named: "bookmarkInactive24")
     }
 }

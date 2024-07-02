@@ -18,7 +18,7 @@ class PictureView: UIView {
     
     private func setupImageView() {
         addSubview(imageView)
-        imageView.image = .image4
+        imageView.image = UIImage(named: "image4")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true

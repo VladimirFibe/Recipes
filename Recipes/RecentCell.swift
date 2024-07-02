@@ -22,8 +22,8 @@ final class RecentCell: UITableViewCell {
         pictureView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             pictureView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            pictureView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            pictureView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            pictureView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            pictureView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             pictureView.heightAnchor.constraint(equalToConstant: 180)
         ])
     }
@@ -34,7 +34,8 @@ final class RecentCell: UITableViewCell {
         NSLayoutConstraint.activate([
             footerView.topAnchor.constraint(equalTo: pictureView.bottomAnchor),
             footerView.leadingAnchor.constraint(equalTo: pictureView.leadingAnchor),
-            footerView.trailingAnchor.constraint(equalTo: pictureView.trailingAnchor)
+            footerView.trailingAnchor.constraint(equalTo: pictureView.trailingAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 258)
         ])
     }
     
