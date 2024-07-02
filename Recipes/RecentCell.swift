@@ -1,6 +1,7 @@
 import UIKit
 
 final class RecentCell: UITableViewCell {
+    static let identifier = "RecentCell"
     private let pictureView = PictureView()
     private let footerView = TrendingFooterView()
     private let timeLabel = DurationLabel()

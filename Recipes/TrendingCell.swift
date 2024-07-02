@@ -1,6 +1,7 @@
 import UIKit
 
 class TrendingCell: UICollectionViewCell {
+    static let identifier = "TrendingCell"
     private let pictureView = PictureView()
     private let footerView = TrendingFooterView()
 
