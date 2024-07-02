@@ -10,6 +10,9 @@
 		D99457182C3397F2006A2B18 /* RatingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457172C3397F2006A2B18 /* RatingLabel.swift */; };
 		D994571A2C33A56E006A2B18 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457192C33A56E006A2B18 /* BookmarkView.swift */; };
 		D994571C2C33AA93006A2B18 /* DurationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994571B2C33AA93006A2B18 /* DurationLabel.swift */; };
+		D994571E2C33B8B0006A2B18 /* RecentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994571D2C33B8B0006A2B18 /* RecentCell.swift */; };
+		D99457202C33B954006A2B18 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994571F2C33B954006A2B18 /* PictureView.swift */; };
+		D99457222C33BD5C006A2B18 /* TrendingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457212C33BD5C006A2B18 /* TrendingFooterView.swift */; };
 		D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */; };
 		D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */; };
 		D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA48002C32B9D40027D875 /* ViewController.swift */; };
@@ -23,6 +26,9 @@
 		D99457172C3397F2006A2B18 /* RatingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingLabel.swift; sourceTree = "<group>"; };
 		D99457192C33A56E006A2B18 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		D994571B2C33AA93006A2B18 /* DurationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationLabel.swift; sourceTree = "<group>"; };
+		D994571D2C33B8B0006A2B18 /* RecentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCell.swift; sourceTree = "<group>"; };
+		D994571F2C33B954006A2B18 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
+		D99457212C33BD5C006A2B18 /* TrendingFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingFooterView.swift; sourceTree = "<group>"; };
 		D9BA47F92C32B9D40027D875 /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,9 +74,12 @@
 				D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */,
 				D9BA48002C32B9D40027D875 /* ViewController.swift */,
 				D9BA48102C32BD7C0027D875 /* TrendingCell.swift */,
+				D994571D2C33B8B0006A2B18 /* RecentCell.swift */,
 				D99457172C3397F2006A2B18 /* RatingLabel.swift */,
 				D99457192C33A56E006A2B18 /* BookmarkView.swift */,
 				D994571B2C33AA93006A2B18 /* DurationLabel.swift */,
+				D994571F2C33B954006A2B18 /* PictureView.swift */,
+				D99457212C33BD5C006A2B18 /* TrendingFooterView.swift */,
 				D9BA48022C32B9D40027D875 /* Main.storyboard */,
 				D9BA48052C32B9D50027D875 /* Assets.xcassets */,
 				D9BA48072C32B9D50027D875 /* LaunchScreen.storyboard */,
@@ -150,10 +159,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D99457222C33BD5C006A2B18 /* TrendingFooterView.swift in Sources */,
+				D99457202C33B954006A2B18 /* PictureView.swift in Sources */,
 				D994571C2C33AA93006A2B18 /* DurationLabel.swift in Sources */,
 				D994571A2C33A56E006A2B18 /* BookmarkView.swift in Sources */,
 				D9BA48112C32BD7C0027D875 /* TrendingCell.swift in Sources */,
 				D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */,
+				D994571E2C33B8B0006A2B18 /* RecentCell.swift in Sources */,
 				D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */,
 				D99457182C3397F2006A2B18 /* RatingLabel.swift in Sources */,
 				D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */,

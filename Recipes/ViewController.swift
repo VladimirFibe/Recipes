@@ -1,7 +1,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let cell = TrendingCell()
+    let cell = RecentCell()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCell()
@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             cell.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             cell.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            cell.widthAnchor.constraint(equalToConstant: 280)        
+            cell.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
         ])
     }
 }
