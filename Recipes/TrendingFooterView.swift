@@ -30,7 +30,7 @@ final class TrendingFooterView: UIView {
     
     private func setupAvatarImageView() {
         addSubview(avatarImageView)
-        avatarImageView.image = .creator
+        avatarImageView.image = UIImage(named: "creator")
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
