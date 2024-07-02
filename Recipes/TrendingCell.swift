@@ -6,6 +6,8 @@ class TrendingCell: UICollectionViewCell {
     private let avatarImageView = UIImageView()
     private let nameLabel = UILabel()
     private let starLabel = RatingLabel()
+    private let bookmarkView = BookmarkView()
+    private let timeLabel = DurationLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -14,6 +16,8 @@ class TrendingCell: UICollectionViewCell {
         setupAvatarImageView()
         setupNameLabel()
         setupStarLabel()
+        setupBookmarkView()
+        setupTimeLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -53,7 +57,7 @@ class TrendingCell: UICollectionViewCell {
             avatarImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             avatarImageView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             avatarImageView.widthAnchor.constraint(equalToConstant: 32),
-            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
+            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor)
         ])
     }
     
@@ -73,6 +77,25 @@ class TrendingCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             starLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 8),
             starLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 8),
+        ])
+    }
+    
+    private func setupBookmarkView() {
+        imageView.addSubview(bookmarkView)
+        bookmarkView.configure(with: true)
+        bookmarkView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bookmarkView.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 8),
+            bookmarkView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -8),
+        ])
+    }
+    
+    private func setupTimeLabel() {
+        imageView.addSubview(timeLabel)
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            timeLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -8),
+            timeLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -8)
         ])
     }
 }
