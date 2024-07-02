@@ -35,8 +35,3 @@ class TrendingCell: UICollectionViewCell {
         ])
     }
 }
-
-@available(iOS 17.0, *)
-#Preview {
-    ViewController()
-}
