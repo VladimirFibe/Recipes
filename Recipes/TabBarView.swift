@@ -12,6 +12,9 @@ protocol ITabBarViewDelegate: AnyObject {
 	
 	/// Добавить
 	func add()
+	/// Переход на экран по индексу
+	/// - Parameter index: индекс
+	func changeScreen(by index: Int)
 }
 
 final class TabBarView: UIView {
@@ -22,17 +25,26 @@ final class TabBarView: UIView {
 	
 	// MARK: - Dependencies
 
-	weak var delegate: ITabBarViewDelegate?
+	private weak var delegate: ITabBarViewDelegate?
 
 	// MARK: - Private properties
 
 	private lazy var shapeLayer = makeShapeLayer()
 	private lazy var plusButton = makeButton()
 
+	private lazy var buttonStack = makeStackView()
+	private lazy var homeButton = makeTabBarItem(with: "home",and: 0)
+	private lazy var bookmarkButton = makeTabBarItem(with: "bookmark", and: 1)
+	private lazy var notificationButton = makeTabBarItem(with: "notification", and: 2)
+	private lazy var profileButton = makeTabBarItem(with: "profile", and: 3)
+
+	private var selectedButton: UIButton?
+
 	// MARK: - Initialization
 
-	override init(frame: CGRect) {
-		super.init(frame: frame)
+	init(delegate: ITabBarViewDelegate) {
+		super.init(frame: .zero)
+		self.delegate = delegate
 		setupUI()
 	}
 
@@ -50,6 +62,12 @@ final class TabBarView: UIView {
 	// MARK: - Public methods
 	
 	// MARK: - Private methods
+
+	private func didSelected(item: UIButton) {
+		selectedButton?.configuration?.baseForegroundColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1.00)
+		item.configuration?.baseForegroundColor = UIColor(red: 0.89, green: 0.24, blue: 0.24, alpha: 1.00)
+		selectedButton = item
+	}
 }
 
 // MARK: - Actions
@@ -60,6 +78,12 @@ private extension TabBarView {
 	func plusButtonTapped(_ sender: UIButton) {
 		delegate?.add()
 	}
+
+	@objc
+	func tabBarItemTapped(_ sender: UIButton) {
+		delegate?.changeScreen(by: sender.tag)
+		didSelected(item: sender)
+	}
 }
 
 // MARK: - Setup UI
@@ -67,11 +91,14 @@ private extension TabBarView {
 private extension TabBarView {
 	
 	func setupUI() {
-		backgroundColor = .black
 		layer.insertSublayer(shapeLayer, at: 0)
 		translatesAutoresizingMaskIntoConstraints = false
 
+		delegate?.changeScreen(by: homeButton.tag)
+		didSelected(item: homeButton)
+
 		addSubviews()
+		addActions()
 	}
 
 	func makeShapeLayer() -> CAShapeLayer {
@@ -93,7 +120,27 @@ private extension TabBarView {
 		element.configuration?.cornerStyle = .capsule
 		element.configuration?.image = UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)
 		element.configuration?.baseForegroundColor = .black
-		element.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+		element.translatesAutoresizingMaskIntoConstraints = false
+
+		return element
+	}
+
+	func makeStackView() -> UIStackView {
+		let element = UIStackView()
+
+		element.distribution = .fillEqually
+		element.translatesAutoresizingMaskIntoConstraints = false
+
+		return element
+	}
+
+	func makeTabBarItem(with iconName: String, and tag: Int) -> UIButton {
+		let element = UIButton()
+
+		element.configuration = .plain()
+		element.configuration?.image = UIImage(named: iconName)?.withRenderingMode(.alwaysTemplate)
+		element.configuration?.baseForegroundColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1.00)
+		element.tag = tag
 		element.translatesAutoresizingMaskIntoConstraints = false
 
 		return element
@@ -106,6 +153,21 @@ private extension TabBarView {
 	
 	func addSubviews() {
 		addSubview(plusButton)
+		addSubview(buttonStack)
+
+		buttonStack.addArrangedSubview(homeButton)
+		buttonStack.addArrangedSubview(bookmarkButton)
+		buttonStack.addArrangedSubview(UIView())
+		buttonStack.addArrangedSubview(notificationButton)
+		buttonStack.addArrangedSubview(profileButton)
+	}
+
+	func addActions() {
+		plusButton.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+		homeButton.addTarget(self, action: #selector(tabBarItemTapped), for: .touchUpInside)
+		bookmarkButton.addTarget(self, action: #selector(tabBarItemTapped), for: .touchUpInside)
+		notificationButton.addTarget(self, action: #selector(tabBarItemTapped), for: .touchUpInside)
+		profileButton.addTarget(self, action: #selector(tabBarItemTapped), for: .touchUpInside)
 	}
 }
 
@@ -121,6 +183,11 @@ private extension TabBarView {
 			plusButton.centerXAnchor.constraint(equalTo: centerXAnchor),
 			plusButton.widthAnchor.constraint(equalToConstant: 48),
 			plusButton.heightAnchor.constraint(equalToConstant: 48),
+
+			buttonStack.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+			buttonStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+			buttonStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+			buttonStack.heightAnchor.constraint(equalToConstant: 40),
 		])
 	}
 
