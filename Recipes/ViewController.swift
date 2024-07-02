@@ -1,20 +1,31 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let cell = TrendingCell()
+
+
+    let creatorCell = CreatorCell()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCell()
+        configureCellLayout()
+        configureCell()
     }
 
-    private func setupCell() {
-        view.addSubview(cell)
-        cell.translatesAutoresizingMaskIntoConstraints = false
+    private func configureCellLayout() {
+        view.addSubview(creatorCell)
+        creatorCell.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cell.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            cell.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            cell.widthAnchor.constraint(equalToConstant: 280)        
+            creatorCell.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            creatorCell.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            creatorCell.widthAnchor.constraint(equalToConstant: 120),
+            creatorCell.heightAnchor.constraint(equalToConstant: 150)
         ])
+    }
+    
+    private func configureCell() {
+        let avatarImage = UIImage(named: "chef")!
+        let name = "Ify's Kitchen"
+        creatorCell.configure(with: avatarImage, name: name)
     }
 }
 
