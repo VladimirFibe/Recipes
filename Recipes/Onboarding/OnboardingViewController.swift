@@ -3,6 +3,7 @@ import UIKit
 class OnboardingViewController: UIPageViewController {
     
     var pages = [UIViewController]()
+    
     let pageControl = UIPageControl()
     let skipButton = UIButton()
     let initialPage = 0
@@ -24,12 +25,12 @@ extension OnboardingViewController {
     
     func setup() {
         dataSource = self
-        delegate = self  // добавляем делегат
+        delegate = self
         
-        let page1 = ContentViewController(imageName: "onboarding", titleText: "Best Recipe", subtitleText: "Find best recipes for cooking.", buttonText: "Get started", isFirstPage: true)
-        let page2 = ContentViewController(imageName: "onboarding1", titleText: "Recipes from all over the World", subtitleText: "Explore recipes from different cultures.", buttonText: "Continue", isFirstPage: false)
-        let page3 = ContentViewController(imageName: "onboarding2", titleText: "Recipes with each and every detail", subtitleText: "Detailed steps to ensure perfect results.", buttonText: "Continue", isFirstPage: false)
-        let page4 = ContentViewController(imageName: "onboarding3", titleText: "Cook it now or save it for later", subtitleText: "Save your favorite recipes and cook them anytime.", buttonText: "Start Cooking", isFirstPage: false)
+        let page1 = ContentViewController(imageName: "onboarding", titleText: "Best Recipe", subtitleText: "Find best recipes for cooking.", buttonText: "Get started", isFirstPage: true, delegate: self)
+        let page2 = ContentViewController(imageName: "onboarding1", titleText: "Recipes from all over the World", subtitleText: "Explore recipes from different cultures.", buttonText: "Continue", isFirstPage: false, delegate: self)
+        let page3 = ContentViewController(imageName: "onboarding2", titleText: "Recipes with each and every detail", subtitleText: "Detailed steps to ensure perfect results.", buttonText: "Continue", isFirstPage: false, delegate: self)
+        let page4 = ContentViewController(imageName: "onboarding3", titleText: "Cook it now or save it for later", subtitleText: "Save your favorite recipes and cook them anytime.", buttonText: "Start cooking", isFirstPage: false, delegate: self)
         
         pages.append(page1)
         pages.append(page2)
@@ -81,7 +82,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
         if currentIndex == 0 {
-            return nil
+            return pages.last
         } else {
             return pages[currentIndex - 1]
         }
@@ -92,7 +93,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
         if currentIndex < pages.count - 1 {
             return pages[currentIndex + 1]
         } else {
-            return nil
+            return pages.first
         }
     }
 }
@@ -100,14 +101,15 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
 // MARK: - Delegates
 extension OnboardingViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed, let viewControllers = pageViewController.viewControllers, let currentIndex = pages.firstIndex(of: viewControllers[0]) {
-            pageControl.currentPage = currentIndex
-        }
+        guard let viewControllers = pageViewController.viewControllers else { return }
+        guard let currentIndex = pages.firstIndex(of: viewControllers[0]) else { return }
+        pageControl.currentPage = currentIndex
+        animateControlsIfNeeded()
     }
     
     private func animateControlsIfNeeded() {
-        let firstPage = pageControl.currentPage == 0
-        if firstPage {
+        let lastPage = pageControl.currentPage == pages.count - 1
+        if lastPage {
             hideControls()
         } else {
             showControls()
@@ -119,13 +121,35 @@ extension OnboardingViewController: UIPageViewControllerDelegate {
     }
     
     private func hideControls() {
-        pageControl.isHidden = true
+        pageControlBottomAnchor?.constant = -80
         skipButtonBottomAnchor?.constant = -80
     }
     
     private func showControls() {
-        pageControl.isHidden = false
-        skipButtonBottomAnchor?.constant = -40
+        pageControlBottomAnchor?.constant = 16
+        skipButtonBottomAnchor?.constant = 16
+    }
+}
+
+extension OnboardingViewController: ContentViewControllerDelegate {
+    func didTapActionButton(on viewController: ContentViewController) {
+        if let currentIndex = pages.firstIndex(of: viewController) {
+            if viewController.buttonText == "Start cooking" {
+                navigateToTrending()
+            } else {
+                let nextIndex = currentIndex + 1
+                if nextIndex < pages.count {
+                    pageControl.currentPage = nextIndex
+                    goToSpecificPage(index: nextIndex, ofViewControllers: pages)
+                }
+            }
+        }
+    }
+
+    func navigateToTrending() {
+        let trendingVC = TrendingViewController()
+        trendingVC.modalPresentationStyle = .fullScreen
+        present(trendingVC, animated: true, completion: nil)
     }
 }
 

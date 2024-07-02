@@ -59,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A78983032C34A79400E4DAFB /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				A78982FD2C340C2E00E4DAFB /* OnboardingViewController.swift */,
+				A78982FF2C3418FA00E4DAFB /* ContentViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		D9BA47F02C32B9D40027D875 = {
 			isa = PBXGroup;
 			children = (
@@ -81,8 +90,7 @@
 				D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */,
 				D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */,
 				D9BA48002C32B9D40027D875 /* ViewController.swift */,
-				A78982FD2C340C2E00E4DAFB /* OnboardingViewController.swift */,
-				A78982FF2C3418FA00E4DAFB /* ContentViewController.swift */,
+				A78983032C34A79400E4DAFB /* Onboarding */,
 				A78982F92C3330C100E4DAFB /* CreatorCell.swift */,
 				A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */,
 				D99457252C33C43B006A2B18 /* BookmarkView.swift */,

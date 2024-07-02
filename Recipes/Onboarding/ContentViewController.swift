@@ -1,9 +1,14 @@
 import UIKit
 
+protocol ContentViewControllerDelegate: AnyObject {
+    func didTapActionButton(on viewController: ContentViewController)
+}
+
 class ContentViewController: UIViewController {
     
     let stackView = UIStackView()
     let imageView = UIImageView()
+    let dimmingView = UIView()
     let titleLabel = UILabel()
     let subtitleLabel = UILabel()
     let actionButton = UIButton()
@@ -14,12 +19,15 @@ class ContentViewController: UIViewController {
     var buttonText: String
     var isFirstPage: Bool
     
-    init(imageName: String, titleText: String, subtitleText: String, buttonText: String, isFirstPage: Bool) {
+    weak var delegate: ContentViewControllerDelegate?
+    
+    init(imageName: String, titleText: String, subtitleText: String, buttonText: String, isFirstPage: Bool, delegate: ContentViewControllerDelegate?) {
         self.imageFile = imageName
         self.titleText = titleText
         self.subtitleText = subtitleText
         self.buttonText = buttonText
         self.isFirstPage = isFirstPage
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
         imageView.image = UIImage(named: imageFile)
         titleLabel.text = titleText
@@ -44,6 +52,9 @@ extension ContentViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        
+        dimmingView.translatesAutoresizingMaskIntoConstraints = false
+        dimmingView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -74,6 +85,7 @@ extension ContentViewController {
     
     func layout() {
         view.addSubview(imageView)
+        view.addSubview(dimmingView)
         view.addSubview(stackView)
         
         stackView.addArrangedSubview(titleLabel)
@@ -85,6 +97,11 @@ extension ContentViewController {
             imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            dimmingView.topAnchor.constraint(equalTo: view.topAnchor),
+            dimmingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            dimmingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dimmingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
@@ -98,12 +115,15 @@ extension ContentViewController {
     }
     
     @objc func buttonTapped() {
-        if buttonText == "Start Cooking" {
-            print("Start Cooking tapped")
-        } else {
-            if let parentVC = self.parent as? OnboardingViewController {
-                parentVC.goToNextPage()
+        delegate?.didTapActionButton(on: self)
+        
+        UIView.animateKeyframes(withDuration: 0.6, delay: 0, options: [], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.3) {
+                self.actionButton.alpha = 0.2
             }
-        }
+            UIView.addKeyframe(withRelativeStartTime: 0.3, relativeDuration: 0.6) {
+                self.actionButton.alpha = 1.0
+            }
+        }, completion: nil)
     }
 }
