@@ -5,6 +5,7 @@ class TrendingCell: UICollectionViewCell {
     private let titleLabel = UILabel()
     private let avatarImageView = UIImageView()
     private let nameLabel = UILabel()
+    private let starLabel = RatingLabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -12,6 +13,7 @@ class TrendingCell: UICollectionViewCell {
         setupTitleLabel()
         setupAvatarImageView()
         setupNameLabel()
+        setupStarLabel()
     }
     
     required init?(coder: NSCoder) {
@@ -62,6 +64,15 @@ class TrendingCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             nameLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8)
+        ])
+    }
+    
+    private func setupStarLabel() {
+        imageView.addSubview(starLabel)
+        starLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            starLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 8),
+            starLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 8),
         ])
     }
 }
