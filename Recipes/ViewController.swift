@@ -1,7 +1,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let cell = RecentCell()
+    let cell = TrendingCell()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCell()
