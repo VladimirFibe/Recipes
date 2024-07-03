@@ -1,20 +1,15 @@
 import UIKit
 
 class OnboardingViewController: UIPageViewController {
-    
     var pages = [UIViewController]()
-    
-    let pageControl = UIPageControl()
-    let skipButton = UIButton()
+    let pageControl = CustomPageControl() // Используем кастомный PageControl
     let initialPage = 0
     
-    // Constraints for animation
-    var skipButtonBottomAnchor: NSLayoutConstraint?
+    // Ограничения для анимации
     var pageControlBottomAnchor: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setup()
         style()
         layout()
@@ -22,15 +17,46 @@ class OnboardingViewController: UIPageViewController {
 }
 
 extension OnboardingViewController {
-    
     func setup() {
         dataSource = self
         delegate = self
         
-        let page1 = ContentViewController(imageName: "onboarding", titleText: "Best Recipe", subtitleText: "Find best recipes for cooking.", buttonText: "Get started", isFirstPage: true, delegate: self)
-        let page2 = ContentViewController(imageName: "onboarding1", titleText: "Recipes from all over the World", subtitleText: "Explore recipes from different cultures.", buttonText: "Continue", isFirstPage: false, delegate: self)
-        let page3 = ContentViewController(imageName: "onboarding2", titleText: "Recipes with each and every detail", subtitleText: "Detailed steps to ensure perfect results.", buttonText: "Continue", isFirstPage: false, delegate: self)
-        let page4 = ContentViewController(imageName: "onboarding3", titleText: "Cook it now or save it for later", subtitleText: "Save your favorite recipes and cook them anytime.", buttonText: "Start cooking", isFirstPage: false, delegate: self)
+        let page1 = ContentViewController(
+            imageName: "onboarding",
+            titleText: "Best Recipe",
+            subtitleText: "Find best recipes for cooking.",
+            buttonText: "Get started",
+            showSkipButton: false,
+            isFirstPage: true,
+            delegate: self
+        )
+        let page2 = ContentViewController(
+            imageName: "onboarding1",
+            titleText: "Recipes from all over the World",
+            subtitleText: "",
+            buttonText: "Continue",
+            showSkipButton: true,
+            isFirstPage: false,
+            delegate: self
+        )
+        let page3 = ContentViewController(
+            imageName: "onboarding2",
+            titleText: "Recipes with each and every detail",
+            subtitleText: "",
+            buttonText: "Continue",
+            showSkipButton: true,
+            isFirstPage: false,
+            delegate: self
+        )
+        let page4 = ContentViewController(
+            imageName: "onboarding3",
+            titleText: "Cook it now or save it for later",
+            subtitleText: "",
+            buttonText: "Start Cooking",
+            showSkipButton: false,
+            isFirstPage: false,
+            delegate: self
+        )
         
         pages.append(page1)
         pages.append(page2)
@@ -42,47 +68,32 @@ extension OnboardingViewController {
     
     func style() {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
-        pageControl.currentPageIndicatorTintColor = .black
-        pageControl.pageIndicatorTintColor = .systemGray2
-        pageControl.numberOfPages = pages.count
-        pageControl.currentPage = initialPage
-        
-        skipButton.translatesAutoresizingMaskIntoConstraints = false
-        skipButton.setTitleColor(.systemBlue, for: .normal)
-        skipButton.setTitle("Skip", for: .normal)
-        skipButton.addTarget(self, action: #selector(skipTapped(_:)), for: .primaryActionTriggered)
+        pageControl.numberOfPages = pages.count - 1 // не учитываем первую страницу
+        pageControl.currentPage = 0
+        pageControl.addTarget(self, action: #selector(pageControlTapped(_:)), for: .valueChanged)
     }
     
     func layout() {
         view.addSubview(pageControl)
-        view.addSubview(skipButton)
-        
         NSLayoutConstraint.activate([
             pageControl.widthAnchor.constraint(equalTo: view.widthAnchor),
             pageControl.heightAnchor.constraint(equalToConstant: 20),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
-            
-            skipButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            skipButton.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 20)
+            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
         ])
         
-        // for animations
-        skipButtonBottomAnchor = skipButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
-        pageControlBottomAnchor = pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
-        
-        skipButtonBottomAnchor?.isActive = true
+        // для анимаций
+        pageControlBottomAnchor = pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
         pageControlBottomAnchor?.isActive = true
     }
 }
 
 // MARK: - DataSource
 extension OnboardingViewController: UIPageViewControllerDataSource {
-    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
         if currentIndex == 0 {
-            return pages.last
+            return nil
         } else {
             return pages[currentIndex - 1]
         }
@@ -93,7 +104,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
         if currentIndex < pages.count - 1 {
             return pages[currentIndex + 1]
         } else {
-            return pages.first
+            return nil
         }
     }
 }
@@ -103,13 +114,17 @@ extension OnboardingViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let viewControllers = pageViewController.viewControllers else { return }
         guard let currentIndex = pages.firstIndex(of: viewControllers[0]) else { return }
-        pageControl.currentPage = currentIndex
-        animateControlsIfNeeded()
+        
+        // Обновляем текущую страницу только если это не первая страница
+        if currentIndex > 0 {
+            pageControl.currentPage = currentIndex - 1
+        }
+        
+        animateControlsIfNeeded(currentIndex: currentIndex)
     }
     
-    private func animateControlsIfNeeded() {
-        let lastPage = pageControl.currentPage == pages.count - 1
-        if lastPage {
+    private func animateControlsIfNeeded(currentIndex: Int) {
+        if currentIndex == 0 {
             hideControls()
         } else {
             showControls()
@@ -121,32 +136,41 @@ extension OnboardingViewController: UIPageViewControllerDelegate {
     }
     
     private func hideControls() {
-        pageControlBottomAnchor?.constant = -80
-        skipButtonBottomAnchor?.constant = -80
+        pageControl.isHidden = true
     }
     
     private func showControls() {
-        pageControlBottomAnchor?.constant = 16
-        skipButtonBottomAnchor?.constant = 16
+        pageControl.isHidden = false
     }
 }
 
+// MARK: - ContentViewControllerDelegate
 extension OnboardingViewController: ContentViewControllerDelegate {
     func didTapActionButton(on viewController: ContentViewController) {
         if let currentIndex = pages.firstIndex(of: viewController) {
-            if viewController.buttonText == "Start cooking" {
+            if viewController.buttonText == "Start Cooking" {
                 navigateToTrending()
             } else {
                 let nextIndex = currentIndex + 1
                 if nextIndex < pages.count {
-                    pageControl.currentPage = nextIndex
-                    goToSpecificPage(index: nextIndex, ofViewControllers: pages)
+                    setViewControllers([pages[nextIndex]], direction: .forward, animated: true, completion: nil)
+                    if nextIndex > 0 {
+                        pageControl.currentPage = nextIndex - 1
+                    }
+                    animateControlsIfNeeded(currentIndex: nextIndex)
                 }
             }
         }
     }
-
-    func navigateToTrending() {
+    
+    func didTapSkipButton(on viewController: ContentViewController) {
+        let lastPageIndex = pages.count - 1
+        setViewControllers([pages[lastPageIndex]], direction: .forward, animated: true, completion: nil)
+        pageControl.currentPage = lastPageIndex - 1
+        animateControlsIfNeeded(currentIndex: lastPageIndex)
+    }
+    
+    private func navigateToTrending() {
         let trendingVC = TrendingViewController()
         trendingVC.modalPresentationStyle = .fullScreen
         present(trendingVC, animated: true, completion: nil)
@@ -156,15 +180,16 @@ extension OnboardingViewController: ContentViewControllerDelegate {
 // MARK: - Actions
 extension OnboardingViewController {
     @objc func pageControlTapped(_ sender: UIPageControl) {
-        setViewControllers([pages[sender.currentPage]], direction: .forward, animated: true, completion: nil)
-        animateControlsIfNeeded()
+        let index = sender.currentPage + 1
+        setViewControllers([pages[index]], direction: .forward, animated: true, completion: nil)
+        animateControlsIfNeeded(currentIndex: index)
     }
     
     @objc func skipTapped(_ sender: UIButton) {
         let lastPageIndex = pages.count - 1
-        pageControl.currentPage = lastPageIndex
-        goToSpecificPage(index: lastPageIndex, ofViewControllers: pages)
-        animateControlsIfNeeded()
+        setViewControllers([pages[lastPageIndex]], direction: .forward, animated: true, completion: nil)
+        pageControl.currentPage = lastPageIndex - 1
+        animateControlsIfNeeded(currentIndex: lastPageIndex)
     }
 }
 
