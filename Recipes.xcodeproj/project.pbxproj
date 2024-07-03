@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B612E7242C34308200C011C6 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B612E7232C34308100C011C6 /* TabBarItem.swift */; };
+		B6693D332C34ED4A002BA90D /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6693D322C34ED4A002BA90D /* TabBarViewController.swift */; };
 		B6CE81232C32CB3A002E55A3 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CE81222C32CB3A002E55A3 /* TabBarView.swift */; };
 		D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */; };
 		D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B612E7232C34308100C011C6 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		B6693D322C34ED4A002BA90D /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B6CE81222C32CB3A002E55A3 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D9BA47F92C32B9D40027D875 /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 				D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */,
 				D9BA48002C32B9D40027D875 /* ViewController.swift */,
 				B6CE81222C32CB3A002E55A3 /* TabBarView.swift */,
+				B612E7232C34308100C011C6 /* TabBarItem.swift */,
+				B6693D322C34ED4A002BA90D /* TabBarViewController.swift */,
 				D9BA48022C32B9D40027D875 /* Main.storyboard */,
 				D9BA48052C32B9D50027D875 /* Assets.xcassets */,
 				D9BA48072C32B9D50027D875 /* LaunchScreen.storyboard */,
@@ -143,7 +149,9 @@
 			files = (
 				D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */,
 				D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */,
+				B612E7242C34308200C011C6 /* TabBarItem.swift in Sources */,
 				D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */,
+				B6693D332C34ED4A002BA90D /* TabBarViewController.swift in Sources */,
 				B6CE81232C32CB3A002E55A3 /* TabBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

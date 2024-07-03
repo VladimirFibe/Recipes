@@ -18,11 +18,7 @@ protocol ITabBarViewDelegate: AnyObject {
 }
 
 final class TabBarView: UIView {
-	
-	// MARK: - Outlets
-	
-	// MARK: - Public properties
-	
+
 	// MARK: - Dependencies
 
 	private weak var delegate: ITabBarViewDelegate?
@@ -33,12 +29,12 @@ final class TabBarView: UIView {
 	private lazy var plusButton = makeButton()
 
 	private lazy var buttonStack = makeStackView()
-	private lazy var homeButton = makeTabBarItem(with: "home",and: 0)
-	private lazy var bookmarkButton = makeTabBarItem(with: "bookmark", and: 1)
-	private lazy var notificationButton = makeTabBarItem(with: "notification", and: 2)
-	private lazy var profileButton = makeTabBarItem(with: "profile", and: 3)
+	private let homeButton = TabBarItem.Icon.home.item
+	private let bookmarkButton = TabBarItem.Icon.bookmark.item
+	private let notificationButton = TabBarItem.Icon.notification.item
+	private let profileButton = TabBarItem.Icon.profile.item
 
-	private var selectedButton: UIButton?
+	private var selectedButton: TabBarItem?
 
 	// MARK: - Initialization
 
@@ -58,14 +54,12 @@ final class TabBarView: UIView {
 		super.layoutSubviews()
 		layout()
 	}
-	
-	// MARK: - Public methods
-	
+
 	// MARK: - Private methods
 
-	private func didSelected(item: UIButton) {
-		selectedButton?.configuration?.baseForegroundColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1.00)
-		item.configuration?.baseForegroundColor = UIColor(red: 0.89, green: 0.24, blue: 0.24, alpha: 1.00)
+	private func didSelected(item: TabBarItem) {
+		selectedButton?.unselected()
+		item.selected()
 		selectedButton = item
 	}
 }
@@ -80,7 +74,7 @@ private extension TabBarView {
 	}
 
 	@objc
-	func tabBarItemTapped(_ sender: UIButton) {
+	func tabBarItemTapped(_ sender: TabBarItem) {
 		delegate?.changeScreen(by: sender.tag)
 		didSelected(item: sender)
 	}
@@ -129,18 +123,6 @@ private extension TabBarView {
 		let element = UIStackView()
 
 		element.distribution = .fillEqually
-		element.translatesAutoresizingMaskIntoConstraints = false
-
-		return element
-	}
-
-	func makeTabBarItem(with iconName: String, and tag: Int) -> UIButton {
-		let element = UIButton()
-
-		element.configuration = .plain()
-		element.configuration?.image = UIImage(named: iconName)?.withRenderingMode(.alwaysTemplate)
-		element.configuration?.baseForegroundColor = UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1.00)
-		element.tag = tag
 		element.translatesAutoresizingMaskIntoConstraints = false
 
 		return element
