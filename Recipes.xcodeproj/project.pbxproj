@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1FFE1B032C33461E0075A101 /* RecentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFE1B022C33461E0075A101 /* RecentCell.swift */; };
+		A78982FA2C3330C100E4DAFB /* CreatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78982F92C3330C100E4DAFB /* CreatorCell.swift */; };
+		A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */; };
+		D994572A2C33C43B006A2B18 /* RatingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457232C33C43B006A2B18 /* RatingLabel.swift */; };
+		D994572B2C33C43B006A2B18 /* TrendingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457242C33C43B006A2B18 /* TrendingFooterView.swift */; };
+		D994572C2C33C43B006A2B18 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457252C33C43B006A2B18 /* BookmarkView.swift */; };
+		D994572D2C33C43B006A2B18 /* RecentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457262C33C43B006A2B18 /* RecentCell.swift */; };
+		D994572E2C33C43B006A2B18 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457272C33C43B006A2B18 /* PictureView.swift */; };
+		D994572F2C33C43B006A2B18 /* DurationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457282C33C43B006A2B18 /* DurationLabel.swift */; };
+		D99457302C33C43B006A2B18 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457292C33C43B006A2B18 /* TrendingCell.swift */; };
 		D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */; };
 		D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */; };
 		D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA48002C32B9D40027D875 /* ViewController.swift */; };
@@ -17,7 +25,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1FFE1B022C33461E0075A101 /* RecentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCell.swift; sourceTree = "<group>"; };
+		A78982F92C3330C100E4DAFB /* CreatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorCell.swift; sourceTree = "<group>"; };
+		A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
+		D99457232C33C43B006A2B18 /* RatingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingLabel.swift; sourceTree = "<group>"; };
+		D99457242C33C43B006A2B18 /* TrendingFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingFooterView.swift; sourceTree = "<group>"; };
+		D99457252C33C43B006A2B18 /* BookmarkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		D99457262C33C43B006A2B18 /* RecentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentCell.swift; sourceTree = "<group>"; };
+		D99457272C33C43B006A2B18 /* PictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
+		D99457282C33C43B006A2B18 /* DurationLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationLabel.swift; sourceTree = "<group>"; };
+		D99457292C33C43B006A2B18 /* TrendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
 		D9BA47F92C32B9D40027D875 /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,7 +77,15 @@
 				D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */,
 				D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */,
 				D9BA48002C32B9D40027D875 /* ViewController.swift */,
-				1FFE1B022C33461E0075A101 /* RecentCell.swift */,
+				A78982F92C3330C100E4DAFB /* CreatorCell.swift */,
+				A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */,
+				D99457252C33C43B006A2B18 /* BookmarkView.swift */,
+				D99457282C33C43B006A2B18 /* DurationLabel.swift */,
+				D99457272C33C43B006A2B18 /* PictureView.swift */,
+				D99457232C33C43B006A2B18 /* RatingLabel.swift */,
+				D99457262C33C43B006A2B18 /* RecentCell.swift */,
+				D99457292C33C43B006A2B18 /* TrendingCell.swift */,
+				D99457242C33C43B006A2B18 /* TrendingFooterView.swift */,
 				D9BA48022C32B9D40027D875 /* Main.storyboard */,
 				D9BA48052C32B9D50027D875 /* Assets.xcassets */,
 				D9BA48072C32B9D50027D875 /* LaunchScreen.storyboard */,
@@ -141,8 +165,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FFE1B032C33461E0075A101 /* RecentCell.swift in Sources */,
+				D994572E2C33C43B006A2B18 /* PictureView.swift in Sources */,
+				D994572B2C33C43B006A2B18 /* TrendingFooterView.swift in Sources */,
+				D99457302C33C43B006A2B18 /* TrendingCell.swift in Sources */,
+				D994572C2C33C43B006A2B18 /* BookmarkView.swift in Sources */,
+				A78982FA2C3330C100E4DAFB /* CreatorCell.swift in Sources */,
+				D994572F2C33C43B006A2B18 /* DurationLabel.swift in Sources */,
+				D994572A2C33C43B006A2B18 /* RatingLabel.swift in Sources */,
+				D994572D2C33C43B006A2B18 /* RecentCell.swift in Sources */,
 				D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */,
+				A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */,
 				D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */,
 				D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */,
 			);
@@ -304,6 +336,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,6 +365,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

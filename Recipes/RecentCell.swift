@@ -92,5 +92,4 @@ final class RecentCell: UICollectionViewCell {
             cellView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
         ])
     }
-    
 }
