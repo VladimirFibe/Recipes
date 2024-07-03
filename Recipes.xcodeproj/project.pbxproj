@@ -10,6 +10,7 @@
 		87B948D02C359A18008FD26A /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B948CF2C359A18008FD26A /* CustomFont.swift */; };
 		87B948D32C359AA8008FD26A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87B948D12C359AA8008FD26A /* Poppins-Regular.ttf */; };
 		87B948D42C359AA8008FD26A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87B948D22C359AA8008FD26A /* Poppins-Bold.ttf */; };
+		87B948EA2C35D8FC008FD26A /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B948E92C35D8FC008FD26A /* PopularCell.swift */; };
 		A78982FA2C3330C100E4DAFB /* CreatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78982F92C3330C100E4DAFB /* CreatorCell.swift */; };
 		A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */; };
 		D994572A2C33C43B006A2B18 /* RatingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457232C33C43B006A2B18 /* RatingLabel.swift */; };
@@ -35,6 +36,7 @@
 		87B948CF2C359A18008FD26A /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		87B948D12C359AA8008FD26A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		87B948D22C359AA8008FD26A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		87B948E92C35D8FC008FD26A /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
 		A78982F92C3330C100E4DAFB /* CreatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorCell.swift; sourceTree = "<group>"; };
 		A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		D99457232C33C43B006A2B18 /* RatingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingLabel.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				D99457272C33C43B006A2B18 /* PictureView.swift */,
 				D99457232C33C43B006A2B18 /* RatingLabel.swift */,
 				D99457262C33C43B006A2B18 /* RecentCell.swift */,
+				87B948E92C35D8FC008FD26A /* PopularCell.swift */,
 				D9AC70CB2C34DF1000AAAF73 /* RecipesCell.swift */,
 				D99457292C33C43B006A2B18 /* TrendingCell.swift */,
 				D99457242C33C43B006A2B18 /* TrendingFooterView.swift */,
@@ -211,6 +214,7 @@
 				D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */,
 				A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */,
 				D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */,
+				87B948EA2C35D8FC008FD26A /* PopularCell.swift in Sources */,
 				D9AC70D02C34FA1B00AAAF73 /* TabBarView.swift in Sources */,
 				D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */,
 			);
