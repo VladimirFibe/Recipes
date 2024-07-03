@@ -8,30 +8,27 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    let creatorCell = CreatorCell()
     
+    var recentCell = RecentCell()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCellLayout()
-        configureCell()
-    }
-
-    private func configureCellLayout() {
-        view.addSubview(creatorCell)
-        creatorCell.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            creatorCell.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            creatorCell.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            creatorCell.widthAnchor.constraint(equalToConstant: 120),
-            creatorCell.heightAnchor.constraint(equalToConstant: 150)
-        ])
+        view.backgroundColor = .white
+        setupCell()
+        
+        // Do any additional setup after loading the view.
     }
     
-    private func configureCell() {
-        let avatarImage = UIImage(named: "chef")!
-        let name = "Ify's Kitchen"
-        creatorCell.configure(with: avatarImage, name: name)
+    private func setupCell() {
+        view.addSubview(recentCell)
+        recentCell.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            recentCell.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            recentCell.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            recentCell.widthAnchor.constraint(equalToConstant: 200),
+            recentCell.heightAnchor.constraint(equalToConstant: 300)
+            
+        ])
     }
 }
 
