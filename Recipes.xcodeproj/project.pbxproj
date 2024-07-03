@@ -19,6 +19,10 @@
 		D994572E2C33C43B006A2B18 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457272C33C43B006A2B18 /* PictureView.swift */; };
 		D994572F2C33C43B006A2B18 /* DurationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457282C33C43B006A2B18 /* DurationLabel.swift */; };
 		D99457302C33C43B006A2B18 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99457292C33C43B006A2B18 /* TrendingCell.swift */; };
+		D9AC70CC2C34DF1000AAAF73 /* RecipesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AC70CB2C34DF1000AAAF73 /* RecipesCell.swift */; };
+		D9AC70CE2C34FA0E00AAAF73 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AC70CD2C34FA0E00AAAF73 /* TabBarItem.swift */; };
+		D9AC70D02C34FA1B00AAAF73 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AC70CF2C34FA1B00AAAF73 /* TabBarView.swift */; };
+		D9AC70D22C34FA2500AAAF73 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AC70D12C34FA2500AAAF73 /* TabBarViewController.swift */; };
 		D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */; };
 		D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */; };
 		D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BA48002C32B9D40027D875 /* ViewController.swift */; };
@@ -40,6 +44,10 @@
 		D99457272C33C43B006A2B18 /* PictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
 		D99457282C33C43B006A2B18 /* DurationLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationLabel.swift; sourceTree = "<group>"; };
 		D99457292C33C43B006A2B18 /* TrendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
+		D9AC70CB2C34DF1000AAAF73 /* RecipesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesCell.swift; sourceTree = "<group>"; };
+		D9AC70CD2C34FA0E00AAAF73 /* TabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		D9AC70CF2C34FA1B00AAAF73 /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		D9AC70D12C34FA2500AAAF73 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		D9BA47F92C32B9D40027D875 /* Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +98,9 @@
 		D9BA47FB2C32B9D40027D875 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				D9AC70CD2C34FA0E00AAAF73 /* TabBarItem.swift */,
+				D9AC70D12C34FA2500AAAF73 /* TabBarViewController.swift */,
+				D9AC70CF2C34FA1B00AAAF73 /* TabBarView.swift */,
 				D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */,
 				D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */,
 				D9BA48002C32B9D40027D875 /* ViewController.swift */,
@@ -100,6 +111,7 @@
 				D99457272C33C43B006A2B18 /* PictureView.swift */,
 				D99457232C33C43B006A2B18 /* RatingLabel.swift */,
 				D99457262C33C43B006A2B18 /* RecentCell.swift */,
+				D9AC70CB2C34DF1000AAAF73 /* RecipesCell.swift */,
 				D99457292C33C43B006A2B18 /* TrendingCell.swift */,
 				D99457242C33C43B006A2B18 /* TrendingFooterView.swift */,
 				87B948CE2C3599FA008FD26A /* Font */,
@@ -184,11 +196,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9AC70D22C34FA2500AAAF73 /* TabBarViewController.swift in Sources */,
 				D994572E2C33C43B006A2B18 /* PictureView.swift in Sources */,
 				D994572B2C33C43B006A2B18 /* TrendingFooterView.swift in Sources */,
 				D99457302C33C43B006A2B18 /* TrendingCell.swift in Sources */,
 				87B948D02C359A18008FD26A /* CustomFont.swift in Sources */,
 				D994572C2C33C43B006A2B18 /* BookmarkView.swift in Sources */,
+				D9AC70CE2C34FA0E00AAAF73 /* TabBarItem.swift in Sources */,
+				D9AC70CC2C34DF1000AAAF73 /* RecipesCell.swift in Sources */,
 				A78982FA2C3330C100E4DAFB /* CreatorCell.swift in Sources */,
 				D994572F2C33C43B006A2B18 /* DurationLabel.swift in Sources */,
 				D994572A2C33C43B006A2B18 /* RatingLabel.swift in Sources */,
@@ -196,6 +211,7 @@
 				D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */,
 				A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */,
 				D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */,
+				D9AC70D02C34FA1B00AAAF73 /* TabBarView.swift in Sources */,
 				D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,7 +364,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DV7RBZWZQ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Recipes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -381,7 +397,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = DV7RBZWZQ6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Recipes/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
