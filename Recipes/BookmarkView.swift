@@ -1,6 +1,6 @@
 import UIKit
 
-class BookmarkView: UIView {
+final class BookmarkView: UIView {
     private let imageView = UIImageView()
     
     override init(frame: CGRect) {
