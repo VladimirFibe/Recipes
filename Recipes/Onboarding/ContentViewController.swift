@@ -5,7 +5,6 @@ protocol ContentViewControllerDelegate: AnyObject {
     func didTapSkipButton(on viewController: ContentViewController)
 }
 
-// Контроллер для отображения контента на каждой странице онбординга
 class ContentViewController: UIViewController {
     private let stackView = UIStackView()
     private let imageView = UIImageView()

@@ -120,6 +120,8 @@ extension OnboardingViewController: UIPageViewControllerDelegate {
         guard completed, let viewControllers = pageViewController.viewControllers, let currentIndex = pages.firstIndex(of: viewControllers[0]) else { return }
         // Обновляем текущую страницу только если это не первая страница
         pageControl.currentPage = currentIndex > 0 ? currentIndex - 1 : 0
+        // Скрываем pageControl на первой странице
+        pageControl.isHidden = (currentIndex == 0)
         animateControlsIfNeeded(currentIndex: currentIndex)
     }
     
