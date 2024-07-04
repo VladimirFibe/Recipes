@@ -5,23 +5,25 @@ protocol ContentViewControllerDelegate: AnyObject {
     func didTapSkipButton(on viewController: ContentViewController)
 }
 
+// Контроллер для отображения контента на каждой странице онбординга
 class ContentViewController: UIViewController {
-    let stackView = UIStackView()
-    let imageView = UIImageView()
-    let dimmingView = UIView()
-    let titleLabel = UILabel()
-    let subtitleLabel = UILabel()
-    let actionButton = UIButton()
-    let skipButton = UIButton()
+    private let stackView = UIStackView()
+    private let imageView = UIImageView()
+    private let dimmingView = UIView()
+    private let titleLabel = UILabel()
+    private let subtitleLabel = UILabel()
+    private let actionButton = UIButton()
+    private let skipButton = UIButton()
     
-    var showSkipButton: Bool
-    var imageFile: String
-    var titleText: String
-    var subtitleText: String
-    var buttonText: String
-    var isFirstPage: Bool
+    private var showSkipButton: Bool
+    private var imageFile: String
+    private var titleText: String
+    private var subtitleText: String
+    internal var buttonText: String
+    private var isFirstPage: Bool
     
     weak var delegate: ContentViewControllerDelegate?
+    
     init(imageName: String, titleText: String, subtitleText: String, buttonText: String, showSkipButton: Bool, isFirstPage: Bool, delegate: ContentViewControllerDelegate?) {
         self.imageFile = imageName
         self.titleText = titleText
@@ -30,16 +32,7 @@ class ContentViewController: UIViewController {
         self.isFirstPage = isFirstPage
         self.showSkipButton = showSkipButton
         self.delegate = delegate
-        
         super.init(nibName: nil, bundle: nil)
-        
-        imageView.image = UIImage(named: imageFile)
-        titleLabel.text = titleText
-        subtitleLabel.text = subtitleText
-        actionButton.setTitle(buttonText, for: .normal)
-        if showSkipButton {
-            skipButton.setTitle("Skip", for: .normal)
-        }
     }
     
     required init?(coder: NSCoder) {
@@ -51,11 +44,11 @@ class ContentViewController: UIViewController {
         style()
         layout()
     }
-}
-
-extension ContentViewController {
-    func style() {
+    
+    // MARK: - Настройка стиля и компоновки
+    private func style() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: imageFile)
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
@@ -68,17 +61,20 @@ extension ContentViewController {
         stackView.spacing = 20
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = titleText
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         titleLabel.textColor = .white
-        titleLabel.numberOfLines = 2 // Обеспечивает отображение в две строки
+        titleLabel.numberOfLines = 2
         
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.text = subtitleText
         subtitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
         subtitleLabel.textAlignment = .center
         subtitleLabel.textColor = .white
         subtitleLabel.numberOfLines = 0
         
         actionButton.translatesAutoresizingMaskIntoConstraints = false
+        actionButton.setTitle(buttonText, for: .normal)
         actionButton.setTitleColor(.white, for: .normal)
         actionButton.backgroundColor = UIColor(red: 226/255, green: 62/255, blue: 62/255, alpha: 1)
         actionButton.addTarget(self, action: #selector(buttonTapped), for: .primaryActionTriggered)
@@ -86,12 +82,13 @@ extension ContentViewController {
         
         if showSkipButton {
             skipButton.translatesAutoresizingMaskIntoConstraints = false
+            skipButton.setTitle("Skip", for: .normal)
             skipButton.setTitleColor(.white, for: .normal)
             skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .primaryActionTriggered)
         }
     }
     
-    func layout() {
+    private func layout() {
         view.addSubview(imageView)
         view.addSubview(dimmingView)
         view.addSubview(stackView)
@@ -104,6 +101,7 @@ extension ContentViewController {
             let skipButtonContainer = UIView()
             skipButtonContainer.translatesAutoresizingMaskIntoConstraints = false
             skipButtonContainer.addSubview(skipButton)
+            
             NSLayoutConstraint.activate([
                 skipButton.topAnchor.constraint(equalTo: skipButtonContainer.topAnchor),
                 skipButton.bottomAnchor.constraint(equalTo: skipButtonContainer.bottomAnchor),
@@ -111,6 +109,7 @@ extension ContentViewController {
                 skipButton.leadingAnchor.constraint(equalTo: skipButtonContainer.leadingAnchor),
                 skipButton.trailingAnchor.constraint(equalTo: skipButtonContainer.trailingAnchor)
             ])
+            
             stackView.addArrangedSubview(skipButtonContainer)
             skipButtonContainer.heightAnchor.constraint(equalToConstant: 44).isActive = true
         }
@@ -127,18 +126,18 @@ extension ContentViewController {
             dimmingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100), // перемещает ближе к низу
-            
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
             subtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             view.trailingAnchor.constraint(equalTo: subtitleLabel.trailingAnchor, constant: 16),
-            
             actionButton.heightAnchor.constraint(equalToConstant: 50),
             actionButton.widthAnchor.constraint(equalToConstant: 250)
         ])
     }
     
-    @objc func buttonTapped() {
+    // MARK: - Действия кнопок
+    @objc private func buttonTapped() {
         delegate?.didTapActionButton(on: self)
+        // Анимация кнопки при нажатии
         UIView.animateKeyframes(withDuration: 0.6, delay: 0, options: [], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.3) {
                 self.actionButton.alpha = 0.2
@@ -149,7 +148,7 @@ extension ContentViewController {
         }, completion: nil)
     }
     
-    @objc func skipButtonTapped() {
+    @objc private func skipButtonTapped() {
         delegate?.didTapSkipButton(on: self)
     }
 }
