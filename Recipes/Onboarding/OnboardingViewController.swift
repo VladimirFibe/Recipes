@@ -43,7 +43,7 @@ private extension OnboardingViewController {
         let page3 = ContentViewController(
             imageName: "onboarding3",
             titleText: "Cook it now or save it for later",
-            buttonText: "Continue",
+            buttonText: "Start cooking",
             showSkipButton: false,
             delegate: self
         )
