@@ -10,25 +10,20 @@ class ContentViewController: UIViewController {
     private let imageView = UIImageView()
     private let dimmingView = UIView()
     private let titleLabel = UILabel()
-    private let subtitleLabel = UILabel()
     private let actionButton = UIButton()
     private let skipButton = UIButton()
     
     private var showSkipButton: Bool
     private var imageFile: String
     private var titleText: String
-    private var subtitleText: String
     internal var buttonText: String
-    private var isFirstPage: Bool
     
     weak var delegate: ContentViewControllerDelegate?
     
-    init(imageName: String, titleText: String, subtitleText: String, buttonText: String, showSkipButton: Bool, isFirstPage: Bool, delegate: ContentViewControllerDelegate?) {
+    init(imageName: String, titleText: String, buttonText: String, showSkipButton: Bool, delegate: ContentViewControllerDelegate?) {
         self.imageFile = imageName
         self.titleText = titleText
-        self.subtitleText = subtitleText
         self.buttonText = buttonText
-        self.isFirstPage = isFirstPage
         self.showSkipButton = showSkipButton
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
@@ -65,13 +60,6 @@ class ContentViewController: UIViewController {
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 2
         
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.text = subtitleText
-        subtitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        subtitleLabel.textAlignment = .center
-        subtitleLabel.textColor = .white
-        subtitleLabel.numberOfLines = 0
-        
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.setTitle(buttonText, for: .normal)
         actionButton.setTitleColor(.white, for: .normal)
@@ -79,12 +67,10 @@ class ContentViewController: UIViewController {
         actionButton.addTarget(self, action: #selector(buttonTapped), for: .primaryActionTriggered)
         actionButton.layer.cornerRadius = 25
         
-        if showSkipButton {
-            skipButton.translatesAutoresizingMaskIntoConstraints = false
-            skipButton.setTitle("Skip", for: .normal)
-            skipButton.setTitleColor(.white, for: .normal)
-            skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .primaryActionTriggered)
-        }
+        skipButton.translatesAutoresizingMaskIntoConstraints = false
+        skipButton.setTitle("Skip", for: .normal)
+        skipButton.setTitleColor(.white, for: .normal)
+        skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .primaryActionTriggered)
     }
     
     private func layout() {
@@ -93,7 +79,6 @@ class ContentViewController: UIViewController {
         view.addSubview(stackView)
         
         stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(subtitleLabel)
         stackView.addArrangedSubview(actionButton)
         
         if showSkipButton {
@@ -126,8 +111,7 @@ class ContentViewController: UIViewController {
             
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
-            subtitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            view.trailingAnchor.constraint(equalTo: subtitleLabel.trailingAnchor, constant: 16),
+            
             actionButton.heightAnchor.constraint(equalToConstant: 50),
             actionButton.widthAnchor.constraint(equalToConstant: 250)
         ])

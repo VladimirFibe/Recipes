@@ -3,7 +3,7 @@ import UIKit
 class OnboardingViewController: UIPageViewController {
     
     private var pages = [UIViewController]()
-    private let pageControl = CustomPageControl()
+    private let pageControl = UIPageControl()
     private let initialPage = 0
     
     // Ограничения для анимации
@@ -19,56 +19,38 @@ class OnboardingViewController: UIPageViewController {
 
 // MARK: - Настройка, стилизация и компоновка
 private extension OnboardingViewController {
-    // Метод для настройки контроллера
     func setup() {
         dataSource = self
         delegate = self
         
         // Создание страниц онбординга
         let page1 = ContentViewController(
-            imageName: "onboarding",
-            titleText: "Best Recipe",
-            subtitleText: "Find best recipes for cooking.",
-            buttonText: "Get started",
-            showSkipButton: false,
-            isFirstPage: true,
+            imageName: "onboarding1",
+            titleText: "Recipes from all over the World",
+            buttonText: "Continue",
+            showSkipButton: true,
             delegate: self
         )
         
         let page2 = ContentViewController(
-            imageName: "onboarding1",
-            titleText: "Recipes from all over the World",
-            subtitleText: "",
+            imageName: "onboarding2",
+            titleText: "Recipes with each and every detail",
             buttonText: "Continue",
             showSkipButton: true,
-            isFirstPage: false,
             delegate: self
         )
         
         let page3 = ContentViewController(
-            imageName: "onboarding2",
-            titleText: "Recipes with each and every detail",
-            subtitleText: "",
-            buttonText: "Continue",
-            showSkipButton: true,
-            isFirstPage: false,
-            delegate: self
-        )
-        
-        let page4 = ContentViewController(
             imageName: "onboarding3",
             titleText: "Cook it now or save it for later",
-            subtitleText: "",
-            buttonText: "Start Cooking",
+            buttonText: "Continue",
             showSkipButton: false,
-            isFirstPage: false,
             delegate: self
         )
         
         pages.append(page1)
         pages.append(page2)
         pages.append(page3)
-        pages.append(page4)
         
         // Установка начальной страницы
         setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
@@ -77,7 +59,7 @@ private extension OnboardingViewController {
     // Метод для стилизации элементов
     func style() {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
-        pageControl.numberOfPages = pages.count - 1 // не учитываем первую страницу
+        pageControl.numberOfPages = pages.count
         pageControl.currentPage = 0
         pageControl.addTarget(self, action: #selector(pageControlTapped(_:)), for: .valueChanged)
     }
@@ -118,33 +100,14 @@ extension OnboardingViewController: UIPageViewControllerDelegate {
     // Метод, вызываемый при завершении анимации перехода между страницами
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard completed, let viewControllers = pageViewController.viewControllers, let currentIndex = pages.firstIndex(of: viewControllers[0]) else { return }
-        // Обновляем текущую страницу только если это не первая страница
-        pageControl.currentPage = currentIndex > 0 ? currentIndex - 1 : 0
-        // Скрываем pageControl на первой странице
-        pageControl.isHidden = (currentIndex == 0)
-        animateControlsIfNeeded(currentIndex: currentIndex)
+        pageControl.currentPage = currentIndex
     }
     
     // Метод для анимации элементов в зависимости от текущей страницы
     private func animateControlsIfNeeded(currentIndex: Int) {
-        if currentIndex == 0 {
-            hideControls()
-        } else {
-            showControls()
-        }
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
-    }
-    
-    // Метод для скрытия элементов управления
-    private func hideControls() {
-        pageControl.isHidden = true
-    }
-    
-    // Метод для показа элементов управления
-    private func showControls() {
-        pageControl.isHidden = false
     }
 }
 
@@ -153,15 +116,13 @@ extension OnboardingViewController: ContentViewControllerDelegate {
     // Метод, вызываемый при нажатии на кнопку действия на странице онбординга
     func didTapActionButton(on viewController: ContentViewController) {
         guard let currentIndex = pages.firstIndex(of: viewController) else { return }
-        if viewController.buttonText == "Start Cooking" {
-            navigateToTrending()
+        let nextIndex = currentIndex + 1
+        if nextIndex < pages.count {
+            setViewControllers([pages[nextIndex]], direction: .forward, animated: true, completion: nil)
+            pageControl.currentPage = nextIndex
+            animateControlsIfNeeded(currentIndex: nextIndex)
         } else {
-            let nextIndex = currentIndex + 1
-            if nextIndex < pages.count {
-                setViewControllers([pages[nextIndex]], direction: .forward, animated: true, completion: nil)
-                pageControl.currentPage = nextIndex - 1
-                animateControlsIfNeeded(currentIndex: nextIndex)
-            }
+            navigateToTrending()
         }
     }
     
@@ -169,7 +130,7 @@ extension OnboardingViewController: ContentViewControllerDelegate {
     func didTapSkipButton(on viewController: ContentViewController) {
         let lastPageIndex = pages.count - 1
         setViewControllers([pages[lastPageIndex]], direction: .forward, animated: true, completion: nil)
-        pageControl.currentPage = lastPageIndex - 1
+        pageControl.currentPage = lastPageIndex
         animateControlsIfNeeded(currentIndex: lastPageIndex)
     }
     
@@ -185,7 +146,7 @@ extension OnboardingViewController: ContentViewControllerDelegate {
 private extension OnboardingViewController {
     // Метод, вызываемый при нажатии на pageControl
     @objc func pageControlTapped(_ sender: UIPageControl) {
-        let index = sender.currentPage + 1
+        let index = sender.currentPage
         setViewControllers([pages[index]], direction: .forward, animated: true, completion: nil)
         animateControlsIfNeeded(currentIndex: index)
     }
@@ -194,7 +155,7 @@ private extension OnboardingViewController {
     @objc func skipTapped(_ sender: UIButton) {
         let lastPageIndex = pages.count - 1
         setViewControllers([pages[lastPageIndex]], direction: .forward, animated: true, completion: nil)
-        pageControl.currentPage = lastPageIndex - 1
+        pageControl.currentPage = lastPageIndex
         animateControlsIfNeeded(currentIndex: lastPageIndex)
     }
 }
@@ -218,3 +179,4 @@ private extension UIPageViewController {
         setViewControllers([pages[index]], direction: .forward, animated: true, completion: nil)
     }
 }
+
