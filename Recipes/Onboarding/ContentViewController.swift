@@ -59,6 +59,7 @@ class ContentViewController: UIViewController {
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 2
+        titleLabel.textAlignment = .center
         
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.setTitle(buttonText, for: .normal)
