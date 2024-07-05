@@ -109,7 +109,8 @@ class ContentViewController: UIViewController {
             dimmingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             dimmingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
             
             actionButton.heightAnchor.constraint(equalToConstant: 50),
