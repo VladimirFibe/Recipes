@@ -15,8 +15,9 @@ final class PopularCell: UICollectionViewCell {
 	private lazy var dishTitleLabel = UILabel()
 	private lazy var timeLabel = UILabel()
 	private lazy var durationLabel = UILabel()
-	private lazy var bookmark = BookmarkView()
 
+	private lazy var bookmark = BookmarkView()
+	private var bookmarkState = true // test
 
 	// MARK: - Cell initialization
 	override init(frame: CGRect) {
@@ -32,12 +33,32 @@ final class PopularCell: UICollectionViewCell {
 	override func prepareForReuse() {
 		super.prepareForReuse()
 		dishImage.image = nil
+		dishTitleLabel.text = nil
+		durationLabel.text = nil
 	}
+
+	// MARK: - Updating cell from Model
+//	func updateCell(model: Recipe) {
+//		self.dishImage = model.???
+//		self.dishTitleLabel = model.???
+//		self.durationLabel = model.???
+//		DispatchQueue.global().async {
+//			if let url = URL(string: model.???.url ),
+//			   let data = try? Data(contentsOf: url) {
+//				DispatchQueue.main.async {
+//					self.dishImage.image = UIImage(data: data)
+//				}
+//			}
+//		}
+//	}
+
 }
 
 private extension PopularCell {
+
+	// MARK: - Setup UI
 	func setupView() {
-		cellView.backgroundColor = .systemMint // test
+		cellView.backgroundColor = .clear
 
 		backView.backgroundColor = #colorLiteral(red: 0.9562537074, green: 0.9562535882, blue: 0.9562537074, alpha: 1)
 		backView.layer.cornerRadius = 12
@@ -46,7 +67,7 @@ private extension PopularCell {
 		dishImage.backgroundColor = .green // test
 		dishImage.layer.cornerRadius = 55
 		dishImage.layer.masksToBounds = true
-		
+
 		dishTitleLabel.textAlignment = .center
 		dishTitleLabel.text = "Chicken and Vegetable wrap" // test text
 		dishTitleLabel.font = .custom(font: .bold, size: 14)
@@ -61,9 +82,9 @@ private extension PopularCell {
 		timeLabel.textColor = #colorLiteral(red: 0.7568627451, green: 0.7568627451, blue: 0.7568627451, alpha: 1)
 		timeLabel.font = .custom(font: .regular, size: 12)
 
+		bookmark.configure(with: bookmarkState)
 
-
-		addSubview(cellView)
+		contentView.addSubview(cellView)
 		cellView.addSubview(backView)
 		cellView.addSubview(dishImage)
 		cellView.addSubview(dishTitleLabel)
@@ -74,6 +95,7 @@ private extension PopularCell {
 		setupConstraints()
 	}
 
+	// MARK: - Constraints
 	func setupConstraints() {
 		cellView.translatesAutoresizingMaskIntoConstraints = false
 		backView.translatesAutoresizingMaskIntoConstraints = false
@@ -109,14 +131,13 @@ private extension PopularCell {
 			timeLabel.bottomAnchor.constraint(equalTo: durationLabel.topAnchor, constant: -4),
 			timeLabel.leadingAnchor.constraint(equalTo: durationLabel.leadingAnchor),
 
-			bookmark.bottomAnchor.constraint(equalTo: cellView.bottomAnchor),
+			bookmark.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: -11),
 			bookmark.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -12),
 		])
 	}
 }
 
 //MARK: - Preview
-
 import SwiftUI
 
 struct PopularCellProvider: PreviewProvider {
