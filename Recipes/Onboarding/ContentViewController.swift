@@ -95,7 +95,7 @@ class ContentViewController: UIViewController {
             ])
             
             stackView.addArrangedSubview(skipButtonContainer)
-            skipButtonContainer.heightAnchor.constraint(equalToConstant: 44).isActive = true
+            skipButtonContainer.heightAnchor.constraint(equalToConstant: 5).isActive = true
         }
         
         NSLayoutConstraint.activate([
@@ -114,7 +114,7 @@ class ContentViewController: UIViewController {
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
             
             actionButton.heightAnchor.constraint(equalToConstant: 50),
-            actionButton.widthAnchor.constraint(equalToConstant: 250)
+            actionButton.widthAnchor.constraint(equalToConstant: 250),
         ])
     }
     
