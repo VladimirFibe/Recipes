@@ -15,16 +15,18 @@ class ContentViewController: UIViewController {
     
     private var showSkipButton: Bool
     private var imageFile: String
-    private var titleText: String
+    private var whiteText: String
+    private var colorText: String
     internal var buttonText: String
     
     weak var delegate: ContentViewControllerDelegate?
     
-    init(imageName: String, titleText: String, buttonText: String, showSkipButton: Bool, delegate: ContentViewControllerDelegate?) {
+    init(imageName: String, buttonText: String, showSkipButton: Bool, whiteText: String, colorText: String, delegate: ContentViewControllerDelegate?) {
         self.imageFile = imageName
-        self.titleText = titleText
         self.buttonText = buttonText
         self.showSkipButton = showSkipButton
+        self.whiteText = whiteText
+        self.colorText = colorText
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
@@ -55,9 +57,8 @@ class ContentViewController: UIViewController {
         stackView.spacing = 20
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = titleText
+        titleLabel.attributedText = createAttributedString(whiteText: whiteText, colorText: colorText)
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        titleLabel.textColor = .white
         titleLabel.numberOfLines = 2
         titleLabel.textAlignment = .center
         
@@ -135,5 +136,13 @@ class ContentViewController: UIViewController {
     
     @objc private func skipButtonTapped() {
         delegate?.didTapSkipButton(on: self)
+    }
+    
+    // MARK: - Создание атрибутированной строки
+    private func createAttributedString(whiteText: String, colorText: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: whiteText, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        let colorAttributedString = NSAttributedString(string: colorText, attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 248/255, green: 200/255, blue: 154/255, alpha: 1)])
+        attributedString.append(colorAttributedString)
+        return attributedString
     }
 }

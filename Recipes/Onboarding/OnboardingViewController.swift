@@ -26,25 +26,28 @@ private extension OnboardingViewController {
         // Создание страниц онбординга
         let page1 = ContentViewController(
             imageName: "onboarding1",
-            titleText: "Recipes from all over the World",
             buttonText: "Continue",
             showSkipButton: true,
+            whiteText: "Recipes from all",
+            colorText: " over the World",
             delegate: self
         )
         
         let page2 = ContentViewController(
             imageName: "onboarding2",
-            titleText: "Recipes with each and every detail",
             buttonText: "Continue",
             showSkipButton: true,
+            whiteText: "Recipes with",
+            colorText: " each and every detail",
             delegate: self
         )
         
         let page3 = ContentViewController(
             imageName: "onboarding3",
-            titleText: "Cook it now or save it for later",
             buttonText: "Start cooking",
             showSkipButton: false,
+            whiteText: "Cook it now or",
+            colorText: " save it for later",
             delegate: self
         )
         
