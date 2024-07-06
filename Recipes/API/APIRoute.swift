@@ -3,7 +3,7 @@ import Foundation
 enum APIRoute {
     case getRecipeInformation(GetRecipeInformationRequest)
     case searchRecipes(SearchRecipesRequest)
-    case getRandomRecipes
+    case getRandomRecipes(GetRandomRecipesRequest)
 
     var baseUrl: String {
         "https://api.spoonacular.com/"
@@ -19,7 +19,7 @@ enum APIRoute {
     
     var queryItems: [URLQueryItem] {
         switch self {
-        case .getRandomRecipes: return [.init(name: "number", value: "10")]
+        case .getRandomRecipes(let value): return [.init(name: "number", value: "\(value.number)")]
         default: return []
         }
     }
@@ -56,4 +56,8 @@ struct GetRecipeInformationRequest {
 
 struct SearchRecipesRequest {
     let query: String = ""
+}
+
+struct GetRandomRecipesRequest {
+    let number: Int
 }

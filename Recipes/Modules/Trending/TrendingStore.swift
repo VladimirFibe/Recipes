@@ -19,7 +19,7 @@ final class TrendingStore: Store<TrendingEvent, TrendingAction> {
     }
     
     private func get() async throws {
-        let response: RecipesResponse = try await APIClient.shared.request(.getRandomRecipes)
+        let response: RecipesResponse = try await APIClient.shared.request(.getRandomRecipes(.init(number: 5)))
         sendEvent(.done(response.recipes))
     }
 }
