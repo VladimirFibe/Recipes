@@ -11,7 +11,7 @@ struct Recipe: Codable, Hashable {
     let image: String
     let instructions: String
     let spoonacularScore: Double
-    let sourceName: String
+    let sourceName: String?
     
     var time: String {
         let hours = readyInMinutes / 60

@@ -176,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				A78982F92C3330C100E4DAFB /* CreatorCell.swift */,
+				D9AC70CB2C34DF1000AAAF73 /* RecipesCell.swift */,
 				D99457252C33C43B006A2B18 /* BookmarkView.swift */,
 				D99457282C33C43B006A2B18 /* DurationLabel.swift */,
 				D99457272C33C43B006A2B18 /* PictureView.swift */,
@@ -232,7 +233,6 @@
 			isa = PBXGroup;
 			children = (
 				A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */,
-				D9AC70CB2C34DF1000AAAF73 /* RecipesCell.swift */,
 				D9D6FECB2C38EA330036EDE6 /* TrendingStore.swift */,
 			);
 			path = Trending;

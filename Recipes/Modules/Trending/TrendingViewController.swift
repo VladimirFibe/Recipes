@@ -8,12 +8,16 @@
 import UIKit
 
 class TrendingViewController: UITableViewController {
-    private var recipes = Bundle.main.decode([Recipe].self, from: "Recipes.json")
+    private let store = TrendingStore()
+    private var bag = Bag()
+    private var recipes: [Recipe] = [] { didSet { tableView.reloadData()}}
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(RecipesCell.self, forCellReuseIdentifier: RecipesCell.identifier)
         navigationItem.title = "Trending now"
+        store.sendAction(.get)
+        setupObservers()
     }
 
     // MARK: - Table view data source
@@ -26,5 +30,20 @@ class TrendingViewController: UITableViewController {
         else { fatalError() }
         cell.configure(with: recipes[indexPath.row])
         return cell
+    }
+}
+
+extension TrendingViewController {
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .done(let recipes):
+                    self.recipes = recipes
+                }
+            }.store(in: &bag)
     }
 }

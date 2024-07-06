@@ -19,7 +19,7 @@ enum APIRoute {
     
     var queryItems: [URLQueryItem] {
         switch self {
-        case .getRandomRecipes: return [.init(name: "number", value: "50")]
+        case .getRandomRecipes: return [.init(name: "number", value: "10")]
         default: return []
         }
     }
