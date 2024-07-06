@@ -25,6 +25,10 @@ struct Recipe: Codable, Hashable {
     }
 }
 
+extension Recipe {
+    static let sample = Bundle.main.decode([Recipe].self, from: "Recipes.json")[0]
+}
+
 // MARK: - SearchResponse
 struct SearchResponse: Codable {
     let results: [SearchRecipe]

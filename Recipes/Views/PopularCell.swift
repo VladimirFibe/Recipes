@@ -8,7 +8,7 @@
 import UIKit
 
 final class PopularCell: UICollectionViewCell {
-
+    static let identifier = "PopularCell"
 	private lazy var cellView = UIView()
 	private lazy var backView = UIView()
 	private lazy var dishImage = UIImageView()

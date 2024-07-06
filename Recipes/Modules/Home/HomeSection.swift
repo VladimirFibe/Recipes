@@ -1,6 +1,6 @@
 import Foundation
 
-enum HomeSection {
+enum HomeSection: Int, CaseIterable {
     case trending
     case popular
     case recent

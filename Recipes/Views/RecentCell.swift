@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class RecentCell: UICollectionViewCell {
-    
+    static let identifier = "RecentCell"
     private lazy var cellView: UIView = {
         let cellView = UIView()
         cellView.translatesAutoresizingMaskIntoConstraints = false
