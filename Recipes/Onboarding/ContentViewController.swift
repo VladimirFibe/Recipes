@@ -58,8 +58,8 @@ class ContentViewController: UIViewController {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.attributedText = createAttributedString(whiteText: whiteText, colorText: colorText)
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        titleLabel.numberOfLines = 2
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 52)
+        titleLabel.numberOfLines = 3
         titleLabel.textAlignment = .center
         
         actionButton.translatesAutoresizingMaskIntoConstraints = false
