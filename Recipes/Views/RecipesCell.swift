@@ -24,6 +24,12 @@ final class RecipesCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configure(with recipe: Recipe) {
+        footerView.configure(with: recipe)
+        pictureView.configure(with: recipe)
+        timeLabel.configure(with: recipe.time)
+    }
+    
     private func setupPictureView() {
         contentView.addSubview(pictureView)
         pictureView.translatesAutoresizingMaskIntoConstraints = false

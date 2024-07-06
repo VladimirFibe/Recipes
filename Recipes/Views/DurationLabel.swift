@@ -1,20 +1,22 @@
 import UIKit
 
-class RatingLabel: UIView {
+class DurationLabel: UIView {
     private let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
     private lazy var blurView = UIVisualEffectView(effect: blurEffect)
-    private let imageView = UIImageView()
     private let label = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupBlurView()
-        setupImageView()
         setupLabel()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func configure(with time: String) {
+        label.text = time
     }
     
     private func setupBlurView() {
@@ -30,26 +32,16 @@ class RatingLabel: UIView {
         ])
     }
     
-    private func setupImageView() {
-        addSubview(imageView)
-        imageView.image = UIImage(named: "star12")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10)
-        ])
-    }
-    
     private func setupLabel() {
         addSubview(label)
-        label.text = "4,5"
+        label.text = "15:10"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemBackground
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 3),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 7),
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -7),
-            label.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
         ])
     }
 }

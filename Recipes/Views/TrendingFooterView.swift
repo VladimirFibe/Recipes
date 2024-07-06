@@ -17,6 +17,11 @@ final class TrendingFooterView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configure(with recipe: Recipe) {
+        titleLabel.text = recipe.title
+        nameLabel.text = recipe.sourceName
+    }
+    
     private func setupTitleLabel() {
         addSubview(titleLabel)
         titleLabel.text = "How to sharwama at home"
