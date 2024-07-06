@@ -19,9 +19,9 @@ final class TabBarViewController: UITabBarController {
 		super.viewDidLoad()
 		setupUI()
 		setupViewControllers(
-            UINavigationController(rootViewController: TrendingViewController()),
+            UINavigationController(rootViewController: HomeViewController()),
 			UINavigationController(rootViewController: DiscoverViewController()),
-            UINavigationController(rootViewController: DiscoverViewController()),
+            UINavigationController(rootViewController: TrendingViewController()),
             UINavigationController(rootViewController: DiscoverViewController())
 		)
 	}
