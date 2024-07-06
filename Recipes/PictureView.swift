@@ -19,6 +19,7 @@ class PictureView: UIView {
     
     public func configure(with recipe: Recipe) {
         imageView.kf.setImage(with: URL(string: recipe.image))
+        starLabel.configure(with: recipe.stars)
     }
     
     private func setupImageView() {

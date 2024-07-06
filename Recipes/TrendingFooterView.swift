@@ -19,6 +19,7 @@ final class TrendingFooterView: UIView {
     
     public func configure(with recipe: Recipe) {
         titleLabel.text = recipe.title
+        nameLabel.text = recipe.sourceName
     }
     
     private func setupTitleLabel() {

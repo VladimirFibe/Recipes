@@ -27,6 +27,7 @@ final class RecipesCell: UITableViewCell {
     public func configure(with recipe: Recipe) {
         footerView.configure(with: recipe)
         pictureView.configure(with: recipe)
+        timeLabel.configure(with: recipe.time)
     }
     
     private func setupPictureView() {

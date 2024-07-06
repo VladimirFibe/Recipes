@@ -15,6 +15,10 @@ class DurationLabel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configure(with time: String) {
+        label.text = time
+    }
+    
     private func setupBlurView() {
         addSubview(blurView)
         blurView.translatesAutoresizingMaskIntoConstraints = false

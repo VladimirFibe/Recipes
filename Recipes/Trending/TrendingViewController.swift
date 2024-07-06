@@ -8,7 +8,7 @@
 import UIKit
 
 class TrendingViewController: UITableViewController {
-    private var recipes: [Recipe] = Bundle.main.decode([Recipe].self, from: "Recipes.json")
+    private var recipes = Bundle.main.decode([Recipe].self, from: "Recipes.json")
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -17,6 +17,10 @@ class RatingLabel: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configure(with text: String) {
+        label.text = text
+    }
+    
     private func setupBlurView() {
         addSubview(blurView)
         blurView.translatesAutoresizingMaskIntoConstraints = false
