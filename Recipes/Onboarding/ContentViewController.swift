@@ -1,3 +1,10 @@
+//
+//  ContentViewControllerDelegate.swift
+//  Recipes
+//
+//  Created by Валентина Попова on 03.07.2024.
+//
+
 import UIKit
 
 protocol ContentViewControllerDelegate: AnyObject {

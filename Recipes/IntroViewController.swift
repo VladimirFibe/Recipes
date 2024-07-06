@@ -1,3 +1,10 @@
+//
+//  IntroViewController.swift
+//  Recipes
+//
+//  Created by Валентина Попова on 05.07.2024.
+//
+
 import UIKit
 
 class IntroViewController: UIViewController {
