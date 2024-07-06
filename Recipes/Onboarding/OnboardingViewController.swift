@@ -3,17 +3,11 @@ import UIKit
 class OnboardingViewController: UIPageViewController {
     
     public var pages = [UIViewController]()
-    private let pageControl = UIPageControl()
     private let initialPage = 0
-    
-    // Ограничения для анимации
-    private var pageControlBottomAnchor: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        style()
-        layout()
     }
 }
 
@@ -30,6 +24,7 @@ private extension OnboardingViewController {
             showSkipButton: true,
             whiteText: "Recipes from all",
             colorText: " over the World",
+            pageIndex: 0,
             delegate: self
         )
         
@@ -39,6 +34,7 @@ private extension OnboardingViewController {
             showSkipButton: true,
             whiteText: "Recipes with",
             colorText: " each and every detail",
+            pageIndex: 1,
             delegate: self
         )
         
@@ -48,6 +44,7 @@ private extension OnboardingViewController {
             showSkipButton: false,
             whiteText: "Cook it now or",
             colorText: " save it for later",
+            pageIndex: 2,
             delegate: self
         )
         
@@ -57,29 +54,6 @@ private extension OnboardingViewController {
         
         // Установка начальной страницы
         setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
-    }
-    
-    // Метод для стилизации элементов
-    func style() {
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
-        pageControl.numberOfPages = pages.count
-        pageControl.currentPage = 0
-        pageControl.addTarget(self, action: #selector(pageControlTapped(_:)), for: .valueChanged)
-    }
-    
-    // Метод для установки ограничений (констрейнтов) на элементы
-    func layout() {
-        view.addSubview(pageControl)
-        NSLayoutConstraint.activate([
-            pageControl.widthAnchor.constraint(equalTo: view.widthAnchor),
-            pageControl.heightAnchor.constraint(equalToConstant: 20),
-            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
-        ])
-        
-        // Установка ограничения для анимаций
-        pageControlBottomAnchor = pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -60)
-        pageControlBottomAnchor?.isActive = true
     }
 }
 
@@ -102,15 +76,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
 extension OnboardingViewController: UIPageViewControllerDelegate {
     // Метод, вызываемый при завершении анимации перехода между страницами
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard completed, let viewControllers = pageViewController.viewControllers, let currentIndex = pages.firstIndex(of: viewControllers[0]) else { return }
-        pageControl.currentPage = currentIndex
-    }
-    
-    // Метод для анимации элементов в зависимости от текущей страницы
-    private func animateControlsIfNeeded(currentIndex: Int) {
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
+        guard completed, let viewControllers = pageViewController.viewControllers, let _ = pages.firstIndex(of: viewControllers[0]) else { return }
     }
 }
 
@@ -122,8 +88,7 @@ extension OnboardingViewController: ContentViewControllerDelegate {
         let nextIndex = currentIndex + 1
         if nextIndex < pages.count {
             setViewControllers([pages[nextIndex]], direction: .forward, animated: true, completion: nil)
-            pageControl.currentPage = nextIndex
-            animateControlsIfNeeded(currentIndex: nextIndex)
+            updateIndicator(forPage: nextIndex)
         } else {
             navigateToTrending()
         }
@@ -133,8 +98,7 @@ extension OnboardingViewController: ContentViewControllerDelegate {
     func didTapSkipButton(on viewController: ContentViewController) {
         let lastPageIndex = pages.count - 1
         setViewControllers([pages[lastPageIndex]], direction: .forward, animated: true, completion: nil)
-        pageControl.currentPage = lastPageIndex
-        animateControlsIfNeeded(currentIndex: lastPageIndex)
+        updateIndicator(forPage: lastPageIndex)
     }
     
     // Метод для перехода к экрану Trending
@@ -143,43 +107,17 @@ extension OnboardingViewController: ContentViewControllerDelegate {
         trendingVC.modalPresentationStyle = .fullScreen
         present(trendingVC, animated: true, completion: nil)
     }
-}
-
-// MARK: - Actions
-private extension OnboardingViewController {
-    // Метод, вызываемый при нажатии на pageControl
-    @objc func pageControlTapped(_ sender: UIPageControl) {
-        let index = sender.currentPage
+    
+    // Метод для обновления индикатора страниц
+    private func updateIndicator(forPage index: Int) {
+        for case let page as ContentViewController in pages {
+            page.updatePageIndicator(forPage: index)
+        }
+    }
+    
+    // Метод для перехода на конкретную страницу по индикатору
+    func didTapPageIndicator(at index: Int) {
         setViewControllers([pages[index]], direction: .forward, animated: true, completion: nil)
-        animateControlsIfNeeded(currentIndex: index)
-    }
-    
-    // Метод, вызываемый при нажатии на кнопку пропуска
-    @objc func skipTapped(_ sender: UIButton) {
-        let lastPageIndex = pages.count - 1
-        setViewControllers([pages[lastPageIndex]], direction: .forward, animated: true, completion: nil)
-        pageControl.currentPage = lastPageIndex
-        animateControlsIfNeeded(currentIndex: lastPageIndex)
+        updateIndicator(forPage: index)
     }
 }
-
-// MARK: - UIPageViewController Extensions
-private extension UIPageViewController {
-    // Метод для перехода на следующую страницу
-    func goToNextPage(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
-        guard let currentPage = viewControllers?.first, let nextPage = dataSource?.pageViewController(self, viewControllerAfter: currentPage) else { return }
-        setViewControllers([nextPage], direction: .forward, animated: animated, completion: completion)
-    }
-    
-    // Метод для перехода на предыдущую страницу
-    func goToPreviousPage(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
-        guard let currentPage = viewControllers?.first, let prevPage = dataSource?.pageViewController(self, viewControllerBefore: currentPage) else { return }
-        setViewControllers([prevPage], direction: .reverse, animated: animated, completion: completion)
-    }
-    
-    // Метод для перехода на конкретную страницу
-    func goToSpecificPage(index: Int, ofViewControllers pages: [UIViewController]) {
-        setViewControllers([pages[index]], direction: .forward, animated: true, completion: nil)
-    }
-}
-

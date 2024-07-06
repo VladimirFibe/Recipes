@@ -74,6 +74,7 @@ class IntroViewController: UIViewController {
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.setTitle("Get Started", for: .normal)
         actionButton.setTitleColor(.white, for: .normal)
+        actionButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: actionButton.titleLabel?.font.pointSize ?? 18)
         actionButton.backgroundColor = UIColor(red: 226/255, green: 62/255, blue: 62/255, alpha: 1)
         actionButton.addTarget(self, action: #selector(buttonTapped), for: .primaryActionTriggered)
         actionButton.layer.cornerRadius = 8
@@ -107,7 +108,7 @@ class IntroViewController: UIViewController {
             
             stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             
             actionButton.heightAnchor.constraint(equalToConstant: 56),
             actionButton.widthAnchor.constraint(equalToConstant: 156),
