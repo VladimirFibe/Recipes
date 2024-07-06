@@ -2,7 +2,7 @@ import UIKit
 
 class OnboardingViewController: UIPageViewController {
     
-    private var pages = [UIViewController]()
+    public var pages = [UIViewController]()
     private let pageControl = UIPageControl()
     private let initialPage = 0
     
