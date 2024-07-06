@@ -38,7 +38,7 @@
 		D9D6FECC2C38EA330036EDE6 /* TrendingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6FECB2C38EA330036EDE6 /* TrendingStore.swift */; };
 		D9D6FECF2C38ED5F0036EDE6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D9D6FECE2C38ED5F0036EDE6 /* Kingfisher */; };
 		D9D6FED22C390C140036EDE6 /* Recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = D9D6FED12C390C140036EDE6 /* Recipes.json */; };
-		D9D6FED62C390EDF0036EDE6 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6FED52C390EDF0036EDE6 /* Bundle+Extensions.swift */; };
+		D9D6FED62C390EDF0036EDE6 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6FED52C390EDF0036EDE6 /* Bundle+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +74,7 @@
 		D9D6FEC82C38EA010036EDE6 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		D9D6FECB2C38EA330036EDE6 /* TrendingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingStore.swift; sourceTree = "<group>"; };
 		D9D6FED12C390C140036EDE6 /* Recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Recipes.json; sourceTree = "<group>"; };
-		D9D6FED52C390EDF0036EDE6 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		D9D6FED52C390EDF0036EDE6 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +99,95 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		D9B4C4D32C39729600174819 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D9BA48002C32B9D40027D875 /* ViewController.swift */,
+				D9BA480A2C32B9D50027D875 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D9B4C4D42C3972B800174819 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				87B948CE2C3599FA008FD26A /* Font */,
+				D9BA48022C32B9D40027D875 /* Main.storyboard */,
+				D9BA48052C32B9D50027D875 /* Assets.xcassets */,
+				D9D6FED12C390C140036EDE6 /* Recipes.json */,
+				D9BA48072C32B9D50027D875 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D9B4C4D52C3972D600174819 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D9D6FED52C390EDF0036EDE6 /* Bundle+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D9B4C4D62C3972E100174819 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D9D6FEC82C38EA010036EDE6 /* Store.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D9B4C4D72C39731200174819 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D9D6FEC62C38E5870036EDE6 /* Recipe.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D9B4C4D82C39731F00174819 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				D9B4C4DA2C39734400174819 /* TabBar */,
+				D9D6FECA2C38EA1F0036EDE6 /* Trending */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		D9B4C4D92C39733200174819 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */,
+				D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D9B4C4DA2C39734400174819 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D9AC70CD2C34FA0E00AAAF73 /* TabBarItem.swift */,
+				D9AC70D12C34FA2500AAAF73 /* TabBarViewController.swift */,
+				D9AC70CF2C34FA1B00AAAF73 /* TabBarView.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		D9B4C4DB2C39736300174819 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A78982F92C3330C100E4DAFB /* CreatorCell.swift */,
+				D99457252C33C43B006A2B18 /* BookmarkView.swift */,
+				D99457282C33C43B006A2B18 /* DurationLabel.swift */,
+				D99457272C33C43B006A2B18 /* PictureView.swift */,
+				D99457232C33C43B006A2B18 /* RatingLabel.swift */,
+				D99457262C33C43B006A2B18 /* RecentCell.swift */,
+				87B948E92C35D8FC008FD26A /* PopularCell.swift */,
+				D99457292C33C43B006A2B18 /* TrendingCell.swift */,
+				D99457242C33C43B006A2B18 /* TrendingFooterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D9BA47F02C32B9D40027D875 = {
 			isa = PBXGroup;
 			children = (
@@ -118,31 +207,15 @@
 		D9BA47FB2C32B9D40027D875 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
-				D9AC70CD2C34FA0E00AAAF73 /* TabBarItem.swift */,
-				D9AC70D12C34FA2500AAAF73 /* TabBarViewController.swift */,
-				D9AC70CF2C34FA1B00AAAF73 /* TabBarView.swift */,
-				D9BA47FC2C32B9D40027D875 /* AppDelegate.swift */,
-				D9BA47FE2C32B9D40027D875 /* SceneDelegate.swift */,
-				D9BA48002C32B9D40027D875 /* ViewController.swift */,
-				A78982F92C3330C100E4DAFB /* CreatorCell.swift */,
-				D9D6FECA2C38EA1F0036EDE6 /* Trending */,
-				D99457252C33C43B006A2B18 /* BookmarkView.swift */,
-				D99457282C33C43B006A2B18 /* DurationLabel.swift */,
-				D99457272C33C43B006A2B18 /* PictureView.swift */,
-				D99457232C33C43B006A2B18 /* RatingLabel.swift */,
-				D99457262C33C43B006A2B18 /* RecentCell.swift */,
-				87B948E92C35D8FC008FD26A /* PopularCell.swift */,
-				D99457292C33C43B006A2B18 /* TrendingCell.swift */,
-				D99457242C33C43B006A2B18 /* TrendingFooterView.swift */,
-				87B948CE2C3599FA008FD26A /* Font */,
-				D9BA48022C32B9D40027D875 /* Main.storyboard */,
-				D9BA48052C32B9D50027D875 /* Assets.xcassets */,
-				D9BA48072C32B9D50027D875 /* LaunchScreen.storyboard */,
-				D9BA480A2C32B9D50027D875 /* Info.plist */,
+				D9B4C4D32C39729600174819 /* Supporting Files */,
+				D9B4C4D92C39733200174819 /* App */,
+				D9B4C4D82C39731F00174819 /* Modules */,
+				D9B4C4DB2C39736300174819 /* Views */,
+				D9B4C4D42C3972B800174819 /* Resources */,
 				D9D6FED02C390BE60036EDE6 /* API */,
-				D9D6FEC62C38E5870036EDE6 /* Recipe.swift */,
-				D9D6FEC82C38EA010036EDE6 /* Store.swift */,
-				D9D6FED52C390EDF0036EDE6 /* Bundle+Extensions.swift */,
+				D9B4C4D72C39731200174819 /* Models */,
+				D9B4C4D62C3972E100174819 /* Core */,
+				D9B4C4D52C3972D600174819 /* Extensions */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -163,7 +236,6 @@
 				D9D6FEC02C38D8B90036EDE6 /* APIClient.swift */,
 				D9D6FEC22C38DF5A0036EDE6 /* APIError.swift */,
 				D9D6FEC42C38DFA40036EDE6 /* APIRoute.swift */,
-				D9D6FED12C390C140036EDE6 /* Recipes.json */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -254,7 +326,7 @@
 				D99457302C33C43B006A2B18 /* TrendingCell.swift in Sources */,
 				87B948D02C359A18008FD26A /* CustomFont.swift in Sources */,
 				D9D6FEC92C38EA010036EDE6 /* Store.swift in Sources */,
-				D9D6FED62C390EDF0036EDE6 /* Bundle+Extensions.swift in Sources */,
+				D9D6FED62C390EDF0036EDE6 /* Bundle+Extension.swift in Sources */,
 				D994572C2C33C43B006A2B18 /* BookmarkView.swift in Sources */,
 				D9D6FEC12C38D8B90036EDE6 /* APIClient.swift in Sources */,
 				D9AC70CE2C34FA0E00AAAF73 /* TabBarItem.swift in Sources */,
