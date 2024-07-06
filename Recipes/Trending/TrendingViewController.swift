@@ -8,7 +8,8 @@
 import UIKit
 
 class TrendingViewController: UITableViewController {
-
+    private var recipes: [Recipe] = Bundle.main.decode([Recipe].self, from: "Recipes.json")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(RecipesCell.self, forCellReuseIdentifier: RecipesCell.identifier)
@@ -17,13 +18,13 @@ class TrendingViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        recipes.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecipesCell.identifier, for: indexPath) as? RecipesCell else { fatalError() }
-
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecipesCell.identifier, for: indexPath) as? RecipesCell 
+        else { fatalError() }
+        cell.configure(with: recipes[indexPath.row])
         return cell
     }
 }

@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class PictureView: UIView {
     private let imageView = UIImageView()
@@ -16,9 +17,13 @@ class PictureView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configure(with recipe: Recipe) {
+        imageView.kf.setImage(with: URL(string: recipe.image))
+    }
+    
     private func setupImageView() {
         addSubview(imageView)
-        imageView.image = UIImage(named: "image4")
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
