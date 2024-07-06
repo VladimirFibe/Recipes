@@ -216,8 +216,8 @@
 		D9BA47FB2C32B9D40027D875 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
-				D9B4C4D32C39729600174819 /* Supporting Files */,
 				D9B4C4D92C39733200174819 /* App */,
+				D9B4C4D32C39729600174819 /* Supporting Files */,
 				D9B4C4D82C39731F00174819 /* Modules */,
 				D9B4C4DB2C39736300174819 /* Views */,
 				D9B4C4D42C3972B800174819 /* Resources */,
