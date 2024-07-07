@@ -17,11 +17,12 @@ private extension HomeViewController {
         collectionView.register(TrendingCell.self, forCellWithReuseIdentifier: TrendingCell.identifier)
         collectionView.register(PopularCell.self, forCellWithReuseIdentifier: PopularCell.identifier)
         collectionView.register(RecentCell.self, forCellWithReuseIdentifier: RecentCell.identifier)
+        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.identifier)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
         ])
     }
 }
@@ -138,23 +139,45 @@ extension HomeViewController: UICollectionViewDataSource {
         10
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let section = HomeSection.allCases[indexPath.section]
         switch section {
         case .trending:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendingCell.identifier, for: indexPath) as? TrendingCell else { fatalError()}
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: TrendingCell.identifier,
+                for: indexPath
+            ) as? TrendingCell else { fatalError()}
             cell.configure(with: Recipe.sample)
             return cell
         case .popular:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCell.identifier, for: indexPath) as? PopularCell else { fatalError()}
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: PopularCell.identifier,
+                for: indexPath
+            ) as? PopularCell else { fatalError()}
+            cell.configure(with: Recipe.sample)
             return cell
         case .recent:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCell.identifier, for: indexPath) as? RecentCell else { fatalError()}
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: RecentCell.identifier,
+                for: indexPath
+            ) as? RecentCell else { fatalError()}
+            cell.configure(with: Recipe.sample)
             return cell
         }
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: SectionHeaderView.identifier,
+            for: indexPath
+        ) as? SectionHeaderView else { fatalError()}
+        header.configure(with: HomeSection.allCases[indexPath.section].title)
+        return header
+    }
 }
 @available(iOS 17.0, *)
 #Preview {
