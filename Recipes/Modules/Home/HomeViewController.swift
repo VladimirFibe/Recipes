@@ -6,6 +6,19 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupCollectionView()
+        let searchController = UISearchController(searchResultsController: DiscoverViewController())
+        searchController.isActive = true
+        searchController.searchBar.placeholder = "Search recipes"
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Get amazing recipes"
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font : UIFont.preferredFont(forTextStyle: .largeTitle)
+        ]
+        
     }
 }
 //MARK: - Setup Views
@@ -14,6 +27,7 @@ private extension HomeViewController {
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.register(TrendingCell.self, forCellWithReuseIdentifier: TrendingCell.identifier)
         collectionView.register(PopularCell.self, forCellWithReuseIdentifier: PopularCell.identifier)
         collectionView.register(RecentCell.self, forCellWithReuseIdentifier: RecentCell.identifier)
@@ -181,5 +195,5 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 @available(iOS 17.0, *)
 #Preview {
-    HomeViewController()
+    UINavigationController(rootViewController: HomeViewController())
 }
