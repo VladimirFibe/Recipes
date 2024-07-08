@@ -20,6 +20,7 @@ final class SearchResultCell: UICollectionViewCell {
 	// MARK: - Private properties
 
 	private let pictureView = PictureView()
+	private lazy var descriptionRecipeLabel = makeLabel()
 
 	// MARK: - Initialization
 
@@ -62,9 +63,16 @@ private extension SearchResultCell {
 	func setupUI() {
 		layer.cornerRadius = 10
 		translatesAutoresizingMaskIntoConstraints = false
+		descriptionRecipeLabel.text = "descriptionRecipeLabel"
 
 		addSubviews()
 		setupPictureView()
+	}
+
+	func makeLabel() -> UILabel {
+		let element = UILabel()
+		element.translatesAutoresizingMaskIntoConstraints = false
+		return element
 	}
 }
 
@@ -74,6 +82,7 @@ private extension SearchResultCell {
 	
 	func addSubviews() {
 		contentView.addSubview(pictureView)
+		pictureView.addSubview(descriptionRecipeLabel)
 	}
 
 	func setupPictureView() {
@@ -90,7 +99,11 @@ private extension SearchResultCell {
 			pictureView.topAnchor.constraint(equalTo: contentView.topAnchor),
 			pictureView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
 			pictureView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-			pictureView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+			pictureView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+
+			descriptionRecipeLabel.leadingAnchor.constraint(equalTo: pictureView.layoutMarginsGuide.leadingAnchor),
+			descriptionRecipeLabel.trailingAnchor.constraint(equalTo: pictureView.layoutMarginsGuide.trailingAnchor),
+			descriptionRecipeLabel.bottomAnchor.constraint(equalTo: pictureView.layoutMarginsGuide.bottomAnchor),
 		])
 	}
 }
