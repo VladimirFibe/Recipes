@@ -45,6 +45,13 @@ final class SearchResultCell: UICollectionViewCell {
 
 	func configure(with recipe: Recipe) {
 		pictureView.configure(with: recipe)
+		
+		let title = [NSAttributedString.Key.font: UIFont(name: "Poppins-Bold", size: 16)!]
+		let info = "\(recipe.numberOfIngredients) Ingredients | \(recipe.readyInMinutes) min"
+		let descriptionRecipe = NSMutableAttributedString(string: "\(recipe.title)\n", attributes: title)
+		descriptionRecipe.append(NSAttributedString(string: info))
+		
+		descriptionRecipeLabel.attributedText = descriptionRecipe
 	}
 
 	// MARK: - Private methods
@@ -71,7 +78,12 @@ private extension SearchResultCell {
 
 	func makeLabel() -> UILabel {
 		let element = UILabel()
+
+		element.font = UIFont(name: "Poppins-Regular", size: 12)
+		element.textColor = .white
+		element.numberOfLines = 0
 		element.translatesAutoresizingMaskIntoConstraints = false
+
 		return element
 	}
 }
