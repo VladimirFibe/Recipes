@@ -19,8 +19,9 @@ final class SearchResultCell: UICollectionViewCell {
 	
 	// MARK: - Private properties
 
-	private let pictureView = PictureView()
+	private lazy var imageView = makeImageView()
 	private lazy var descriptionRecipeLabel = makeLabel()
+	private let starLabel = RatingLabel()
 
 	// MARK: - Initialization
 
@@ -44,8 +45,9 @@ final class SearchResultCell: UICollectionViewCell {
 	// MARK: - Public methods
 
 	func configure(with recipe: Recipe) {
-		pictureView.configure(with: recipe)
-		
+		imageView.kf.setImage(with: URL(string: recipe.image))
+		starLabel.configure(with: recipe.stars)
+
 		let title = [NSAttributedString.Key.font: UIFont(name: "Poppins-Bold", size: 16)!]
 		let info = "\(recipe.numberOfIngredients) Ingredients | \(recipe.readyInMinutes) min"
 		let descriptionRecipe = NSMutableAttributedString(string: "\(recipe.title)\n", attributes: title)
@@ -68,12 +70,10 @@ private extension SearchResultCell {
 private extension SearchResultCell {
 	
 	func setupUI() {
-		layer.cornerRadius = 10
 		translatesAutoresizingMaskIntoConstraints = false
-		descriptionRecipeLabel.text = "descriptionRecipeLabel"
 
 		addSubviews()
-		setupPictureView()
+		setupStarLabel()
 	}
 
 	func makeLabel() -> UILabel {
@@ -86,6 +86,16 @@ private extension SearchResultCell {
 
 		return element
 	}
+
+	func makeImageView() -> UIImageView {
+		let element = UIImageView()
+
+		element.layer.cornerRadius = 10
+		element.clipsToBounds = true
+		element.translatesAutoresizingMaskIntoConstraints = false
+
+		return element
+	}
 }
 
 // MARK: - Setting UI
@@ -93,12 +103,14 @@ private extension SearchResultCell {
 private extension SearchResultCell {
 	
 	func addSubviews() {
-		contentView.addSubview(pictureView)
-		pictureView.addSubview(descriptionRecipeLabel)
+		contentView.addSubview(imageView)
+
+		imageView.addSubview(starLabel)
+		imageView.addSubview(descriptionRecipeLabel)
 	}
 
-	func setupPictureView() {
-		pictureView.translatesAutoresizingMaskIntoConstraints = false
+	func setupStarLabel() {
+		starLabel.translatesAutoresizingMaskIntoConstraints = false
 	}
 }
 
@@ -108,14 +120,17 @@ private extension SearchResultCell {
 	
 	func layout() {
 		NSLayoutConstraint.activate([
-			pictureView.topAnchor.constraint(equalTo: contentView.topAnchor),
-			pictureView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-			pictureView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-			pictureView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+			imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+			imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+			imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+			imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
-			descriptionRecipeLabel.leadingAnchor.constraint(equalTo: pictureView.layoutMarginsGuide.leadingAnchor),
-			descriptionRecipeLabel.trailingAnchor.constraint(equalTo: pictureView.layoutMarginsGuide.trailingAnchor),
-			descriptionRecipeLabel.bottomAnchor.constraint(equalTo: pictureView.layoutMarginsGuide.bottomAnchor),
+			starLabel.topAnchor.constraint(equalTo: imageView.layoutMarginsGuide.topAnchor),
+			starLabel.leadingAnchor.constraint(equalTo: imageView.layoutMarginsGuide.leadingAnchor),
+
+			descriptionRecipeLabel.leadingAnchor.constraint(equalTo: imageView.layoutMarginsGuide.leadingAnchor),
+			descriptionRecipeLabel.trailingAnchor.constraint(equalTo: imageView.layoutMarginsGuide.trailingAnchor),
+			descriptionRecipeLabel.bottomAnchor.constraint(equalTo: imageView.layoutMarginsGuide.bottomAnchor)
 		])
 	}
 }
