@@ -8,15 +8,9 @@
 import UIKit
 
 final class SearchResultCell: UICollectionViewCell {
-	
+
 	static let reusableIdentifier = String(describing: type(of: SearchResultCell.self))
-	
-	// MARK: - Outlets
-	
-	// MARK: - Public properties
-	
-	// MARK: - Dependencies
-	
+
 	// MARK: - Private properties
 
 	private lazy var imageView = makeImageView()
@@ -55,14 +49,6 @@ final class SearchResultCell: UICollectionViewCell {
 		
 		descriptionRecipeLabel.attributedText = descriptionRecipe
 	}
-
-	// MARK: - Private methods
-}
-
-// MARK: - Actions
-
-private extension SearchResultCell {
-	
 }
 
 // MARK: - Setup UI
@@ -90,6 +76,7 @@ private extension SearchResultCell {
 	func makeImageView() -> UIImageView {
 		let element = UIImageView()
 
+		element.contentMode = .scaleAspectFill
 		element.layer.cornerRadius = 10
 		element.clipsToBounds = true
 		element.translatesAutoresizingMaskIntoConstraints = false
@@ -128,9 +115,9 @@ private extension SearchResultCell {
 			starLabel.topAnchor.constraint(equalTo: imageView.layoutMarginsGuide.topAnchor),
 			starLabel.leadingAnchor.constraint(equalTo: imageView.layoutMarginsGuide.leadingAnchor),
 
-			descriptionRecipeLabel.leadingAnchor.constraint(equalTo: imageView.layoutMarginsGuide.leadingAnchor),
+			descriptionRecipeLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 15),
 			descriptionRecipeLabel.trailingAnchor.constraint(equalTo: imageView.layoutMarginsGuide.trailingAnchor),
-			descriptionRecipeLabel.bottomAnchor.constraint(equalTo: imageView.layoutMarginsGuide.bottomAnchor)
+			descriptionRecipeLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -15)
 		])
 	}
 }
