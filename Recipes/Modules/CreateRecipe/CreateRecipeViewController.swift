@@ -13,7 +13,11 @@ class CreateRecipeViewController: UIViewController {
     private let recipeImageView = UIImageView()
     private let pencilButton = UIButton(type: .system)
     private let recipeTitleTextField = UITextField()
+    private let servesContainer = UIView()
+    private let servesIconContainer = UIView()
+    private let servesIcon = UIImageView()
     private let servesLabel = UILabel()
+    private let servesButton = UIButton(type: .system)
     private let servesPickerView = UIPickerView()
     private let cookTimeLabel = UILabel()
     private let cookTimePickerView = UIPickerView()
@@ -47,7 +51,11 @@ class CreateRecipeViewController: UIViewController {
         view.addSubview(recipeImageView)
         view.addSubview(pencilButton)
         view.addSubview(recipeTitleTextField)
-        view.addSubview(servesLabel)
+        view.addSubview(servesContainer)
+        servesContainer.addSubview(servesIconContainer)
+        servesContainer.addSubview(servesLabel)
+        servesContainer.addSubview(servesButton)
+        servesIconContainer.addSubview(servesIcon)
         view.addSubview(servesPickerView)
         view.addSubview(cookTimeLabel)
         view.addSubview(cookTimePickerView)
@@ -70,23 +78,42 @@ class CreateRecipeViewController: UIViewController {
         pencilButton.layer.masksToBounds = true
         pencilButton.translatesAutoresizingMaskIntoConstraints = false
         
-        recipeTitleTextField.placeholder = "Named recipe"
-        recipeTitleTextField.borderStyle = .roundedRect
+        recipeTitleTextField.placeholder = "   Recipe name"
+        recipeTitleTextField.borderStyle = .none
         recipeTitleTextField.layer.borderColor = UIColor(red: 226/255, green: 62/255, blue: 62/255, alpha: 1).cgColor
         recipeTitleTextField.layer.borderWidth = 1.0
         recipeTitleTextField.layer.cornerRadius = 10
         recipeTitleTextField.layer.masksToBounds = true
         recipeTitleTextField.translatesAutoresizingMaskIntoConstraints = false
         
+        servesContainer.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        servesContainer.layer.cornerRadius = 10
+        servesContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        servesIcon.image = UIImage(named: "serves")?.withRenderingMode(.alwaysOriginal)
+        servesIcon.translatesAutoresizingMaskIntoConstraints = false
+        
+        servesIconContainer.backgroundColor = .white
+        servesIconContainer.layer.cornerRadius = 10
+        servesIconContainer.layer.masksToBounds = true
+        servesIconContainer.translatesAutoresizingMaskIntoConstraints = false
+        
         servesLabel.text = "Serves"
         servesLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        servesButton.setTitle("03", for: .normal)
+        servesButton.setTitleColor(.black, for: .normal)
+        servesButton.translatesAutoresizingMaskIntoConstraints = false
+        servesButton.addTarget(self, action: #selector(openServesPicker), for: .touchUpInside)
+        
         servesPickerView.translatesAutoresizingMaskIntoConstraints = false
+        servesPickerView.isHidden = true
         
         cookTimeLabel.text = "Cook time"
         cookTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         
         cookTimePickerView.translatesAutoresizingMaskIntoConstraints = false
+        cookTimePickerView.isHidden = true
         
         ingredientsLabel.text = "Ingredients"
         ingredientsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -115,10 +142,28 @@ class CreateRecipeViewController: UIViewController {
             recipeTitleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             recipeTitleTextField.heightAnchor.constraint(equalToConstant: 44),
             
-            servesLabel.topAnchor.constraint(equalTo: recipeTitleTextField.bottomAnchor, constant: 20),
-            servesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            servesContainer.topAnchor.constraint(equalTo: recipeTitleTextField.bottomAnchor, constant: 20),
+            servesContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            servesContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            servesContainer.heightAnchor.constraint(equalToConstant: 60),
             
-            servesPickerView.topAnchor.constraint(equalTo: servesLabel.bottomAnchor, constant: 10),
+            servesIconContainer.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
+            servesIconContainer.leadingAnchor.constraint(equalTo: servesContainer.leadingAnchor, constant: 10),
+            servesIconContainer.widthAnchor.constraint(equalToConstant: 32),
+            servesIconContainer.heightAnchor.constraint(equalToConstant: 32),
+            
+            servesIcon.centerYAnchor.constraint(equalTo: servesIconContainer.centerYAnchor),
+            servesIcon.centerXAnchor.constraint(equalTo: servesIconContainer.centerXAnchor),
+            servesIcon.widthAnchor.constraint(equalToConstant: 16),
+            servesIcon.heightAnchor.constraint(equalToConstant: 16),
+            
+            servesLabel.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
+            servesLabel.leadingAnchor.constraint(equalTo: servesIconContainer.trailingAnchor, constant: 10),
+            
+            servesButton.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
+            servesButton.trailingAnchor.constraint(equalTo: servesContainer.trailingAnchor, constant: -10),
+            
+            servesPickerView.topAnchor.constraint(equalTo: servesContainer.bottomAnchor, constant: 10),
             servesPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             servesPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             servesPickerView.heightAnchor.constraint(equalToConstant: 100),
@@ -147,6 +192,10 @@ class CreateRecipeViewController: UIViewController {
         imagePickerController.delegate = self
         imagePickerController.sourceType = .photoLibrary
         present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @objc private func openServesPicker() {
+        servesPickerView.isHidden.toggle()
     }
 }
 
