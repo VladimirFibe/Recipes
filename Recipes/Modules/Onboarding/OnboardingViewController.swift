@@ -110,9 +110,9 @@ extension OnboardingViewController: ContentViewControllerDelegate {
     
     // Метод для перехода к экрану Trending
     private func navigateToTrending() {
-        let trendingVC = TrendingViewController()
-        trendingVC.modalPresentationStyle = .fullScreen
-        present(trendingVC, animated: true, completion: nil)
+        let createRecipeVC = CreateRecipeViewController()
+        createRecipeVC.modalPresentationStyle = .fullScreen
+        present(createRecipeVC, animated: true, completion: nil)
     }
     
     // Метод для обновления индикатора страниц

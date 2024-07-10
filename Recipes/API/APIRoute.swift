@@ -11,9 +11,9 @@ enum APIRoute {
     
     var fullUrl: String {
         switch self {
-        case .getRecipeInformation(let request): "\(baseUrl)recipes/\(request.id)/information"
-        case .searchRecipes(_): "\(baseUrl)recipes/complexSearch"
-        case .getRandomRecipes: "\(baseUrl)recipes/random"
+        case .getRecipeInformation(let request): return "\(baseUrl)recipes/\(request.id)/information"
+        case .searchRecipes(_): return "\(baseUrl)recipes/complexSearch"
+        case .getRandomRecipes: return "\(baseUrl)recipes/random"
         }
     }
     
