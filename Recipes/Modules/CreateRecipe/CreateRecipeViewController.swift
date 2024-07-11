@@ -13,6 +13,7 @@ class CreateRecipeViewController: UIViewController {
     private let recipeImageView = UIImageView()
     private let pencilButton = UIButton(type: .system)
     private let recipeTitleTextField = UITextField()
+    
     private let servesContainer = UIView()
     private let servesIconContainer = UIView()
     private let servesIcon = UIImageView()
@@ -20,8 +21,15 @@ class CreateRecipeViewController: UIViewController {
     private let servesButton = UIButton(type: .system)
     private let servesArrow = UIImageView()
     private let servesPickerView = UIPickerView()
+    
+    private let cookTimeContainer = UIView()
+    private let cookTimeIconContainer = UIView()
+    private let cookTimeIcon = UIImageView()
     private let cookTimeLabel = UILabel()
+    private let cookTimeButton = UIButton(type: .system)
+    private let cookTimeArrow = UIImageView()
     private let cookTimePickerView = UIPickerView()
+    
     private let ingredientsLabel = UILabel()
     private let createRecipeButton = UIButton(type: .system)
     
@@ -44,6 +52,7 @@ class CreateRecipeViewController: UIViewController {
         
         servesPickerView.dataSource = self
         servesPickerView.delegate = self
+        
         cookTimePickerView.dataSource = self
         cookTimePickerView.delegate = self
         
@@ -52,6 +61,7 @@ class CreateRecipeViewController: UIViewController {
         view.addSubview(recipeImageView)
         view.addSubview(pencilButton)
         view.addSubview(recipeTitleTextField)
+        
         view.addSubview(servesContainer)
         servesContainer.addSubview(servesIconContainer)
         servesContainer.addSubview(servesLabel)
@@ -59,8 +69,15 @@ class CreateRecipeViewController: UIViewController {
         servesContainer.addSubview(servesArrow)
         servesIconContainer.addSubview(servesIcon)
         view.addSubview(servesPickerView)
-        view.addSubview(cookTimeLabel)
+        
+        view.addSubview(cookTimeContainer)
+        cookTimeContainer.addSubview(cookTimeIconContainer)
+        cookTimeContainer.addSubview(cookTimeLabel)
+        cookTimeContainer.addSubview(cookTimeButton)
+        cookTimeContainer.addSubview(cookTimeArrow)
+        cookTimeIconContainer.addSubview(cookTimeIcon)
         view.addSubview(cookTimePickerView)
+        
         view.addSubview(ingredientsLabel)
         view.addSubview(createRecipeButton)
     }
@@ -123,9 +140,34 @@ class CreateRecipeViewController: UIViewController {
         servesPickerView.translatesAutoresizingMaskIntoConstraints = false
         servesPickerView.isHidden = true
         
+        cookTimeContainer.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        cookTimeContainer.layer.cornerRadius = 10
+        cookTimeContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        cookTimeIcon.image = UIImage(named: "cookTime")?.withRenderingMode(.alwaysOriginal)
+        cookTimeIcon.translatesAutoresizingMaskIntoConstraints = false
+        
+        cookTimeIconContainer.backgroundColor = .white
+        cookTimeIconContainer.layer.cornerRadius = 10
+        cookTimeIconContainer.layer.masksToBounds = true
+        cookTimeIconContainer.translatesAutoresizingMaskIntoConstraints = false
+        
         cookTimeLabel.text = "Cook time"
+        cookTimeLabel.font = UIFont.boldSystemFont(ofSize: 17)
         cookTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        cookTimeButton.setTitle("30 min", for: .normal)
+        cookTimeButton.setTitleColor(.gray, for: .normal)
+        cookTimeButton.translatesAutoresizingMaskIntoConstraints = false
+        cookTimeButton.addTarget(self, action: #selector(openServesPicker), for: .touchUpInside)
+        
+        cookTimeArrow.image = UIImage(systemName: "arrow.forward")
+        cookTimeArrow.tintColor = .black
+        cookTimeArrow.isUserInteractionEnabled = true
+       // let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(openServesPicker))
+       // cookTimeArrow.addGestureRecognizer(tapGestureRecognizer)
+        cookTimeArrow.translatesAutoresizingMaskIntoConstraints = false
+
         cookTimePickerView.translatesAutoresizingMaskIntoConstraints = false
         cookTimePickerView.isHidden = true
         
@@ -187,10 +229,33 @@ class CreateRecipeViewController: UIViewController {
             servesPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             servesPickerView.heightAnchor.constraint(equalToConstant: 100),
             
-            cookTimeLabel.topAnchor.constraint(equalTo: servesPickerView.bottomAnchor, constant: 20),
-            cookTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            cookTimeContainer.topAnchor.constraint(equalTo: servesContainer.bottomAnchor, constant: 20),
+            cookTimeContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            cookTimeContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            cookTimeContainer.heightAnchor.constraint(equalToConstant: 60),
             
-            cookTimePickerView.topAnchor.constraint(equalTo: cookTimeLabel.bottomAnchor, constant: 10),
+            cookTimeIconContainer.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
+            cookTimeIconContainer.leadingAnchor.constraint(equalTo: cookTimeContainer.leadingAnchor, constant: 10),
+            cookTimeIconContainer.widthAnchor.constraint(equalToConstant: 32),
+            cookTimeIconContainer.heightAnchor.constraint(equalToConstant: 32),
+            
+            cookTimeIcon.centerYAnchor.constraint(equalTo: cookTimeIconContainer.centerYAnchor),
+            cookTimeIcon.centerXAnchor.constraint(equalTo: cookTimeIconContainer.centerXAnchor),
+            cookTimeIcon.widthAnchor.constraint(equalToConstant: 16),
+            cookTimeIcon.heightAnchor.constraint(equalToConstant: 16),
+            
+            cookTimeLabel.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
+            cookTimeLabel.leadingAnchor.constraint(equalTo: cookTimeIconContainer.trailingAnchor, constant: 15),
+            
+            cookTimeButton.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
+            cookTimeButton.trailingAnchor.constraint(equalTo: cookTimeArrow.leadingAnchor, constant: -10),
+            
+            cookTimeArrow.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
+            cookTimeArrow.trailingAnchor.constraint(equalTo: cookTimeContainer.trailingAnchor, constant: -10),
+            cookTimeArrow.widthAnchor.constraint(equalToConstant: 22),
+            cookTimeArrow.heightAnchor.constraint(equalToConstant: 22),
+            
+            cookTimePickerView.topAnchor.constraint(equalTo: cookTimeContainer.bottomAnchor, constant: 10),
             cookTimePickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             cookTimePickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             cookTimePickerView.heightAnchor.constraint(equalToConstant: 100),
