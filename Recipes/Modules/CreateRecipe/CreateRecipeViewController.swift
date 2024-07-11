@@ -36,6 +36,13 @@ class CreateRecipeViewController: UIViewController {
     private var servesData: [Int] = Array(1...10)
     private var cookTimeData: [Int] = Array(stride(from: 10, through: 180, by: 10))
     
+    private var servesPickerIsVisible = false
+    private var cookTimePickerIsVisible = false
+    private var servesPickerViewHeightConstraint: NSLayoutConstraint!
+    private var cookTimePickerViewHeightConstraint: NSLayoutConstraint!
+    private var cookTimeContainerTopConstraint: NSLayoutConstraint!
+    private var ingredientsLabelTopConstraint: NSLayoutConstraint!
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,8 +140,8 @@ class CreateRecipeViewController: UIViewController {
         servesArrow.image = UIImage(systemName: "arrow.forward")
         servesArrow.tintColor = .black
         servesArrow.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(openServesPicker))
-        servesArrow.addGestureRecognizer(tapGestureRecognizer)
+        let servesTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(openServesPicker))
+        servesArrow.addGestureRecognizer(servesTapGestureRecognizer)
         servesArrow.translatesAutoresizingMaskIntoConstraints = false
         
         servesPickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -159,13 +166,13 @@ class CreateRecipeViewController: UIViewController {
         cookTimeButton.setTitle("30 min", for: .normal)
         cookTimeButton.setTitleColor(.gray, for: .normal)
         cookTimeButton.translatesAutoresizingMaskIntoConstraints = false
-        cookTimeButton.addTarget(self, action: #selector(openServesPicker), for: .touchUpInside)
+        cookTimeButton.addTarget(self, action: #selector(openCookTimePicker), for: .touchUpInside)
         
         cookTimeArrow.image = UIImage(systemName: "arrow.forward")
         cookTimeArrow.tintColor = .black
         cookTimeArrow.isUserInteractionEnabled = true
-       // let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(openServesPicker))
-       // cookTimeArrow.addGestureRecognizer(tapGestureRecognizer)
+        let cookTimeTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(openCookTimePicker))
+        cookTimeArrow.addGestureRecognizer(cookTimeTapGestureRecognizer)
         cookTimeArrow.translatesAutoresizingMaskIntoConstraints = false
 
         cookTimePickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -182,6 +189,11 @@ class CreateRecipeViewController: UIViewController {
     }
     
     private func setupConstraints() {
+        servesPickerViewHeightConstraint = servesPickerView.heightAnchor.constraint(equalToConstant: 0)
+        cookTimePickerViewHeightConstraint = cookTimePickerView.heightAnchor.constraint(equalToConstant: 0)
+        cookTimeContainerTopConstraint = cookTimeContainer.topAnchor.constraint(equalTo: servesPickerView.bottomAnchor, constant: 10)
+        ingredientsLabelTopConstraint = ingredientsLabel.topAnchor.constraint(equalTo: cookTimePickerView.bottomAnchor, constant: 20)
+        
         NSLayoutConstraint.activate([
             recipeImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             recipeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -227,9 +239,9 @@ class CreateRecipeViewController: UIViewController {
             servesPickerView.topAnchor.constraint(equalTo: servesContainer.bottomAnchor, constant: 10),
             servesPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             servesPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            servesPickerView.heightAnchor.constraint(equalToConstant: 100),
+            servesPickerViewHeightConstraint,
             
-            cookTimeContainer.topAnchor.constraint(equalTo: servesContainer.bottomAnchor, constant: 20),
+            cookTimeContainerTopConstraint,
             cookTimeContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             cookTimeContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             cookTimeContainer.heightAnchor.constraint(equalToConstant: 60),
@@ -258,9 +270,9 @@ class CreateRecipeViewController: UIViewController {
             cookTimePickerView.topAnchor.constraint(equalTo: cookTimeContainer.bottomAnchor, constant: 10),
             cookTimePickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             cookTimePickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            cookTimePickerView.heightAnchor.constraint(equalToConstant: 100),
+            cookTimePickerViewHeightConstraint,
             
-            ingredientsLabel.topAnchor.constraint(equalTo: cookTimePickerView.bottomAnchor, constant: 20),
+            ingredientsLabelTopConstraint,
             ingredientsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             createRecipeButton.topAnchor.constraint(equalTo: ingredientsLabel.bottomAnchor, constant: 20),
@@ -279,10 +291,27 @@ class CreateRecipeViewController: UIViewController {
     }
     
     @objc private func openServesPicker() {
-        let isPickerHidden = servesPickerView.isHidden
+        servesPickerIsVisible.toggle()
+        
+        servesPickerViewHeightConstraint.constant = servesPickerIsVisible ? 100 : 0
+        
         UIView.animate(withDuration: 0.3) {
-            self.servesPickerView.isHidden = !isPickerHidden
-            self.servesPickerView.alpha = isPickerHidden ? 1 : 0
+            self.servesPickerView.isHidden = !self.servesPickerIsVisible
+            self.servesPickerView.alpha = self.servesPickerIsVisible ? 1 : 0
+            self.cookTimeContainerTopConstraint.constant = self.servesPickerIsVisible ? 110 : 10
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc private func openCookTimePicker() {
+        cookTimePickerIsVisible.toggle()
+        
+        cookTimePickerViewHeightConstraint.constant = cookTimePickerIsVisible ? 100 : 0
+        
+        UIView.animate(withDuration: 0.3) {
+            self.cookTimePickerView.isHidden = !self.cookTimePickerIsVisible
+            self.cookTimePickerView.alpha = self.cookTimePickerIsVisible ? 1 : 0
+            self.ingredientsLabelTopConstraint.constant = self.cookTimePickerIsVisible ? 110 : 20
             self.view.layoutIfNeeded()
         }
     }
@@ -327,7 +356,12 @@ extension CreateRecipeViewController: UIPickerViewDataSource, UIPickerViewDelega
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == servesPickerView {
             servesButton.setTitle(String(format: "%02d", servesData[row]), for: .normal)
+            servesPickerIsVisible = true
             openServesPicker()
+        } else if pickerView == cookTimePickerView {
+            cookTimeButton.setTitle("\(cookTimeData[row]) min", for: .normal)
+            cookTimePickerIsVisible = true
+            openCookTimePicker()
         }
     }
 }

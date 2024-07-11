@@ -12,6 +12,7 @@
 		87B948D42C359AA8008FD26A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87B948D22C359AA8008FD26A /* Poppins-Bold.ttf */; };
 		87B948EA2C35D8FC008FD26A /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B948E92C35D8FC008FD26A /* PopularCell.swift */; };
 		A773D5C82C3EAC72003E24C9 /* CreateRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D5C72C3EAC72003E24C9 /* CreateRecipeViewController.swift */; };
+		A773D5CC2C4007DD003E24C9 /* PickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D5CB2C4007DD003E24C9 /* PickerContainerView.swift */; };
 		A78982FA2C3330C100E4DAFB /* CreatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78982F92C3330C100E4DAFB /* CreatorCell.swift */; };
 		A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */; };
 		D92217792C3BDC8C007F5ABD /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92217762C3BDC8C007F5ABD /* ContentViewController.swift */; };
@@ -51,6 +52,7 @@
 		87B948D22C359AA8008FD26A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		87B948E92C35D8FC008FD26A /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
 		A773D5C72C3EAC72003E24C9 /* CreateRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeViewController.swift; sourceTree = "<group>"; };
+		A773D5CB2C4007DD003E24C9 /* PickerContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerContainerView.swift; sourceTree = "<group>"; };
 		A78982F92C3330C100E4DAFB /* CreatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorCell.swift; sourceTree = "<group>"; };
 		A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		D92217762C3BDC8C007F5ABD /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				A773D5C72C3EAC72003E24C9 /* CreateRecipeViewController.swift */,
+				A773D5CB2C4007DD003E24C9 /* PickerContainerView.swift */,
 			);
 			path = CreateRecipe;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				D99457302C33C43B006A2B18 /* TrendingCell.swift in Sources */,
 				87B948D02C359A18008FD26A /* CustomFont.swift in Sources */,
 				D922177C2C3BDDEC007F5ABD /* IntroViewController.swift in Sources */,
+				A773D5CC2C4007DD003E24C9 /* PickerContainerView.swift in Sources */,
 				D9B4C4DD2C3976B100174819 /* DiscoverViewController.swift in Sources */,
 				D9D6FEC92C38EA010036EDE6 /* Store.swift in Sources */,
 				D9D6FED62C390EDF0036EDE6 /* Bundle+Extension.swift in Sources */,
