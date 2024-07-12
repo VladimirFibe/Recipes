@@ -290,10 +290,11 @@ class CreateRecipeViewController: UIViewController {
         cookTimePickerView.isHidden = true
         
         ingredientsLabel.text = "Ingredients"
-        ingredientsLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        ingredientsLabel.font = UIFont.boldSystemFont(ofSize: 26)
         ingredientsLabel.translatesAutoresizingMaskIntoConstraints = false
         
         createRecipeButton.setTitle("Create recipe", for: .normal)
+        createRecipeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         createRecipeButton.backgroundColor = UIColor(red: 226/255, green: 62/255, blue: 62/255, alpha: 1)
         createRecipeButton.setTitleColor(.white, for: .normal)
         createRecipeButton.layer.cornerRadius = 10
@@ -355,6 +356,7 @@ class CreateRecipeViewController: UIViewController {
     }
 
     @objc private func removeIngredient(_ sender: UIButton) {
+        saveCurrentTextFields()
         let index = sender.tag
         ingredients.remove(at: index)
         ingredientsTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
