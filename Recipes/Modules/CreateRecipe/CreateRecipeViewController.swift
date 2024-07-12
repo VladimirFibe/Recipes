@@ -7,8 +7,13 @@
 
 import UIKit
 
+struct Ingredient {
+    var name: String
+    var quantity: String
+}
+
 class CreateRecipeViewController: UIViewController {
-    
+
     // MARK: - UI Elements
     private let recipeImageView = UIImageView()
     private let pencilButton = UIButton(type: .system)
@@ -32,6 +37,7 @@ class CreateRecipeViewController: UIViewController {
     
     private let ingredientsLabel = UILabel()
     private let createRecipeButton = UIButton(type: .system)
+    private let ingredientsTableView = UITableView()
     
     private var servesData: [Int] = Array(1...10)
     private var cookTimeData: [Int] = Array(stride(from: 10, through: 180, by: 10))
@@ -43,6 +49,8 @@ class CreateRecipeViewController: UIViewController {
     private var cookTimeContainerTopConstraint: NSLayoutConstraint!
     private var ingredientsLabelTopConstraint: NSLayoutConstraint!
     
+    private var ingredients: [Ingredient] = [Ingredient(name: "", quantity: "")]
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +59,7 @@ class CreateRecipeViewController: UIViewController {
         navigationItem.title = "Create Recipe"
         setupUI()
         setupConstraints()
+        setupIngredientsTableView()
     }
     
     // MARK: - Setup Methods
@@ -86,9 +95,111 @@ class CreateRecipeViewController: UIViewController {
         view.addSubview(cookTimePickerView)
         
         view.addSubview(ingredientsLabel)
+        view.addSubview(ingredientsTableView)
         view.addSubview(createRecipeButton)
     }
-    
+
+    private func setupConstraints() {
+        servesPickerViewHeightConstraint = servesPickerView.heightAnchor.constraint(equalToConstant: 0)
+        cookTimePickerViewHeightConstraint = cookTimePickerView.heightAnchor.constraint(equalToConstant: 0)
+        cookTimeContainerTopConstraint = cookTimeContainer.topAnchor.constraint(equalTo: servesPickerView.bottomAnchor, constant: 10)
+        ingredientsLabelTopConstraint = ingredientsLabel.topAnchor.constraint(equalTo: cookTimePickerView.bottomAnchor, constant: 20)
+        
+        NSLayoutConstraint.activate([
+            recipeImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            recipeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            recipeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            recipeImageView.heightAnchor.constraint(equalToConstant: 200),
+            
+            pencilButton.topAnchor.constraint(equalTo: recipeImageView.topAnchor, constant: 10),
+            pencilButton.trailingAnchor.constraint(equalTo: recipeImageView.trailingAnchor, constant: -10),
+            pencilButton.widthAnchor.constraint(equalToConstant: 32),
+            pencilButton.heightAnchor.constraint(equalToConstant: 32),
+            
+            recipeTitleTextField.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: 20),
+            recipeTitleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            recipeTitleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            recipeTitleTextField.heightAnchor.constraint(equalToConstant: 44),
+            
+            servesContainer.topAnchor.constraint(equalTo: recipeTitleTextField.bottomAnchor, constant: 20),
+            servesContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            servesContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            servesContainer.heightAnchor.constraint(equalToConstant: 60),
+            
+            servesIconContainer.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
+            servesIconContainer.leadingAnchor.constraint(equalTo: servesContainer.leadingAnchor, constant: 10),
+            servesIconContainer.widthAnchor.constraint(equalToConstant: 32),
+            servesIconContainer.heightAnchor.constraint(equalToConstant: 32),
+            
+            servesIcon.centerYAnchor.constraint(equalTo: servesIconContainer.centerYAnchor),
+            servesIcon.centerXAnchor.constraint(equalTo: servesIconContainer.centerXAnchor),
+            servesIcon.widthAnchor.constraint(equalToConstant: 16),
+            servesIcon.heightAnchor.constraint(equalToConstant: 16),
+            
+            servesLabel.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
+            servesLabel.leadingAnchor.constraint(equalTo: servesIconContainer.trailingAnchor, constant
+
+: 15),
+            
+            servesButton.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
+            servesButton.trailingAnchor.constraint(equalTo: servesArrow.leadingAnchor, constant: -10),
+            
+            servesArrow.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
+            servesArrow.trailingAnchor.constraint(equalTo: servesContainer.trailingAnchor, constant: -10),
+            servesArrow.widthAnchor.constraint(equalToConstant: 22),
+            servesArrow.heightAnchor.constraint(equalToConstant: 22),
+            
+            servesPickerView.topAnchor.constraint(equalTo: servesContainer.bottomAnchor, constant: 10),
+            servesPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            servesPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            servesPickerViewHeightConstraint,
+            
+            cookTimeContainerTopConstraint,
+            cookTimeContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            cookTimeContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            cookTimeContainer.heightAnchor.constraint(equalToConstant: 60),
+            
+            cookTimeIconContainer.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
+            cookTimeIconContainer.leadingAnchor.constraint(equalTo: cookTimeContainer.leadingAnchor, constant: 10),
+            cookTimeIconContainer.widthAnchor.constraint(equalToConstant: 32),
+            cookTimeIconContainer.heightAnchor.constraint(equalToConstant: 32),
+            
+            cookTimeIcon.centerYAnchor.constraint(equalTo: cookTimeIconContainer.centerYAnchor),
+            cookTimeIcon.centerXAnchor.constraint(equalTo: cookTimeIconContainer.centerXAnchor),
+            cookTimeIcon.widthAnchor.constraint(equalToConstant: 16),
+            cookTimeIcon.heightAnchor.constraint(equalToConstant: 16),
+            
+            cookTimeLabel.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
+            cookTimeLabel.leadingAnchor.constraint(equalTo: cookTimeIconContainer.trailingAnchor, constant: 15),
+            
+            cookTimeButton.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
+            cookTimeButton.trailingAnchor.constraint(equalTo: cookTimeArrow.leadingAnchor, constant: -10),
+            
+            cookTimeArrow.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
+            cookTimeArrow.trailingAnchor.constraint(equalTo: cookTimeContainer.trailingAnchor, constant: -10),
+            cookTimeArrow.widthAnchor.constraint(equalToConstant: 22),
+            cookTimeArrow.heightAnchor.constraint(equalToConstant: 22),
+            
+            cookTimePickerView.topAnchor.constraint(equalTo: cookTimeContainer.bottomAnchor, constant: 10),
+            cookTimePickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            cookTimePickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            cookTimePickerViewHeightConstraint,
+            
+            ingredientsLabelTopConstraint,
+            ingredientsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+            ingredientsTableView.topAnchor.constraint(equalTo: ingredientsLabel.bottomAnchor, constant: 10),
+            ingredientsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            ingredientsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            ingredientsTableView.heightAnchor.constraint(equalToConstant: 200),
+            
+            createRecipeButton.topAnchor.constraint(equalTo: ingredientsTableView.bottomAnchor, constant: 20),
+            createRecipeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            createRecipeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            createRecipeButton.heightAnchor.constraint(equalToConstant: 50),
+        ])
+    }
+
     private func configureUIElements() {
         recipeImageView.image = UIImage(named: "image4")
         recipeImageView.contentMode = .scaleAspectFill
@@ -179,6 +290,7 @@ class CreateRecipeViewController: UIViewController {
         cookTimePickerView.isHidden = true
         
         ingredientsLabel.text = "Ingredients"
+        ingredientsLabel.font = UIFont.boldSystemFont(ofSize: 17)
         ingredientsLabel.translatesAutoresizingMaskIntoConstraints = false
         
         createRecipeButton.setTitle("Create recipe", for: .normal)
@@ -187,99 +299,15 @@ class CreateRecipeViewController: UIViewController {
         createRecipeButton.layer.cornerRadius = 10
         createRecipeButton.translatesAutoresizingMaskIntoConstraints = false
     }
-    
-    private func setupConstraints() {
-        servesPickerViewHeightConstraint = servesPickerView.heightAnchor.constraint(equalToConstant: 0)
-        cookTimePickerViewHeightConstraint = cookTimePickerView.heightAnchor.constraint(equalToConstant: 0)
-        cookTimeContainerTopConstraint = cookTimeContainer.topAnchor.constraint(equalTo: servesPickerView.bottomAnchor, constant: 10)
-        ingredientsLabelTopConstraint = ingredientsLabel.topAnchor.constraint(equalTo: cookTimePickerView.bottomAnchor, constant: 20)
-        
-        NSLayoutConstraint.activate([
-            recipeImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            recipeImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            recipeImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            recipeImageView.heightAnchor.constraint(equalToConstant: 200),
-            
-            pencilButton.topAnchor.constraint(equalTo: recipeImageView.topAnchor, constant: 10),
-            pencilButton.trailingAnchor.constraint(equalTo: recipeImageView.trailingAnchor, constant: -10),
-            pencilButton.widthAnchor.constraint(equalToConstant: 32),
-            pencilButton.heightAnchor.constraint(equalToConstant: 32),
-            
-            recipeTitleTextField.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: 20),
-            recipeTitleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            recipeTitleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            recipeTitleTextField.heightAnchor.constraint(equalToConstant: 44),
-            
-            servesContainer.topAnchor.constraint(equalTo: recipeTitleTextField.bottomAnchor, constant: 20),
-            servesContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            servesContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            servesContainer.heightAnchor.constraint(equalToConstant: 60),
-            
-            servesIconContainer.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
-            servesIconContainer.leadingAnchor.constraint(equalTo: servesContainer.leadingAnchor, constant: 10),
-            servesIconContainer.widthAnchor.constraint(equalToConstant: 32),
-            servesIconContainer.heightAnchor.constraint(equalToConstant: 32),
-            
-            servesIcon.centerYAnchor.constraint(equalTo: servesIconContainer.centerYAnchor),
-            servesIcon.centerXAnchor.constraint(equalTo: servesIconContainer.centerXAnchor),
-            servesIcon.widthAnchor.constraint(equalToConstant: 16),
-            servesIcon.heightAnchor.constraint(equalToConstant: 16),
-            
-            servesLabel.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
-            servesLabel.leadingAnchor.constraint(equalTo: servesIconContainer.trailingAnchor, constant: 15),
-            
-            servesButton.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
-            servesButton.trailingAnchor.constraint(equalTo: servesArrow.leadingAnchor, constant: -10),
-            
-            servesArrow.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
-            servesArrow.trailingAnchor.constraint(equalTo: servesContainer.trailingAnchor, constant: -10),
-            servesArrow.widthAnchor.constraint(equalToConstant: 22),
-            servesArrow.heightAnchor.constraint(equalToConstant: 22),
-            
-            servesPickerView.topAnchor.constraint(equalTo: servesContainer.bottomAnchor, constant: 10),
-            servesPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            servesPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            servesPickerViewHeightConstraint,
-            
-            cookTimeContainerTopConstraint,
-            cookTimeContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            cookTimeContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            cookTimeContainer.heightAnchor.constraint(equalToConstant: 60),
-            
-            cookTimeIconContainer.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
-            cookTimeIconContainer.leadingAnchor.constraint(equalTo: cookTimeContainer.leadingAnchor, constant: 10),
-            cookTimeIconContainer.widthAnchor.constraint(equalToConstant: 32),
-            cookTimeIconContainer.heightAnchor.constraint(equalToConstant: 32),
-            
-            cookTimeIcon.centerYAnchor.constraint(equalTo: cookTimeIconContainer.centerYAnchor),
-            cookTimeIcon.centerXAnchor.constraint(equalTo: cookTimeIconContainer.centerXAnchor),
-            cookTimeIcon.widthAnchor.constraint(equalToConstant: 16),
-            cookTimeIcon.heightAnchor.constraint(equalToConstant: 16),
-            
-            cookTimeLabel.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
-            cookTimeLabel.leadingAnchor.constraint(equalTo: cookTimeIconContainer.trailingAnchor, constant: 15),
-            
-            cookTimeButton.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
-            cookTimeButton.trailingAnchor.constraint(equalTo: cookTimeArrow.leadingAnchor, constant: -10),
-            
-            cookTimeArrow.centerYAnchor.constraint(equalTo: cookTimeContainer.centerYAnchor),
-            cookTimeArrow.trailingAnchor.constraint(equalTo: cookTimeContainer.trailingAnchor, constant: -10),
-            cookTimeArrow.widthAnchor.constraint(equalToConstant: 22),
-            cookTimeArrow.heightAnchor.constraint(equalToConstant: 22),
-            
-            cookTimePickerView.topAnchor.constraint(equalTo: cookTimeContainer.bottomAnchor, constant: 10),
-            cookTimePickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            cookTimePickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            cookTimePickerViewHeightConstraint,
-            
-            ingredientsLabelTopConstraint,
-            ingredientsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            
-            createRecipeButton.topAnchor.constraint(equalTo: ingredientsLabel.bottomAnchor, constant: 20),
-            createRecipeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            createRecipeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            createRecipeButton.heightAnchor.constraint(equalToConstant: 50),
-        ])
+
+    private func setupIngredientsTableView() {
+        ingredientsTableView.delegate = self
+        ingredientsTableView.dataSource = self
+        ingredientsTableView.register(IngredientTableViewCell.self, forCellReuseIdentifier: IngredientTableViewCell.identifier)
+        ingredientsTableView.translatesAutoresizingMaskIntoConstraints = false
+        ingredientsTableView.separatorStyle = .none
+        ingredientsTableView.rowHeight = UITableView.automaticDimension
+        ingredientsTableView.estimatedRowHeight = 64
     }
     
     // MARK: - Actions
@@ -314,6 +342,17 @@ class CreateRecipeViewController: UIViewController {
             self.ingredientsLabelTopConstraint.constant = self.cookTimePickerIsVisible ? 110 : 20
             self.view.layoutIfNeeded()
         }
+    }
+    
+    @objc private func addIngredient() {
+        ingredients.append(Ingredient(name: "", quantity: ""))
+        ingredientsTableView.reloadData()
+    }
+
+    @objc private func removeIngredient(_ sender: UIButton) {
+        let index = sender.tag
+        ingredients.remove(at: index)
+        ingredientsTableView.reloadData()
     }
 }
 
@@ -363,5 +402,26 @@ extension CreateRecipeViewController: UIPickerViewDataSource, UIPickerViewDelega
             cookTimePickerIsVisible = true
             openCookTimePicker()
         }
+    }
+}
+
+// MARK: - UITableViewDelegate & UITableViewDataSource
+extension CreateRecipeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ingredients.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientTableViewCell.identifier, for: indexPath) as? IngredientTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let ingredient = ingredients[indexPath.row]
+        let isLast = indexPath.row == ingredients.count - 1
+        cell.configure(with: ingredient, isLast: isLast)
+        cell.actionButton.tag = indexPath.row
+        cell.actionButton.addTarget(self, action: isLast ? #selector(addIngredient) : #selector(removeIngredient(_:)), for: .touchUpInside)
+        
+        return cell
     }
 }

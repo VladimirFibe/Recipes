@@ -13,6 +13,7 @@
 		87B948EA2C35D8FC008FD26A /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B948E92C35D8FC008FD26A /* PopularCell.swift */; };
 		A773D5C82C3EAC72003E24C9 /* CreateRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D5C72C3EAC72003E24C9 /* CreateRecipeViewController.swift */; };
 		A773D5CC2C4007DD003E24C9 /* PickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D5CB2C4007DD003E24C9 /* PickerContainerView.swift */; };
+		A773D5CE2C4154C4003E24C9 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A773D5CD2C4154C4003E24C9 /* IngredientTableViewCell.swift */; };
 		A78982FA2C3330C100E4DAFB /* CreatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78982F92C3330C100E4DAFB /* CreatorCell.swift */; };
 		A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */; };
 		D92217792C3BDC8C007F5ABD /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92217762C3BDC8C007F5ABD /* ContentViewController.swift */; };
@@ -53,6 +54,7 @@
 		87B948E92C35D8FC008FD26A /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
 		A773D5C72C3EAC72003E24C9 /* CreateRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeViewController.swift; sourceTree = "<group>"; };
 		A773D5CB2C4007DD003E24C9 /* PickerContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerContainerView.swift; sourceTree = "<group>"; };
+		A773D5CD2C4154C4003E24C9 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		A78982F92C3330C100E4DAFB /* CreatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorCell.swift; sourceTree = "<group>"; };
 		A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		D92217762C3BDC8C007F5ABD /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				A773D5C72C3EAC72003E24C9 /* CreateRecipeViewController.swift */,
+				A773D5CD2C4154C4003E24C9 /* IngredientTableViewCell.swift */,
 				A773D5CB2C4007DD003E24C9 /* PickerContainerView.swift */,
 			);
 			path = CreateRecipe;
@@ -362,6 +365,7 @@
 				D994572E2C33C43B006A2B18 /* PictureView.swift in Sources */,
 				D994572B2C33C43B006A2B18 /* TrendingFooterView.swift in Sources */,
 				D99457302C33C43B006A2B18 /* TrendingCell.swift in Sources */,
+				A773D5CE2C4154C4003E24C9 /* IngredientTableViewCell.swift in Sources */,
 				87B948D02C359A18008FD26A /* CustomFont.swift in Sources */,
 				D922177C2C3BDDEC007F5ABD /* IntroViewController.swift in Sources */,
 				A773D5CC2C4007DD003E24C9 /* PickerContainerView.swift in Sources */,
