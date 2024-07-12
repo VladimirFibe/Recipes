@@ -11,7 +11,11 @@ final class SearchResultViewController: UIViewController {
 
 	// MARK: - Private properties
 
-	private var recipes = Bundle.main.decode([Recipe].self, from: "Recipes.json")
+	var recipes = Bundle.main.decode([Recipe].self, from: "Recipes.json") {
+		didSet {
+			collectionView.reloadData()
+		}
+	}
 
 	private lazy var collectionView = makeCollectionView()
 
