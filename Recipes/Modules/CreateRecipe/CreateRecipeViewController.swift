@@ -348,12 +348,6 @@ class CreateRecipeViewController: UIViewController {
         ingredients.append(Ingredient(name: "", quantity: ""))
         ingredientsTableView.reloadData()
     }
-
-    @objc private func removeIngredient(_ sender: UIButton) {
-        let index = sender.tag
-        ingredients.remove(at: index)
-        ingredientsTableView.reloadData()
-    }
 }
 
 // MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
@@ -423,5 +417,15 @@ extension CreateRecipeViewController: UITableViewDelegate, UITableViewDataSource
         cell.actionButton.addTarget(self, action: isLast ? #selector(addIngredient) : #selector(removeIngredient(_:)), for: .touchUpInside)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 59
+    }
+    
+    @objc private func removeIngredient(_ sender: UIButton) {
+        let index = sender.tag
+        ingredients.remove(at: index)
+        ingredientsTableView.reloadData()
     }
 }
