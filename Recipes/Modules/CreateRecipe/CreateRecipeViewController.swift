@@ -137,9 +137,7 @@ class CreateRecipeViewController: UIViewController {
             servesIcon.heightAnchor.constraint(equalToConstant: 16),
             
             servesLabel.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
-            servesLabel.leadingAnchor.constraint(equalTo: servesIconContainer.trailingAnchor, constant
-
-: 15),
+            servesLabel.leadingAnchor.constraint(equalTo: servesIconContainer.trailingAnchor, constant: 15),
             
             servesButton.centerYAnchor.constraint(equalTo: servesContainer.centerYAnchor),
             servesButton.trailingAnchor.constraint(equalTo: servesArrow.leadingAnchor, constant: -10),
@@ -193,7 +191,9 @@ class CreateRecipeViewController: UIViewController {
             ingredientsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             ingredientsTableView.heightAnchor.constraint(equalToConstant: 200),
             
-            createRecipeButton.topAnchor.constraint(equalTo: ingredientsTableView.bottomAnchor, constant: 20),
+            createRecipeButton.topAnchor.constraint(equalTo: ingredientsTableView.bottomAnchor,
+
+ constant: 20),
             createRecipeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             createRecipeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             createRecipeButton.heightAnchor.constraint(equalToConstant: 50),
@@ -345,8 +345,30 @@ class CreateRecipeViewController: UIViewController {
     }
     
     @objc private func addIngredient() {
+        // Save current text fields' data
+        saveCurrentTextFields()
+        
         ingredients.append(Ingredient(name: "", quantity: ""))
+        let newIndexPath = IndexPath(row: ingredients.count - 1, section: 0)
+        ingredientsTableView.insertRows(at: [newIndexPath], with: .automatic)
         ingredientsTableView.reloadData()
+    }
+
+    @objc private func removeIngredient(_ sender: UIButton) {
+        let index = sender.tag
+        ingredients.remove(at: index)
+        ingredientsTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        ingredientsTableView.reloadData()
+    }
+    
+    private func saveCurrentTextFields() {
+        for (index, cell) in ingredientsTableView.visibleCells.enumerated() {
+            if let ingredientCell = cell as? IngredientTableViewCell {
+                let name = ingredientCell.ingredientNameTextField.text ?? ""
+                let quantity = ingredientCell.quantityTextField.text ?? ""
+                ingredients[index] = Ingredient(name: name, quantity: quantity)
+            }
+        }
     }
 }
 
@@ -414,18 +436,13 @@ extension CreateRecipeViewController: UITableViewDelegate, UITableViewDataSource
         let isLast = indexPath.row == ingredients.count - 1
         cell.configure(with: ingredient, isLast: isLast)
         cell.actionButton.tag = indexPath.row
+        cell.actionButton.removeTarget(nil, action: nil, for: .allEvents)
         cell.actionButton.addTarget(self, action: isLast ? #selector(addIngredient) : #selector(removeIngredient(_:)), for: .touchUpInside)
         
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 59
-    }
-    
-    @objc private func removeIngredient(_ sender: UIButton) {
-        let index = sender.tag
-        ingredients.remove(at: index)
-        ingredientsTableView.reloadData()
+        return 59 // 44 (высота ячейки) + 15 (отступ)
     }
 }
