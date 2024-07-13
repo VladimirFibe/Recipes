@@ -35,3 +35,4 @@ class Store<Event, Action> {
         Task { try await action() }
     }
 }
+ 

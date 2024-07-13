@@ -46,7 +46,7 @@ class HeaderIngredientsCell: UITableViewHeaderFooterView {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-                
+            
             ingredientsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             ingredientsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             
@@ -54,5 +54,14 @@ class HeaderIngredientsCell: UITableViewHeaderFooterView {
             amountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -7)
         ])
     }
-    
 }
+
+
+    
+        
+        
+        
+       
+        
+
+

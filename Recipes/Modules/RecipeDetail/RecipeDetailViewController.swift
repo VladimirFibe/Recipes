@@ -7,8 +7,12 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 final class RecipeDetailViewController: UIViewController {
+    
+    private var recipes = Bundle.main.decode([Recipe].self, from: "Recipes.json")
+    
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
@@ -19,7 +23,7 @@ final class RecipeDetailViewController: UIViewController {
     private lazy var nameRecipeLabel: UILabel = {
         let nameRecipeLabel = UILabel()
         nameRecipeLabel.numberOfLines = 2
-        nameRecipeLabel.text = "How to make Tasty Fish (point & Kill)"
+        nameRecipeLabel.text = recipes[0].title 
         nameRecipeLabel.textColor = .black
         nameRecipeLabel.font = .systemFont(ofSize: 24, weight: .bold)
         nameRecipeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +32,7 @@ final class RecipeDetailViewController: UIViewController {
     
     private lazy var recipeImage: UIImageView = {
         let recipeImage = UIImageView()
-        recipeImage.image = UIImage(named: "image4")
+        recipeImage.image = UIImage(named: recipes[0].image )
         recipeImage.layer.cornerRadius = 15
         recipeImage.layer.masksToBounds = true
         recipeImage.translatesAutoresizingMaskIntoConstraints = false
@@ -69,15 +73,29 @@ final class RecipeDetailViewController: UIViewController {
         return instructionsLabel
     }()
     
-    private lazy var instructionsText: UITextView = {
-        let instructionsText = UITextView()
-        instructionsText.text = "Place eggs in a saucepan and cover with cold water. Bring water to a boil and immediately remove from heat. Cover and let eggs stand in hot water for 10 to 12 minutes. Remove from hot water, cool, peel, and chop. Place chopped eggs in a bowl. Add chopped tomatoes, corns, lettuce, and any other vegitable of your choice. Stir in mayonnaise, green onion, and mustard. Season with paprika, salt, and pepper. Stir and serve on your favorite bread or crackers."
-        instructionsText.textColor = .black
-        instructionsText.font = .systemFont(ofSize: 16)
-        instructionsText.isSelectable = false
-        instructionsText.translatesAutoresizingMaskIntoConstraints = false
-        return instructionsText
+//    private lazy var instructionsText: UITextView = {
+//        let instructionsText = UITextView()
+//        instructionsText.text = "Place eggs in a saucepan and cover with cold water. Bring water to a boil and immediately remove from heat. Cover and let eggs stand in hot water for 10 to 12 minutes. Remove from hot water, cool, peel, and chop. Place chopped eggs in a bowl. Add chopped tomatoes, corns, lettuce, and any other vegitable of your choice. Stir in mayonnaise, green onion, and mustard. Season with paprika, salt, and pepper. Stir and serve on your favorite bread or crackers."
+//        instructionsText.textColor = .black
+//        instructionsText.font = .systemFont(ofSize: 16)
+//        instructionsText.isSelectable = false
+//        instructionsText.translatesAutoresizingMaskIntoConstraints = false
+//        return instructionsText
+//    }()
+    
+    private lazy var instructionsText: WKWebView = {
+        let webView = WKWebView()
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.allowsBackForwardNavigationGestures = false
+        
+        let html = makeHtml(recipes[0].instructions)
+        webView.loadHTMLString(html, baseURL: nil)
+      //  webView.contentScaleFactor = 3
+        
+        return webView
     }()
+    
+    
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -117,6 +135,22 @@ final class RecipeDetailViewController: UIViewController {
         addSubviews()
         setupLayout()
     }
+    
+    func makeHtml(_ text: String) -> String {
+    """
+    <!DOCTYPE html>
+    <html><head>
+    <style> body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 22px
+    } </style>
+    </head><body>\(text)</body></html>
+    """
+    }
+    
     
     private func addSubviews() {
         view.addSubview(scrollView)
@@ -205,6 +239,8 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
         cell.selectionStyle = .none
         return cell
     }
+    
+    
 
     
     
