@@ -10,6 +10,10 @@
 		04FDC2792C422E0F00FD34E3 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDC2782C422E0F00FD34E3 /* RecipeDetailViewController.swift */; };
 		04FDC27B2C422E1700FD34E3 /* IngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDC27A2C422E1700FD34E3 /* IngredientsCell.swift */; };
 		04FDC27D2C422E1D00FD34E3 /* HeaderIngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDC27C2C422E1D00FD34E3 /* HeaderIngredientsCell.swift */; };
+		04FDC2832C422FFA00FD34E3 /* CreateRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDC27F2C422FFA00FD34E3 /* CreateRecipeViewController.swift */; };
+		04FDC2842C422FFA00FD34E3 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDC2802C422FFA00FD34E3 /* IngredientTableViewCell.swift */; };
+		04FDC2852C422FFA00FD34E3 /* PickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDC2812C422FFA00FD34E3 /* PickerContainerView.swift */; };
+		04FDC2872C4230A200FD34E3 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDC2862C4230A200FD34E3 /* Ingredient.swift */; };
 		87B948D02C359A18008FD26A /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B948CF2C359A18008FD26A /* CustomFont.swift */; };
 		87B948D32C359AA8008FD26A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87B948D12C359AA8008FD26A /* Poppins-Regular.ttf */; };
 		87B948D42C359AA8008FD26A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87B948D22C359AA8008FD26A /* Poppins-Bold.ttf */; };
@@ -53,6 +57,10 @@
 		04FDC2782C422E0F00FD34E3 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		04FDC27A2C422E1700FD34E3 /* IngredientsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsCell.swift; sourceTree = "<group>"; };
 		04FDC27C2C422E1D00FD34E3 /* HeaderIngredientsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderIngredientsCell.swift; sourceTree = "<group>"; };
+		04FDC27F2C422FFA00FD34E3 /* CreateRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRecipeViewController.swift; sourceTree = "<group>"; };
+		04FDC2802C422FFA00FD34E3 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
+		04FDC2812C422FFA00FD34E3 /* PickerContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerContainerView.swift; sourceTree = "<group>"; };
+		04FDC2862C4230A200FD34E3 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		87B948CF2C359A18008FD26A /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		87B948D12C359AA8008FD26A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		87B948D22C359AA8008FD26A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
@@ -113,6 +121,16 @@
 				04FDC27A2C422E1700FD34E3 /* IngredientsCell.swift */,
 			);
 			path = RecipeDetail;
+			sourceTree = "<group>";
+		};
+		04FDC2822C422FFA00FD34E3 /* CreateRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				04FDC27F2C422FFA00FD34E3 /* CreateRecipeViewController.swift */,
+				04FDC2802C422FFA00FD34E3 /* IngredientTableViewCell.swift */,
+				04FDC2812C422FFA00FD34E3 /* PickerContainerView.swift */,
+			);
+			path = CreateRecipe;
 			sourceTree = "<group>";
 		};
 		87B948CE2C3599FA008FD26A /* Font */ = {
@@ -192,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				D9D6FEC62C38E5870036EDE6 /* Recipe.swift */,
+				04FDC2862C4230A200FD34E3 /* Ingredient.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -199,6 +218,7 @@
 		D9B4C4D82C39731F00174819 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				04FDC2822C422FFA00FD34E3 /* CreateRecipe */,
 				04FDC27E2C422EC800FD34E3 /* RecipeDetail */,
 				D92217782C3BDC8C007F5ABD /* Onboarding */,
 				D9B4C4DA2C39734400174819 /* TabBar */,
@@ -388,8 +408,10 @@
 				D994572B2C33C43B006A2B18 /* TrendingFooterView.swift in Sources */,
 				D99457302C33C43B006A2B18 /* TrendingCell.swift in Sources */,
 				B6A6F56F2C3C094300C2038F /* SearchResultCell.swift in Sources */,
+				04FDC2832C422FFA00FD34E3 /* CreateRecipeViewController.swift in Sources */,
 				87B948D02C359A18008FD26A /* CustomFont.swift in Sources */,
 				B6A6F5702C3C094400C2038F /* SearchResultViewController.swift in Sources */,
+				04FDC2842C422FFA00FD34E3 /* IngredientTableViewCell.swift in Sources */,
 				D922177C2C3BDDEC007F5ABD /* IntroViewController.swift in Sources */,
 				D9B4C4DD2C3976B100174819 /* DiscoverViewController.swift in Sources */,
 				D9D6FEC92C38EA010036EDE6 /* Store.swift in Sources */,
@@ -409,11 +431,13 @@
 				D9D6FEC32C38DF5A0036EDE6 /* APIError.swift in Sources */,
 				D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */,
 				A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */,
+				04FDC2872C4230A200FD34E3 /* Ingredient.swift in Sources */,
 				D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */,
 				87B948EA2C35D8FC008FD26A /* PopularCell.swift in Sources */,
 				D9AC70D02C34FA1B00AAAF73 /* TabBarView.swift in Sources */,
 				04FDC27D2C422E1D00FD34E3 /* HeaderIngredientsCell.swift in Sources */,
 				D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */,
+				04FDC2852C422FFA00FD34E3 /* PickerContainerView.swift in Sources */,
 				D9D6FECC2C38EA330036EDE6 /* TrendingStore.swift in Sources */,
 				04FDC27B2C422E1700FD34E3 /* IngredientsCell.swift in Sources */,
 				D9D6FEC72C38E5870036EDE6 /* Recipe.swift in Sources */,

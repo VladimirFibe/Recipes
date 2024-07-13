@@ -7,10 +7,10 @@
 
 import UIKit
 
-struct Ingredient {
-    var name: String
-    var quantity: String
-}
+//struct Ingredient {
+//    var name: String
+//    var quantity: String
+//}
 
 class CreateRecipeViewController: UIViewController {
 
