@@ -13,6 +13,8 @@
 		87B948EA2C35D8FC008FD26A /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B948E92C35D8FC008FD26A /* PopularCell.swift */; };
 		A78982FA2C3330C100E4DAFB /* CreatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78982F92C3330C100E4DAFB /* CreatorCell.swift */; };
 		A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */; };
+		B6A6F56F2C3C094300C2038F /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A6F56B2C3C094300C2038F /* SearchResultCell.swift */; };
+		B6A6F5702C3C094400C2038F /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A6F56D2C3C094300C2038F /* SearchResultViewController.swift */; };
 		D92217792C3BDC8C007F5ABD /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92217762C3BDC8C007F5ABD /* ContentViewController.swift */; };
 		D922177A2C3BDC8C007F5ABD /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92217772C3BDC8C007F5ABD /* OnboardingViewController.swift */; };
 		D922177C2C3BDDEC007F5ABD /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D922177B2C3BDDEC007F5ABD /* IntroViewController.swift */; };
@@ -51,6 +53,8 @@
 		87B948E92C35D8FC008FD26A /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
 		A78982F92C3330C100E4DAFB /* CreatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorCell.swift; sourceTree = "<group>"; };
 		A78982FB2C33DE0400E4DAFB /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
+		B6A6F56B2C3C094300C2038F /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		B6A6F56D2C3C094300C2038F /* SearchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		D92217762C3BDC8C007F5ABD /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		D92217772C3BDC8C007F5ABD /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		D922177B2C3BDDEC007F5ABD /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,23 @@
 				87B948D12C359AA8008FD26A /* Poppins-Regular.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		B6A6F56C2C3C094300C2038F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B6A6F56B2C3C094300C2038F /* SearchResultCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B6A6F56E2C3C094300C2038F /* SearchResult */ = {
+			isa = PBXGroup;
+			children = (
+				B6A6F56C2C3C094300C2038F /* Views */,
+				B6A6F56D2C3C094300C2038F /* SearchResultViewController.swift */,
+			);
+			path = SearchResult;
 			sourceTree = "<group>";
 		};
 		D92217782C3BDC8C007F5ABD /* Onboarding */ = {
@@ -165,6 +186,7 @@
 				D9B4C4DA2C39734400174819 /* TabBar */,
 				D9D6FECA2C38EA1F0036EDE6 /* Trending */,
 				D9B4C4DE2C3976CC00174819 /* Discover */,
+				B6A6F56E2C3C094300C2038F /* SearchResult */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -348,7 +370,9 @@
 				D994572E2C33C43B006A2B18 /* PictureView.swift in Sources */,
 				D994572B2C33C43B006A2B18 /* TrendingFooterView.swift in Sources */,
 				D99457302C33C43B006A2B18 /* TrendingCell.swift in Sources */,
+				B6A6F56F2C3C094300C2038F /* SearchResultCell.swift in Sources */,
 				87B948D02C359A18008FD26A /* CustomFont.swift in Sources */,
+				B6A6F5702C3C094400C2038F /* SearchResultViewController.swift in Sources */,
 				D922177C2C3BDDEC007F5ABD /* IntroViewController.swift in Sources */,
 				D9B4C4DD2C3976B100174819 /* DiscoverViewController.swift in Sources */,
 				D9D6FEC92C38EA010036EDE6 /* Store.swift in Sources */,
