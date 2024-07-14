@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047DDA472C43BC1F00A88B23 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DDA432C43BC1F00A88B23 /* HomeItem.swift */; };
+		047DDA482C43BC1F00A88B23 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DDA442C43BC1F00A88B23 /* HomeSection.swift */; };
+		047DDA492C43BC1F00A88B23 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DDA452C43BC1F00A88B23 /* HomeViewController.swift */; };
+		047DDA4B2C43BC7400A88B23 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DDA4A2C43BC7400A88B23 /* SectionHeaderView.swift */; };
 		87B948D02C359A18008FD26A /* CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B948CF2C359A18008FD26A /* CustomFont.swift */; };
 		87B948D32C359AA8008FD26A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87B948D12C359AA8008FD26A /* Poppins-Regular.ttf */; };
 		87B948D42C359AA8008FD26A /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87B948D22C359AA8008FD26A /* Poppins-Bold.ttf */; };
@@ -47,6 +51,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		047DDA432C43BC1F00A88B23 /* HomeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeItem.swift; sourceTree = "<group>"; };
+		047DDA442C43BC1F00A88B23 /* HomeSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
+		047DDA452C43BC1F00A88B23 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		047DDA4A2C43BC7400A88B23 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		87B948CF2C359A18008FD26A /* CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFont.swift; sourceTree = "<group>"; };
 		87B948D12C359AA8008FD26A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		87B948D22C359AA8008FD26A /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
@@ -99,6 +107,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		047DDA462C43BC1F00A88B23 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				047DDA432C43BC1F00A88B23 /* HomeItem.swift */,
+				047DDA442C43BC1F00A88B23 /* HomeSection.swift */,
+				047DDA452C43BC1F00A88B23 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		87B948CE2C3599FA008FD26A /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +200,7 @@
 		D9B4C4D82C39731F00174819 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				047DDA462C43BC1F00A88B23 /* Home */,
 				D92217782C3BDC8C007F5ABD /* Onboarding */,
 				D9B4C4DA2C39734400174819 /* TabBar */,
 				D9D6FECA2C38EA1F0036EDE6 /* Trending */,
@@ -213,6 +232,7 @@
 		D9B4C4DB2C39736300174819 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				047DDA4A2C43BC7400A88B23 /* SectionHeaderView.swift */,
 				A78982F92C3330C100E4DAFB /* CreatorCell.swift */,
 				D9AC70CB2C34DF1000AAAF73 /* RecipesCell.swift */,
 				D99457252C33C43B006A2B18 /* BookmarkView.swift */,
@@ -367,7 +387,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9AC70D22C34FA2500AAAF73 /* TabBarViewController.swift in Sources */,
+				047DDA472C43BC1F00A88B23 /* HomeItem.swift in Sources */,
 				D994572E2C33C43B006A2B18 /* PictureView.swift in Sources */,
+				047DDA492C43BC1F00A88B23 /* HomeViewController.swift in Sources */,
 				D994572B2C33C43B006A2B18 /* TrendingFooterView.swift in Sources */,
 				D99457302C33C43B006A2B18 /* TrendingCell.swift in Sources */,
 				B6A6F56F2C3C094300C2038F /* SearchResultCell.swift in Sources */,
@@ -388,6 +410,7 @@
 				D994572F2C33C43B006A2B18 /* DurationLabel.swift in Sources */,
 				D994572A2C33C43B006A2B18 /* RatingLabel.swift in Sources */,
 				D994572D2C33C43B006A2B18 /* RecentCell.swift in Sources */,
+				047DDA482C43BC1F00A88B23 /* HomeSection.swift in Sources */,
 				D9D6FEC32C38DF5A0036EDE6 /* APIError.swift in Sources */,
 				D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */,
 				A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */,
@@ -395,6 +418,7 @@
 				87B948EA2C35D8FC008FD26A /* PopularCell.swift in Sources */,
 				D9AC70D02C34FA1B00AAAF73 /* TabBarView.swift in Sources */,
 				D9BA47FF2C32B9D40027D875 /* SceneDelegate.swift in Sources */,
+				047DDA4B2C43BC7400A88B23 /* SectionHeaderView.swift in Sources */,
 				D9D6FECC2C38EA330036EDE6 /* TrendingStore.swift in Sources */,
 				D9D6FEC72C38E5870036EDE6 /* Recipe.swift in Sources */,
 			);
