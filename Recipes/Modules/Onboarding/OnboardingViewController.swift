@@ -8,10 +8,10 @@
 import UIKit
 
 class OnboardingViewController: UIPageViewController {
-    
+    public var callback: (() -> Void)?
     public var pages = [UIViewController]()
     private let initialPage = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -110,9 +110,7 @@ extension OnboardingViewController: ContentViewControllerDelegate {
     
     // Метод для перехода к экрану Trending
     private func navigateToTrending() {
-//        let createRecipeVC = CreateRecipeViewController()
-//        createRecipeVC.modalPresentationStyle = .fullScreen
-//        present(createRecipeVC, animated: true, completion: nil)
+        callback?()
     }
     
     // Метод для обновления индикатора страниц
