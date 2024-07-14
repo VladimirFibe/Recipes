@@ -49,39 +49,39 @@ extension TabBarItem {
 		var redImage: UIImage {
 			switch self {
 			case .home:
-				UIImage(named: "red-fill-home")!
+				return UIImage(named: "red-fill-home")!
 			case .bookmark:
-				UIImage(named: "red-fill-bookmark")!
+                return UIImage(named: "red-fill-bookmark")!
 			case .notification:
-				UIImage(named: "red-fill-notification")!
+                return UIImage(named: "red-fill-notification")!
 			case .profile:
-				UIImage(named: "red-fill-profile")!
+                return UIImage(named: "red-fill-profile")!
 			}
 		}
 
 		var grayImage: UIImage {
 			switch self {
 			case .home:
-				UIImage(named: "home")!
+                return UIImage(named: "home")!
 			case .bookmark:
-				UIImage(named: "bookmark")!
+                return UIImage(named: "bookmark")!
 			case .notification:
-				UIImage(named: "notification")!
+                return UIImage(named: "notification")!
 			case .profile:
-				UIImage(named: "profile")!
+                return UIImage(named: "profile")!
 			}
 		}
 
 		var tag: Int {
 			switch self {
 			case .home:
-				0
+                return 0
 			case .bookmark:
-				1
+                return 1
 			case .notification:
-				2
+                return 2
 			case .profile:
-				3
+                return 3
 			}
 		}
 

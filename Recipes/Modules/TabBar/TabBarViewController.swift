@@ -85,7 +85,7 @@ private extension TabBarViewController {
 	}
 }
 
-@available(iOS 17.0, *)
-#Preview {
-	TabBarViewController()
-}
+//@available(iOS 17.0, *)
+//#Preview {
+//	TabBarViewController()
+//}

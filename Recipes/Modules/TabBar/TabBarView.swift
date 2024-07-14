@@ -199,8 +199,8 @@ private extension TabBarView {
 		shapeLayer.path = path.cgPath
 	}
 }
-
-@available(iOS 17.0, *)
-#Preview {
-	ViewController()
-}
+//
+//@available(iOS 17.0, *)
+//#Preview {
+//	ViewController()
+//}
