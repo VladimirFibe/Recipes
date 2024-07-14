@@ -18,14 +18,16 @@ class IntroViewController: UIViewController {
     private let descriptionLabel = UILabel()
     private let actionButton = UIButton()
     
-    init() {
+    private let callback: () -> ()
+    
+    init(callback: @escaping () -> Void) {
+        self.callback = callback
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -124,23 +126,6 @@ class IntroViewController: UIViewController {
     
     // MARK: - Действия кнопок
     @objc private func buttonTapped() {
-        guard let windowScene = view.window?.windowScene else { return }
-        let onboardingVC = OnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        
-        if let window = windowScene.windows.first {
-            // Создаем анимацию перехода
-            let transition = CATransition()
-            transition.type = .push
-            transition.subtype = .fromRight
-            transition.duration = 0.3
-            window.layer.add(transition, forKey: kCATransition)
-            
-            // Установить OnboardingViewController как rootViewController
-            window.rootViewController = onboardingVC
-            window.makeKeyAndVisible()
-            
-            // Установка первой страницы OnboardingViewController
-            onboardingVC.setViewControllers([onboardingVC.pages[0]], direction: .forward, animated: true, completion: nil)
-        }
+        callback()
     }
 }

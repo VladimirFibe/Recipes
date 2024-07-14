@@ -133,6 +133,14 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		047DDA552C43C40200A88B23 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				D922177B2C3BDDEC007F5ABD /* IntroViewController.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
 		04FDC27E2C422EC800FD34E3 /* RecipeDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,7 +193,6 @@
 		D92217782C3BDC8C007F5ABD /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				D922177B2C3BDDEC007F5ABD /* IntroViewController.swift */,
 				D92217762C3BDC8C007F5ABD /* ContentViewController.swift */,
 				D92217772C3BDC8C007F5ABD /* OnboardingViewController.swift */,
 			);
@@ -239,6 +246,7 @@
 		D9B4C4D82C39731F00174819 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				047DDA552C43C40200A88B23 /* Intro */,
 				047DDA4F2C43BDC000A88B23 /* Home */,
 				04FDC2822C422FFA00FD34E3 /* CreateRecipe */,
 				04FDC27E2C422EC800FD34E3 /* RecipeDetail */,
