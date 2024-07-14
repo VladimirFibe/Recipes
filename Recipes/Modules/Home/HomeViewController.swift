@@ -6,7 +6,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupCollectionView()
-        let searchController = UISearchController(searchResultsController: DiscoverViewController())
+        let searchController = UISearchController(searchResultsController: SearchResultViewController())
         searchController.isActive = true
         searchController.searchBar.placeholder = "Search recipes"
         navigationItem.hidesSearchBarWhenScrolling = false

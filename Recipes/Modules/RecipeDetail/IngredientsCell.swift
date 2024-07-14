@@ -26,7 +26,10 @@ class IngredientsCell: UITableViewCell {
     
     private lazy var ingredientsImage: UIImageView = {
         let ingredientsImage = UIImageView()
-        ingredientsImage.image = UIImage(named: "Cucumber")
+        ingredientsImage.image = UIImage()
+		ingredientsImage.backgroundColor = .white
+		ingredientsImage.layer.cornerRadius = 5
+		ingredientsImage.clipsToBounds = true
         ingredientsImage.translatesAutoresizingMaskIntoConstraints = false
         return ingredientsImage
     }()
@@ -36,6 +39,7 @@ class IngredientsCell: UITableViewCell {
         ingredientsLabel.text = "Cucumber"
         ingredientsLabel.textColor = .black
         ingredientsLabel.font = .systemFont(ofSize: 16, weight: .bold)
+		ingredientsLabel.numberOfLines = 0
         ingredientsLabel.translatesAutoresizingMaskIntoConstraints = false
         return ingredientsLabel
     }()
@@ -45,13 +49,15 @@ class IngredientsCell: UITableViewCell {
         amountLabel.text = "100g"
         amountLabel.textColor = .gray
         amountLabel.font = .systemFont(ofSize: 14)
+		amountLabel.numberOfLines = 2
+		amountLabel.textAlignment = .right
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
         return amountLabel
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
-        loadData()
+//        loadData()
         addSubviews()
         setupLayout()
        
@@ -73,6 +79,14 @@ class IngredientsCell: UITableViewCell {
                  }
              }
      }
+	
+	func configure(with ingredient: Ingredient) {
+		if let sourceImage = ingredient.sourceImage {
+			ingredientsImage.kf.setImage(with: URL(string: sourceImage))
+		}
+		ingredientsLabel.text = ingredient.name
+		amountLabel.text = "\(ingredient.amount) \(ingredient.unit)"
+	}
     
     private func addSubviews() {
         contentView.addSubview(ingredientsView)
@@ -95,11 +109,16 @@ class IngredientsCell: UITableViewCell {
             
             ingredientsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             ingredientsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 84),
+			ingredientsLabel.widthAnchor.constraint(equalToConstant: 190),
             
             amountLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            amountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            amountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+			amountLabel.widthAnchor.constraint(equalToConstant: 70)
         ])
     }
 }
 
-                      
+@available(iOS 17.0, *)
+#Preview {
+	UINavigationController(rootViewController: RecipeDetailViewController())
+}
