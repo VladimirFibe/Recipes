@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047DDA502C43BDC000A88B23 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DDA4C2C43BDC000A88B23 /* HomeItem.swift */; };
+		047DDA512C43BDC000A88B23 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DDA4D2C43BDC000A88B23 /* HomeSection.swift */; };
+		047DDA522C43BDC000A88B23 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DDA4E2C43BDC000A88B23 /* HomeViewController.swift */; };
+		047DDA542C43BDE000A88B23 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DDA532C43BDE000A88B23 /* SectionHeaderView.swift */; };
 		04FDC2792C422E0F00FD34E3 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDC2782C422E0F00FD34E3 /* RecipeDetailViewController.swift */; };
 		04FDC27B2C422E1700FD34E3 /* IngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDC27A2C422E1700FD34E3 /* IngredientsCell.swift */; };
 		04FDC27D2C422E1D00FD34E3 /* HeaderIngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDC27C2C422E1D00FD34E3 /* HeaderIngredientsCell.swift */; };
@@ -56,6 +60,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		047DDA4C2C43BDC000A88B23 /* HomeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeItem.swift; sourceTree = "<group>"; };
+		047DDA4D2C43BDC000A88B23 /* HomeSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
+		047DDA4E2C43BDC000A88B23 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		047DDA532C43BDE000A88B23 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		04FDC2782C422E0F00FD34E3 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		04FDC27A2C422E1700FD34E3 /* IngredientsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsCell.swift; sourceTree = "<group>"; };
 		04FDC27C2C422E1D00FD34E3 /* HeaderIngredientsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderIngredientsCell.swift; sourceTree = "<group>"; };
@@ -117,6 +125,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		047DDA4F2C43BDC000A88B23 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				047DDA4C2C43BDC000A88B23 /* HomeItem.swift */,
+				047DDA4D2C43BDC000A88B23 /* HomeSection.swift */,
+				047DDA4E2C43BDC000A88B23 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		04FDC27E2C422EC800FD34E3 /* RecipeDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +242,7 @@
 		D9B4C4D82C39731F00174819 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				047DDA4F2C43BDC000A88B23 /* Home */,
 				04FDC2822C422FFA00FD34E3 /* CreateRecipe */,
 				04FDC27E2C422EC800FD34E3 /* RecipeDetail */,
 				D92217782C3BDC8C007F5ABD /* Onboarding */,
@@ -257,6 +276,7 @@
 		D9B4C4DB2C39736300174819 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				047DDA532C43BDE000A88B23 /* SectionHeaderView.swift */,
 				A78982F92C3330C100E4DAFB /* CreatorCell.swift */,
 				D9AC70CB2C34DF1000AAAF73 /* RecipesCell.swift */,
 				D99457252C33C43B006A2B18 /* BookmarkView.swift */,
@@ -420,6 +440,7 @@
 				B6A6F5702C3C094400C2038F /* SearchResultViewController.swift in Sources */,
 				04FDC2842C422FFA00FD34E3 /* IngredientTableViewCell.swift in Sources */,
 				D922177C2C3BDDEC007F5ABD /* IntroViewController.swift in Sources */,
+				047DDA542C43BDE000A88B23 /* SectionHeaderView.swift in Sources */,
 				D9B4C4DD2C3976B100174819 /* DiscoverViewController.swift in Sources */,
 				D9D6FEC92C38EA010036EDE6 /* Store.swift in Sources */,
 				04FDC2792C422E0F00FD34E3 /* RecipeDetailViewController.swift in Sources */,
@@ -428,11 +449,13 @@
 				D9D6FEC12C38D8B90036EDE6 /* APIClient.swift in Sources */,
 				1F17C1772C43077800D2B325 /* IngredientsNetworkClient.swift in Sources */,
 				D9AC70CE2C34FA0E00AAAF73 /* TabBarItem.swift in Sources */,
+				047DDA522C43BDC000A88B23 /* HomeViewController.swift in Sources */,
 				D922177A2C3BDC8C007F5ABD /* OnboardingViewController.swift in Sources */,
 				D9AC70CC2C34DF1000AAAF73 /* RecipesCell.swift in Sources */,
 				A78982FA2C3330C100E4DAFB /* CreatorCell.swift in Sources */,
 				D92217792C3BDC8C007F5ABD /* ContentViewController.swift in Sources */,
 				D9D6FEC52C38DFA40036EDE6 /* APIRoute.swift in Sources */,
+				047DDA502C43BDC000A88B23 /* HomeItem.swift in Sources */,
 				D994572F2C33C43B006A2B18 /* DurationLabel.swift in Sources */,
 				D994572A2C33C43B006A2B18 /* RatingLabel.swift in Sources */,
 				D994572D2C33C43B006A2B18 /* RecentCell.swift in Sources */,
@@ -440,6 +463,7 @@
 				D9BA48012C32B9D40027D875 /* ViewController.swift in Sources */,
 				A78982FC2C33DE0400E4DAFB /* TrendingViewController.swift in Sources */,
 				04FDC2872C4230A200FD34E3 /* Ingredient.swift in Sources */,
+				047DDA512C43BDC000A88B23 /* HomeSection.swift in Sources */,
 				D9BA47FD2C32B9D40027D875 /* AppDelegate.swift in Sources */,
 				87B948EA2C35D8FC008FD26A /* PopularCell.swift in Sources */,
 				D9AC70D02C34FA1B00AAAF73 /* TabBarView.swift in Sources */,
