@@ -12,7 +12,7 @@ class IngredientsCell: UITableViewCell {
     static let identifire = "IngredientsCell"
     lazy var ingredientsByID = 1003464
     
-    private var ingredientsLoader: IngredientsLoader
+    private var ingredientsLoader = IngredientsLoader()
     private var ingredient: [Ingredient] = []
 
     
@@ -26,14 +26,14 @@ class IngredientsCell: UITableViewCell {
     
     private lazy var ingredientsImage: UIImageView = {
         let ingredientsImage = UIImageView()
-        ingredientsImage.image = UIImage(named: ingredient[0].sourceImage ?? "Cucumber")
+        ingredientsImage.image = UIImage(named: "Cucumber")
         ingredientsImage.translatesAutoresizingMaskIntoConstraints = false
         return ingredientsImage
     }()
     
     private lazy var ingredientsLabel: UILabel = {
         let ingredientsLabel = UILabel()
-        ingredientsLabel.text = ingredient[0].name
+        ingredientsLabel.text = "Cucumber"
         ingredientsLabel.textColor = .black
         ingredientsLabel.font = .systemFont(ofSize: 16, weight: .bold)
         ingredientsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +42,7 @@ class IngredientsCell: UITableViewCell {
     
     private lazy var amountLabel: UILabel = {
         let amountLabel = UILabel()
-        amountLabel.text = "\(ingredient[0].amount)" + ingredient[0].unit
+        amountLabel.text = "100g"
         amountLabel.textColor = .gray
         amountLabel.font = .systemFont(ofSize: 14)
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
