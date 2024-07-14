@@ -5,11 +5,11 @@
 //  Created by Ольга Чушева on 01.07.2024.
 //
 
-import Foundation
 import UIKit
+import Kingfisher
 
 final class RecentCell: UICollectionViewCell {
-    
+    static let identifier = "RecentCell"
     private lazy var cellView: UIView = {
         let cellView = UIView()
         cellView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +57,14 @@ final class RecentCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func configure(with recipe: Recipe) {
+        imageView.kf.setImage(with: URL(string: recipe.image))
+        nameLabel.text = recipe.title
+        if let sourceName = recipe.sourceName {
+            userNameLabel.text = "By \(sourceName)"
+        }
     }
     
     private func addSubviews() {

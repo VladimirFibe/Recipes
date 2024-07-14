@@ -11,7 +11,7 @@ import WebKit
 
 final class RecipeDetailViewController: UIViewController {
     
-    private var recipes = Bundle.main.decode([Recipe].self, from: "Recipes.json")
+	private var recipe: Recipe
     
     
     private lazy var contentView: UIView = {
@@ -23,7 +23,7 @@ final class RecipeDetailViewController: UIViewController {
     private lazy var nameRecipeLabel: UILabel = {
         let nameRecipeLabel = UILabel()
         nameRecipeLabel.numberOfLines = 2
-        nameRecipeLabel.text = recipes[0].title 
+        nameRecipeLabel.text = recipe.title
         nameRecipeLabel.textColor = .black
         nameRecipeLabel.font = .systemFont(ofSize: 24, weight: .bold)
         nameRecipeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +32,7 @@ final class RecipeDetailViewController: UIViewController {
     
     private lazy var recipeImage: UIImageView = {
         let recipeImage = UIImageView()
-        recipeImage.image = UIImage(named: recipes[0].image )
+		recipeImage.kf.setImage(with: URL(string: recipe.image))
         recipeImage.layer.cornerRadius = 15
         recipeImage.layer.masksToBounds = true
         recipeImage.translatesAutoresizingMaskIntoConstraints = false
@@ -88,15 +88,13 @@ final class RecipeDetailViewController: UIViewController {
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.allowsBackForwardNavigationGestures = false
         
-        let html = makeHtml(recipes[0].instructions)
+        let html = makeHtml(recipe.instructions)
         webView.loadHTMLString(html, baseURL: nil)
       //  webView.contentScaleFactor = 3
         
         return webView
     }()
-    
-    
-    
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -125,7 +123,16 @@ final class RecipeDetailViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    
+	
+	internal init(recipe: Recipe = Bundle.main.decode([Recipe].self, from: "Recipes.json")[0]) {
+		self.recipe = recipe
+		super.init(nibName: nil, bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Recipe detail"
@@ -136,10 +143,14 @@ final class RecipeDetailViewController: UIViewController {
         setupLayout()
     }
     
-    func makeHtml(_ text: String) -> String {
+    private func makeHtml(_ text: String) -> String {
     """
     <!DOCTYPE html>
     <html><head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <style> body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -236,7 +247,9 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsCell.identifire, for: indexPath)
+		guard let cell = cell as? IngredientsCell else { return UITableViewCell() }
         cell.selectionStyle = .none
+		cell.configure(with: recipe.extendedIngredients[indexPath.row])
         return cell
     }
     
@@ -247,4 +260,8 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
     
 }
 
+@available(iOS 17.0, *)
+#Preview {
+	UINavigationController(rootViewController: RecipeDetailViewController())
+}
 

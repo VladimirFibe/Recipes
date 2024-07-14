@@ -15,6 +15,11 @@ class TrendingCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configure(with recipe: Recipe) {
+        footerView.configure(with: recipe)
+        pictureView.configure(with: recipe)
+    }
+    
     private func setupPictureView() {
         contentView.addSubview(pictureView)
         pictureView.translatesAutoresizingMaskIntoConstraints = false

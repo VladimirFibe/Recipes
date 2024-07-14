@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class PopularCell: UICollectionViewCell {
-
+    static let identifier = "PopularCell"
 	private lazy var cellView = UIView()
 	private lazy var backView = UIView()
 	private lazy var dishImage = UIImageView()
@@ -36,22 +37,12 @@ final class PopularCell: UICollectionViewCell {
 		dishTitleLabel.text = nil
 		durationLabel.text = nil
 	}
-
-	// MARK: - Updating cell from Model
-//	func updateCell(model: Recipe) {
-//		self.dishImage = model.???
-//		self.dishTitleLabel = model.???
-//		self.durationLabel = model.???
-//		DispatchQueue.global().async {
-//			if let url = URL(string: model.???.url ),
-//			   let data = try? Data(contentsOf: url) {
-//				DispatchQueue.main.async {
-//					self.dishImage.image = UIImage(data: data)
-//				}
-//			}
-//		}
-//	}
-
+    
+    public func configure(with recipe: Recipe) {
+        dishImage.kf.setImage(with: URL(string: recipe.image))
+        dishTitleLabel.text = recipe.title
+        durationLabel.text = "\(recipe.readyInMinutes) Mins"
+    }
 }
 
 private extension PopularCell {

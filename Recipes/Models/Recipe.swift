@@ -28,6 +28,10 @@ struct Recipe: Codable, Hashable {
 	var numberOfIngredients: Int {
 		extendedIngredients.count
 	}
+    
+    static var sample: Recipe {
+        Bundle.main.decode([Recipe].self, from: "Recipes.json")[0]
+    }
 }
 
 // MARK: - SearchResponse
@@ -47,3 +51,4 @@ struct SearchRecipe: Codable {
 enum ImageType: String, Codable {
     case jpg
 }
+

@@ -59,7 +59,8 @@ extension SearchResultViewController: UICollectionViewDataSource {
 extension SearchResultViewController: UICollectionViewDelegate {
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		print("\(String(describing: type(of: self))).\(#function).index: \(indexPath.row)")
+		let viewController = RecipeDetailViewController(recipe: recipes[indexPath.row])
+		navigationController?.pushViewController(viewController, animated: true)
 	}
 }
 
@@ -117,5 +118,5 @@ private extension SearchResultViewController {
 
 @available(iOS 17.0, *)
 #Preview {
-	SearchResultViewController()
+	UINavigationController(rootViewController: SearchResultViewController())
 }
