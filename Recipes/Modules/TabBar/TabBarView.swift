@@ -108,8 +108,7 @@ private extension TabBarView {
 
 	func makeButton() -> UIButton {
 		let element = UIButton()
-        var config = UIButton.Configuration.filled()
-        element.configuration = config
+
 		element.configuration = .filled()
 		element.configuration?.baseBackgroundColor = UIColor(red: 0.89, green: 0.24, blue: 0.24, alpha: 1.00)
 		element.configuration?.cornerStyle = .capsule
@@ -200,8 +199,8 @@ private extension TabBarView {
 		shapeLayer.path = path.cgPath
 	}
 }
-
-@available(iOS 17.0, *)
-#Preview {
-	TabBarViewController()
-}
+//
+//@available(iOS 17.0, *)
+//#Preview {
+//	ViewController()
+//}
