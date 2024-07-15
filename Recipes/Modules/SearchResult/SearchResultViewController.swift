@@ -132,7 +132,7 @@ private extension SearchResultViewController {
 	}
 }
 
-@available(iOS 17.0, *)
-#Preview {
-	UINavigationController(rootViewController: SearchResultViewController())
-}
+//@available(iOS 17.0, *)
+//#Preview {
+//	UINavigationController(rootViewController: SearchResultViewController())
+//}

@@ -18,7 +18,7 @@ class IngredientsCell: UITableViewCell {
     
     private lazy var ingredientsView: UIView = {
         let ingredientsView = UIView()
-        ingredientsView.backgroundColor = .lightgray
+        ingredientsView.backgroundColor = .lightGray
         ingredientsView.layer.cornerRadius = 12
         ingredientsView.translatesAutoresizingMaskIntoConstraints = false
         return ingredientsView
@@ -118,7 +118,7 @@ class IngredientsCell: UITableViewCell {
     }
 }
 
-@available(iOS 17.0, *)
-#Preview {
-	UINavigationController(rootViewController: RecipeDetailViewController())
-}
+//@available(iOS 17.0, *)
+//#Preview {
+//	UINavigationController(rootViewController: RecipeDetailViewController())
+//}

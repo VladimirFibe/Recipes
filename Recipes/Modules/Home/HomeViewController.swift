@@ -247,7 +247,8 @@ extension HomeViewController: UISearchResultsUpdating {
         searchResult.query = searchController.searchBar.text ?? ""
     }
 }
-@available(iOS 17.0, *)
-#Preview {
-    UINavigationController(rootViewController: HomeViewController())
-}
+
+//@available(iOS 17.0, *)
+//#Preview {
+//    UINavigationController(rootViewController: HomeViewController())
+//}
