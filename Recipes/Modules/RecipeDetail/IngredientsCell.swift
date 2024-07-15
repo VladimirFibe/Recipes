@@ -18,7 +18,7 @@ class IngredientsCell: UITableViewCell {
     
     private lazy var ingredientsView: UIView = {
         let ingredientsView = UIView()
-        ingredientsView.backgroundColor = .lightGray
+        ingredientsView.backgroundColor = .systemGray6
         ingredientsView.layer.cornerRadius = 12
         ingredientsView.translatesAutoresizingMaskIntoConstraints = false
         return ingredientsView
