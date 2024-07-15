@@ -16,7 +16,7 @@
 <img src="https://img.shields.io/badge/OlgaChusheva-purple"/></a>
 
 </p>
-![](appBanner.png)
+![](/appBanner.png)
 
 ### Technologies Stack:
 * SDK version - Swift 5
