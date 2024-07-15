@@ -39,9 +39,11 @@ final class PopularCell: UICollectionViewCell {
 	}
     
     public func configure(with recipe: Recipe) {
-        dishImage.kf.setImage(with: URL(string: recipe.image))
+        dishImage.kf.setImage(with: URL(string: recipe.image ?? ""))
         dishTitleLabel.text = recipe.title
-        durationLabel.text = "\(recipe.readyInMinutes) Mins"
+        if let mins = recipe.readyInMinutes {
+            durationLabel.text = "\(mins) Mins"
+        }
     }
 }
 
@@ -55,17 +57,14 @@ private extension PopularCell {
 		backView.layer.cornerRadius = 12
 		backView.layer.masksToBounds = true
 
-		dishImage.backgroundColor = .green // test
 		dishImage.layer.cornerRadius = 55
 		dishImage.layer.masksToBounds = true
 
 		dishTitleLabel.textAlignment = .center
-		dishTitleLabel.text = "Chicken and Vegetable wrap" // test text
 		dishTitleLabel.font = .custom(font: .bold, size: 14)
 		dishTitleLabel.numberOfLines = 2
 
 		durationLabel.textAlignment = .left
-		durationLabel.text = "5 Mins" // test text
 		durationLabel.font = .custom(font: .bold, size: 12)
 
 		timeLabel.textAlignment = .left

@@ -8,10 +8,12 @@
 import UIKit
 
 final class SearchResultViewController: UIViewController {
+    // MARK: - Private properties
 
-	// MARK: - Private properties
-
-	var recipes = Bundle.main.decode([Recipe].self, from: "Recipes.json") {
+    private let store = SearchStore()
+    private var bag = Bag()
+    public var query = "" { didSet { store.sendAction(.get(query))}}
+    private var recipes: [Recipe] = [] {
 		didSet {
 			collectionView.reloadData()
 		}
@@ -24,6 +26,7 @@ final class SearchResultViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupUI()
+        setupObservers()
 	}
 
 	override func viewDidLayoutSubviews() {
@@ -67,7 +70,20 @@ extension SearchResultViewController: UICollectionViewDelegate {
 // MARK: - Setup UI
 
 private extension SearchResultViewController {
-	
+    private func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .done(let recipes):
+                    self.recipes = recipes
+                    recipes.forEach { print($0.title)}
+                }
+            }.store(in: &bag)
+    }
+
 	func setupUI() {
 		addSubviews()
 	}

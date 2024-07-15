@@ -60,7 +60,7 @@ final class RecentCell: UICollectionViewCell {
     }
     
     public func configure(with recipe: Recipe) {
-        imageView.kf.setImage(with: URL(string: recipe.image))
+        imageView.kf.setImage(with: URL(string: recipe.image ?? ""))
         nameLabel.text = recipe.title
         if let sourceName = recipe.sourceName {
             userNameLabel.text = "By \(sourceName)"

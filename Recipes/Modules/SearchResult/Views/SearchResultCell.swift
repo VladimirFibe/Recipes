@@ -39,7 +39,7 @@ final class SearchResultCell: UICollectionViewCell {
 	// MARK: - Public methods
 
 	func configure(with recipe: Recipe) {
-		imageView.kf.setImage(with: URL(string: recipe.image))
+		imageView.kf.setImage(with: URL(string: recipe.image ?? ""))
 		starLabel.configure(with: recipe.stars)
 
 		let title = [NSAttributedString.Key.font: UIFont(name: "Poppins-Bold", size: 16)!]

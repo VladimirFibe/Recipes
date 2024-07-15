@@ -19,6 +19,7 @@ enum APIRoute {
     
     var queryItems: [URLQueryItem] {
         switch self {
+        case .searchRecipes(let value): return [.init(name: "query", value: value.query)]
         case .getRandomRecipes(let value): return [.init(name: "number", value: "\(value.number)")]
         default: return []
         }
@@ -55,7 +56,7 @@ struct GetRecipeInformationRequest {
 }
 
 struct SearchRecipesRequest {
-    let query: String = ""
+    var query: String
 }
 
 struct GetRandomRecipesRequest {
