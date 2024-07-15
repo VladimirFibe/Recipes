@@ -15,8 +15,9 @@ final class SectionHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(with text: String) {
+    public func configure(with text: String, target: Any?, action: Selector) {
         titleLabel.text = text
+        button.addTarget(target, action: action, for: .primaryActionTriggered)
     }
     
     private func setupTitleLabel() {

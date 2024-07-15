@@ -189,8 +189,25 @@ extension HomeViewController: UICollectionViewDataSource {
             withReuseIdentifier: SectionHeaderView.identifier,
             for: indexPath
         ) as? SectionHeaderView else { fatalError()}
-        header.configure(with: HomeSection.allCases[indexPath.section].title)
+        let section = HomeSection.allCases[indexPath.section]
+        switch section {
+        case .trending: header.configure(with: section.title, target: self, action: #selector(trendingAction))
+        case .popular:  header.configure(with: section.title, target: self, action: #selector(popularAction))
+        case .recent:   header.configure(with: section.title, target: self, action: #selector(recentAction))
+        }
         return header
+    }
+    
+    @objc private func trendingAction() {
+        print(#function)
+    }
+    
+    @objc private func popularAction() {
+        print(#function)
+    }
+    
+    @objc private func recentAction() {
+        print(#function)
     }
 }
 @available(iOS 17.0, *)
