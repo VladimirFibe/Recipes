@@ -74,7 +74,7 @@ class IngredientsCell: UITableViewCell {
                  case .success(let ingredient):
                      self.ingredient = ingredient
                     
-                 case .failure(let error):
+                 case .failure(_):
                     print("Error")
                  }
              }
