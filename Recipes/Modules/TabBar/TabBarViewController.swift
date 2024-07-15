@@ -37,7 +37,8 @@ extension TabBarViewController: ITabBarViewDelegate {
 
 	/// Добавить новый рецепт
 	func add() {
-		print("\(String(describing: type(of: self))).\(#function)")
+		let controller = CreateRecipeViewController()
+        present(controller, animated: true)
 	}
 
 	/// Переход на экран по индексу
@@ -84,8 +85,3 @@ private extension TabBarViewController {
 		])
 	}
 }
-
-//@available(iOS 17.0, *)
-//#Preview {
-//	TabBarViewController()
-//}
