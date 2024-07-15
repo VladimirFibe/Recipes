@@ -1,19 +1,21 @@
 import UIKit
 
 final class HomeViewController: UIViewController {
+    private let store = TrendingStore()
+    private var bag = Bag()
+    private var recipes: [Recipe] = [] { didSet { collectionView.reloadData()}}
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+    private let searchResult = SearchResultViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupCollectionView()
-        let searchController = UISearchController(searchResultsController: SearchResultViewController())
-        searchController.isActive = true
-        searchController.searchBar.placeholder = "Search recipes"
-        navigationItem.hidesSearchBarWhenScrolling = false
-        navigationItem.searchController = searchController
+        setupSearchBar()
         navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Get amazing recipes"
+        store.sendAction(.get)
+        setupObservers()
         navigationController?.navigationBar.largeTitleTextAttributes = [
             .foregroundColor: UIColor.black,
             .font : UIFont.preferredFont(forTextStyle: .largeTitle)
@@ -23,6 +25,19 @@ final class HomeViewController: UIViewController {
 }
 //MARK: - Setup Views
 private extension HomeViewController {
+    func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .done(let recipes):
+                    self.recipes = recipes
+                }
+            }.store(in: &bag)
+    }
+    
     func setupCollectionView() {
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +53,15 @@ private extension HomeViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
         ])
+    }
+    
+    func setupSearchBar() {
+        let searchController = UISearchController(searchResultsController: searchResult)
+        searchController.isActive = true
+        searchController.searchBar.placeholder = "Search recipes"
+        searchController.searchResultsUpdater = self
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
     }
 }
 //MARK: - Layout
@@ -150,7 +174,7 @@ extension HomeViewController: UICollectionViewDataSource {
         HomeSection.allCases.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        recipes.count
     }
     
     func collectionView(
@@ -164,21 +188,21 @@ extension HomeViewController: UICollectionViewDataSource {
                 withReuseIdentifier: TrendingCell.identifier,
                 for: indexPath
             ) as? TrendingCell else { fatalError()}
-            cell.configure(with: Recipe.sample)
+            cell.configure(with: recipes[indexPath.item])
             return cell
         case .popular:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: PopularCell.identifier,
                 for: indexPath
             ) as? PopularCell else { fatalError()}
-            cell.configure(with: Recipe.sample)
+            cell.configure(with: recipes[indexPath.item])
             return cell
         case .recent:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RecentCell.identifier,
                 for: indexPath
             ) as? RecentCell else { fatalError()}
-            cell.configure(with: Recipe.sample)
+            cell.configure(with: recipes[indexPath.item])
             return cell
         }
     }
@@ -208,6 +232,12 @@ extension HomeViewController: UICollectionViewDataSource {
     
     @objc private func recentAction() {
         print(#function)
+    }
+}
+
+extension HomeViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        searchResult.query = searchController.searchBar.text ?? ""
     }
 }
 @available(iOS 17.0, *)

@@ -32,7 +32,7 @@ final class RecipeDetailViewController: UIViewController {
     
     private lazy var recipeImage: UIImageView = {
         let recipeImage = UIImageView()
-		recipeImage.kf.setImage(with: URL(string: recipe.image))
+        recipeImage.kf.setImage(with: URL(string: recipe.image ?? ""))
         recipeImage.layer.cornerRadius = 15
         recipeImage.layer.masksToBounds = true
         recipeImage.translatesAutoresizingMaskIntoConstraints = false
@@ -88,7 +88,7 @@ final class RecipeDetailViewController: UIViewController {
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.allowsBackForwardNavigationGestures = false
         
-        let html = makeHtml(recipe.instructions)
+        let html = makeHtml(recipe.instructions ?? "")
         webView.loadHTMLString(html, baseURL: nil)
       //  webView.contentScaleFactor = 3
         
@@ -249,7 +249,10 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsCell.identifire, for: indexPath)
 		guard let cell = cell as? IngredientsCell else { return UITableViewCell() }
         cell.selectionStyle = .none
-		cell.configure(with: recipe.extendedIngredients[indexPath.row])
+        if let extendedIngredients = recipe.extendedIngredients {
+            cell.configure(with: extendedIngredients[indexPath.row])
+        }
+		
         return cell
     }
     
