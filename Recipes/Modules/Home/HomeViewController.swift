@@ -3,7 +3,7 @@ import UIKit
 final class HomeViewController: UIViewController {
     private let store = TrendingStore()
     private var bag = Bag()
-    private var recipes: [Recipe] = [] { didSet { collectionView.reloadData()}}
+    private var recipes: [Recipe] = Recipe.recipes { didSet { collectionView.reloadData()}}
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     private let searchResult = SearchResultViewController()
     override func viewDidLoad() {
@@ -42,6 +42,7 @@ private extension HomeViewController {
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(TrendingCell.self, forCellWithReuseIdentifier: TrendingCell.identifier)
         collectionView.register(PopularCell.self, forCellWithReuseIdentifier: PopularCell.identifier)
@@ -166,6 +167,12 @@ private extension HomeViewController {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top)
         return layoutSectionHeader
+    }
+}
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = RecipeDetailViewController(recipe: recipes[indexPath.item])
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 //MARK: - UICollectionViewDataSource

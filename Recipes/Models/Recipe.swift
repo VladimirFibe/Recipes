@@ -38,6 +38,10 @@ struct Recipe: Codable, Hashable {
     static var sample: Recipe {
         Bundle.main.decode([Recipe].self, from: "Recipes.json")[0]
     }
+    
+    static var recipes: [Recipe] {
+        Bundle.main.decode([Recipe].self, from: "Recipes.json")
+    }
 }
 
 // MARK: - SearchRecipe
