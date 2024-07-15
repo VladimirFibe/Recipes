@@ -210,7 +210,7 @@ extension HomeViewController: UICollectionViewDataSource {
         print(#function)
     }
 }
-@available(iOS 17.0, *)
-#Preview {
-    UINavigationController(rootViewController: HomeViewController())
-}
+//@available(iOS 17.0, *)
+//#Preview {
+//    UINavigationController(rootViewController: HomeViewController())
+//}

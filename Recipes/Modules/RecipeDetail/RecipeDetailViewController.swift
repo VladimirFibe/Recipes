@@ -260,8 +260,8 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
     
 }
 
-@available(iOS 17.0, *)
-#Preview {
-	UINavigationController(rootViewController: RecipeDetailViewController())
-}
+//@available(iOS 17.0, *)
+//#Preview {
+//	UINavigationController(rootViewController: RecipeDetailViewController())
+//}
 

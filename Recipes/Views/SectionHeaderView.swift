@@ -37,8 +37,8 @@ final class SectionHeaderView: UICollectionReusableView {
         var attributedTitle = AttributedString(stringLiteral: "See all")
         attributedTitle.font = .custom(font: .bold, size: 14)
         config.attributedTitle = attributedTitle
-        config.baseForegroundColor = .xE23E3E
-        config.image = .arrowRight20
+        config.baseForegroundColor = UIColor(red: 0xE2/255, green: 0x3E/255, blue: 0x3E/255, alpha: 1.0)
+        config.image = UIImage(named: "arrowRight20")
         config.imagePlacement = .trailing
         config.imagePadding = 3
         button.configuration = config

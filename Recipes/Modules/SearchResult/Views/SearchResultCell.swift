@@ -122,7 +122,7 @@ private extension SearchResultCell {
 	}
 }
 
-@available(iOS 17.0, *)
-#Preview {
-	SearchResultViewController()
-}
+//@available(iOS 17.0, *)
+//#Preview {
+//	SearchResultViewController()
+//}
