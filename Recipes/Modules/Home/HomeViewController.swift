@@ -241,7 +241,7 @@ extension HomeViewController: UISearchResultsUpdating {
     }
 }
 
-@available(iOS 17.0, *)
-#Preview {
-    UINavigationController(rootViewController: HomeViewController())
-}
+//@available(iOS 17.0, *)
+//#Preview {
+//    UINavigationController(rootViewController: HomeViewController())
+//}
